@@ -1,0 +1,236 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Program Listing for File WsHandlerEvents.h &mdash; turpial-firmware  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> turpial-firmware
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">turpial-firmware</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Program Listing for File WsHandlerEvents.h</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/program_listing_file_components_WS_src_WsHandlerEvents.h.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-wshandlerevents-h">
+<span id="program-listing-file-components-ws-src-wshandlerevents-h"></span><h1>Program Listing for File WsHandlerEvents.h<a class="headerlink" href="#program-listing-for-file-wshandlerevents-h" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_components_WS_src_WsHandlerEvents.h.html#file-components-ws-src-wshandlerevents-h"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">components/WS/src/WsHandlerEvents.h</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef WSHANDLEREVENTS_H</span>
+<span class="cp">#define WSHANDLEREVENTS_H</span>
+
+<span class="cp">#include</span> <span class="cpf">&quot;WebSocket.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;esp_log.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;sstream&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">extern</span> <span class="n">ws_list_t</span> <span class="n">wsClients</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">WsHandlerEvents</span> <span class="o">:</span> <span class="k">public</span> <span class="n">WebSocketHandler</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">onClose</span><span class="p">(</span><span class="n">WebSocket</span><span class="o">*</span> <span class="n">pWebSocket</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">fd</span> <span class="o">=</span> <span class="n">pWebSocket</span><span class="o">-&gt;</span><span class="n">getSocket</span><span class="p">().</span><span class="n">getFD</span><span class="p">();</span>
+        <span class="n">wsClients</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">fd</span><span class="p">);</span>
+        <span class="n">ESP_LOGI</span><span class="p">(</span><span class="s">&quot;EVENTS&quot;</span><span class="p">,</span> <span class="s">&quot;Clients availables:------&gt;&gt;&gt; %d&quot;</span><span class="p">,</span> <span class="n">wsClients</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+        <span class="n">pWebSocket</span><span class="o">-&gt;</span><span class="n">close</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">onMessage</span><span class="p">(</span><span class="n">WebSocketInputStreambuf</span><span class="o">*</span> <span class="n">pWebSocketInputStreambuf</span><span class="p">,</span> <span class="n">WebSocket</span><span class="o">*</span> <span class="n">pWebSocket</span><span class="p">)</span> <span class="k">override</span>
+    <span class="p">{</span>
+        <span class="n">stringstream</span> <span class="n">s2</span><span class="p">;</span>
+        <span class="n">s2</span> <span class="o">&lt;&lt;</span> <span class="n">pWebSocketInputStreambuf</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Message from client &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">pWebSocket</span><span class="o">-&gt;</span><span class="n">getSocket</span><span class="p">().</span><span class="n">getFD</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;&lt;--&gt;&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">s2</span><span class="p">.</span><span class="n">rdbuf</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">str</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="n">pWebSocket</span><span class="o">-&gt;</span><span class="n">send</span><span class="p">(</span><span class="s">&quot;hello world from websocket handler line 28&quot;</span><span class="p">,</span> <span class="mh">0x02</span><span class="p">);</span> <span class="c1">//0x01 BIN  0x02 TEXT</span>
+
+        <span class="n">ESP_LOGI</span><span class="p">(</span><span class="s">&quot;TESTING CUSTOM CALLBACK ON SOCKET EVENT************&quot;</span><span class="p">,</span> <span class="s">&quot;WE CAN PUT CUSTOM CODE HERE :)&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">onError</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">error</span><span class="p">)</span> <span class="k">override</span>
+    <span class="p">{</span>
+        <span class="n">ESP_LOGI</span><span class="p">(</span><span class="s">&quot;EVENTS---&gt;&quot;</span><span class="p">,</span> <span class="s">&quot;THERE ARE ERRROS HERE-----:(&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="cp">#endif</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Locha Mesh developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

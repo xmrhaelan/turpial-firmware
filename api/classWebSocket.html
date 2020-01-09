@@ -1,0 +1,407 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Class WebSocket &mdash; turpial-firmware  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class WebSocketHandler" href="classWebSocketHandler.html" />
+    <link rel="prev" title="Class Semaphore" href="classutil_1_1Semaphore.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> turpial-firmware
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">turpial-firmware</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="library_root.html">Library API</a> &raquo;</li>
+        
+      <li>Class WebSocket</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/classWebSocket.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="class-websocket">
+<span id="exhale-class-classwebsocket"></span><h1>Class WebSocket<a class="headerlink" href="#class-websocket" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_components_WS_src_WebSocket.h.html#file-components-ws-src-websocket-h"><span class="std std-ref">File WebSocket.h</span></a></p></li>
+</ul>
+<div class="section" id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="_CPPv49WebSocket">
+<span id="_CPPv39WebSocket"></span><span id="_CPPv29WebSocket"></span><span id="WebSocket"></span><span class="target" id="classWebSocket"></span><em class="property">class </em><code class="sig-name descname">WebSocket</code><a class="headerlink" href="#_CPPv49WebSocket" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="function">
+<dt id="_CPPv4N9WebSocket9WebSocketE6Socket">
+<span id="_CPPv3N9WebSocket9WebSocketE6Socket"></span><span id="_CPPv2N9WebSocket9WebSocketE6Socket"></span><span id="WebSocket::WebSocket__Socket"></span><span class="target" id="classWebSocket_1a30c8399db86bb20fdc8facd5d68c79de"></span><code class="sig-name descname">WebSocket</code><span class="sig-paren">(</span><a class="reference internal" href="classSocket.html#_CPPv46Socket" title="Socket">Socket</a> <em>socket</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9WebSocket9WebSocketE6Socket" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Construct a <a class="reference internal" href="#classWebSocket"><span class="std std-ref">WebSocket</span></a> instance. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N9WebSocketD0Ev">
+<span id="_CPPv3N9WebSocketD0Ev"></span><span id="_CPPv2N9WebSocketD0Ev"></span><span id="WebSocket::~WebSocket"></span><span class="target" id="classWebSocket_1a48afbe9b82fde4479913a1b931444729"></span><code class="sig-name descname">~WebSocket</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9WebSocketD0Ev" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Destructor. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N9WebSocket5closeE8uint16_tNSt6stringE">
+<span id="_CPPv3N9WebSocket5closeE8uint16_tNSt6stringE"></span><span id="_CPPv2N9WebSocket5closeE8uint16_tNSt6stringE"></span><span id="WebSocket::close__uint16_t.ss"></span><span class="target" id="classWebSocket_1a57b53de6aeafeb1f57eed90a3357aaa8"></span>void <code class="sig-name descname">close</code><span class="sig-paren">(</span>uint16_t <em>status</em> = <a class="reference internal" href="#_CPPv4N9WebSocket20CLOSE_NORMAL_CLOSUREE" title="WebSocket::CLOSE_NORMAL_CLOSURE">CLOSE_NORMAL_CLOSURE</a>, std::string <em>message</em> = &quot;&quot;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9WebSocket5closeE8uint16_tNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Close the Web socket. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">status</span></code>: The code passed in the close request. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">message</span></code>: A clarification message on the close request. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N9WebSocket10getHandlerEv">
+<span id="_CPPv3N9WebSocket10getHandlerEv"></span><span id="_CPPv2N9WebSocket10getHandlerEv"></span><span id="WebSocket::getHandler"></span><span class="target" id="classWebSocket_1a93cd22aa94f9c0ef2a49e78a822aaa88"></span><a class="reference internal" href="classWebSocketHandler.html#_CPPv416WebSocketHandler" title="WebSocketHandler">WebSocketHandler</a> *<code class="sig-name descname">getHandler</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9WebSocket10getHandlerEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the current <a class="reference internal" href="classWebSocketHandler.html#classWebSocketHandler"><span class="std std-ref">WebSocketHandler</span></a> A web socket handler is a user registered class instance that is called when an incoming event received over the network needs to be handled by user code. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N9WebSocket9getSocketEv">
+<span id="_CPPv3N9WebSocket9getSocketEv"></span><span id="_CPPv2N9WebSocket9getSocketEv"></span><span id="WebSocket::getSocket"></span><span class="target" id="classWebSocket_1aab1c6f5102716a4200d930ec0e63546e"></span><a class="reference internal" href="classSocket.html#_CPPv46Socket" title="Socket">Socket</a> <code class="sig-name descname">getSocket</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9WebSocket9getSocketEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the underlying socket for the websocket. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The socket associated with the Web socket. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N9WebSocket4sendENSt6stringE7uint8_t">
+<span id="_CPPv3N9WebSocket4sendENSt6stringE7uint8_t"></span><span id="_CPPv2N9WebSocket4sendENSt6stringE7uint8_t"></span><span id="WebSocket::send__ss.uint8_t"></span><span class="target" id="classWebSocket_1a9632cea9451d149a1dda489a3d0975cf"></span>void <code class="sig-name descname">send</code><span class="sig-paren">(</span>std::string <em>data</em>, uint8_t <em>sendType</em> = <a class="reference internal" href="#_CPPv4N9WebSocket16SEND_TYPE_BINARYE" title="WebSocket::SEND_TYPE_BINARY">SEND_TYPE_BINARY</a><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9WebSocket4sendENSt6stringE7uint8_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Send data down the web socket See the <a class="reference internal" href="#classWebSocket"><span class="std std-ref">WebSocket</span></a> spec (RFC6455) section “6.1 Sending Data”. We build a <a class="reference internal" href="#classWebSocket"><span class="std std-ref">WebSocket</span></a> frame, send the frame followed by the data. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">data</span></code>: The data to send down the <a class="reference internal" href="#classWebSocket"><span class="std std-ref">WebSocket</span></a>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">sendType</span></code>: The type of payload. Either SEND_TYPE_TEXT or SEND_TYPE_BINARY. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N9WebSocket4sendEP7uint8_t8uint16_t7uint8_t">
+<span id="_CPPv3N9WebSocket4sendEP7uint8_t8uint16_t7uint8_t"></span><span id="_CPPv2N9WebSocket4sendEP7uint8_t8uint16_t7uint8_t"></span><span id="WebSocket::send__uint8_tP.uint16_t.uint8_t"></span><span class="target" id="classWebSocket_1a8cb4296ffa57b80cbec6694c4611bdea"></span>void <code class="sig-name descname">send</code><span class="sig-paren">(</span>uint8_t *<em>data</em>, uint16_t <em>length</em>, uint8_t <em>sendType</em> = <a class="reference internal" href="#_CPPv4N9WebSocket16SEND_TYPE_BINARYE" title="WebSocket::SEND_TYPE_BINARY">SEND_TYPE_BINARY</a><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9WebSocket4sendEP7uint8_t8uint16_t7uint8_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Send data down the web socket See the <a class="reference internal" href="#classWebSocket"><span class="std std-ref">WebSocket</span></a> spec (RFC6455) section “6.1 Sending Data”. We build a <a class="reference internal" href="#classWebSocket"><span class="std std-ref">WebSocket</span></a> frame, send the frame followed by the data. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">data</span></code>: The data to send down the <a class="reference internal" href="#classWebSocket"><span class="std std-ref">WebSocket</span></a>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">sendType</span></code>: The type of payload. Either SEND_TYPE_TEXT or SEND_TYPE_BINARY. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N9WebSocket10setHandlerEP16WebSocketHandler">
+<span id="_CPPv3N9WebSocket10setHandlerEP16WebSocketHandler"></span><span id="_CPPv2N9WebSocket10setHandlerEP16WebSocketHandler"></span><span id="WebSocket::setHandler__WebSocketHandlerP"></span><span class="target" id="classWebSocket_1aad812ebe8eb8405006c0ed8c8e567239"></span>void <code class="sig-name descname">setHandler</code><span class="sig-paren">(</span><a class="reference internal" href="classWebSocketHandler.html#_CPPv416WebSocketHandler" title="WebSocketHandler">WebSocketHandler</a> *<em>handler</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9WebSocket10setHandlerEP16WebSocketHandler" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set the Web socket handler associated with this Websocket. </p>
+<p>This will be the user supplied code that will be invoked to process incoming <a class="reference internal" href="#classWebSocket"><span class="std std-ref">WebSocket</span></a> events. An instance of <a class="reference internal" href="classWebSocketHandler.html#classWebSocketHandler"><span class="std std-ref">WebSocketHandler</span></a> is passed in. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4NK9WebSocket10getClientsEv">
+<span id="_CPPv3NK9WebSocket10getClientsEv"></span><span id="_CPPv2NK9WebSocket10getClientsEv"></span><span id="WebSocket::getClientsC"></span><span class="target" id="classWebSocket_1afdc53913d39438c167f2879de9f359c1"></span><em class="property">const</em> <a class="reference internal" href="typedef_WebSocket_8h_1a26bf375e4651931ff2428c5989f7db0f.html#_CPPv49ws_list_t" title="ws_list_t">ws_list_t</a> &amp;<code class="sig-name descname">getClients</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK9WebSocket10getClientsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N9WebSocket16availableClientsEv">
+<span id="_CPPv3N9WebSocket16availableClientsEv"></span><span id="_CPPv2N9WebSocket16availableClientsEv"></span><span id="WebSocket::availableClients"></span><span class="target" id="classWebSocket_1a43b6b749199b0e20a57fe9cb6a8f4625"></span>int <code class="sig-name descname">availableClients</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9WebSocket16availableClientsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N9WebSocket16addClientToQueueEiP9WebSocket">
+<span id="_CPPv3N9WebSocket16addClientToQueueEiP9WebSocket"></span><span id="_CPPv2N9WebSocket16addClientToQueueEiP9WebSocket"></span><span id="WebSocket::addClientToQueue__i.WebSocketP"></span><span class="target" id="classWebSocket_1a92017e5a4a393bd701c76db8bd79bae5"></span>bool <code class="sig-name descname">addClientToQueue</code><span class="sig-paren">(</span>int <em>fd</em>, <a class="reference internal" href="#_CPPv49WebSocket" title="WebSocket">WebSocket</a> *<em>socket</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9WebSocket16addClientToQueueEiP9WebSocket" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N9WebSocket9getClientEi">
+<span id="_CPPv3N9WebSocket9getClientEi"></span><span id="_CPPv2N9WebSocket9getClientEi"></span><span id="WebSocket::getClient__i"></span><span class="target" id="classWebSocket_1a25949ebbdb64ce21effdc0f6717a4e1c"></span><a class="reference internal" href="#_CPPv49WebSocket" title="WebSocket">WebSocket</a> *<code class="sig-name descname">getClient</code><span class="sig-paren">(</span>int <em>fd</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9WebSocket9getClientEi" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N9WebSocket21removeClientFromQueueEi">
+<span id="_CPPv3N9WebSocket21removeClientFromQueueEi"></span><span id="_CPPv2N9WebSocket21removeClientFromQueueEi"></span><span id="WebSocket::removeClientFromQueue__i"></span><span class="target" id="classWebSocket_1a7f6f62d6f3c871557195d3231e8f5653"></span>void <code class="sig-name descname">removeClientFromQueue</code><span class="sig-paren">(</span>int <em>fd</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9WebSocket21removeClientFromQueueEi" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Static Attributes</p>
+<dl class="member">
+<dt id="_CPPv4N9WebSocket20CLOSE_NORMAL_CLOSUREE">
+<span id="_CPPv3N9WebSocket20CLOSE_NORMAL_CLOSUREE"></span><span id="_CPPv2N9WebSocket20CLOSE_NORMAL_CLOSUREE"></span><span id="WebSocket::CLOSE_NORMAL_CLOSURE__uint16_tC"></span><span class="target" id="classWebSocket_1ae350fbd17ed25e2695fa69bcb06b0f9d"></span><em class="property">const</em> uint16_t <code class="sig-name descname">CLOSE_NORMAL_CLOSURE</code> = 1000<a class="headerlink" href="#_CPPv4N9WebSocket20CLOSE_NORMAL_CLOSUREE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N9WebSocket16CLOSE_GOING_AWAYE">
+<span id="_CPPv3N9WebSocket16CLOSE_GOING_AWAYE"></span><span id="_CPPv2N9WebSocket16CLOSE_GOING_AWAYE"></span><span id="WebSocket::CLOSE_GOING_AWAY__uint16_tC"></span><span class="target" id="classWebSocket_1a1ec7c34936dce34aa20832c5a42f88e6"></span><em class="property">const</em> uint16_t <code class="sig-name descname">CLOSE_GOING_AWAY</code> = 1001<a class="headerlink" href="#_CPPv4N9WebSocket16CLOSE_GOING_AWAYE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N9WebSocket20CLOSE_PROTOCOL_ERRORE">
+<span id="_CPPv3N9WebSocket20CLOSE_PROTOCOL_ERRORE"></span><span id="_CPPv2N9WebSocket20CLOSE_PROTOCOL_ERRORE"></span><span id="WebSocket::CLOSE_PROTOCOL_ERROR__uint16_tC"></span><span class="target" id="classWebSocket_1ab015ad40c8b842e0a91554be7faf7cf4"></span><em class="property">const</em> uint16_t <code class="sig-name descname">CLOSE_PROTOCOL_ERROR</code> = 1002<a class="headerlink" href="#_CPPv4N9WebSocket20CLOSE_PROTOCOL_ERRORE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N9WebSocket19CLOSE_CANNOT_ACCEPTE">
+<span id="_CPPv3N9WebSocket19CLOSE_CANNOT_ACCEPTE"></span><span id="_CPPv2N9WebSocket19CLOSE_CANNOT_ACCEPTE"></span><span id="WebSocket::CLOSE_CANNOT_ACCEPT__uint16_tC"></span><span class="target" id="classWebSocket_1a055115ead6d1aa449d728eff4eb17c24"></span><em class="property">const</em> uint16_t <code class="sig-name descname">CLOSE_CANNOT_ACCEPT</code> = 1003<a class="headerlink" href="#_CPPv4N9WebSocket19CLOSE_CANNOT_ACCEPTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N9WebSocket20CLOSE_NO_STATUS_CODEE">
+<span id="_CPPv3N9WebSocket20CLOSE_NO_STATUS_CODEE"></span><span id="_CPPv2N9WebSocket20CLOSE_NO_STATUS_CODEE"></span><span id="WebSocket::CLOSE_NO_STATUS_CODE__uint16_tC"></span><span class="target" id="classWebSocket_1ad0b25d7a8c4a28e594218448b49bf0bd"></span><em class="property">const</em> uint16_t <code class="sig-name descname">CLOSE_NO_STATUS_CODE</code> = 1005<a class="headerlink" href="#_CPPv4N9WebSocket20CLOSE_NO_STATUS_CODEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N9WebSocket23CLOSE_CLOSED_ABNORMALLYE">
+<span id="_CPPv3N9WebSocket23CLOSE_CLOSED_ABNORMALLYE"></span><span id="_CPPv2N9WebSocket23CLOSE_CLOSED_ABNORMALLYE"></span><span id="WebSocket::CLOSE_CLOSED_ABNORMALLY__uint16_tC"></span><span class="target" id="classWebSocket_1adc143f57c3af9d9e61a018ebc8f94bee"></span><em class="property">const</em> uint16_t <code class="sig-name descname">CLOSE_CLOSED_ABNORMALLY</code> = 1006<a class="headerlink" href="#_CPPv4N9WebSocket23CLOSE_CLOSED_ABNORMALLYE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N9WebSocket20CLOSE_NOT_CONSISTENTE">
+<span id="_CPPv3N9WebSocket20CLOSE_NOT_CONSISTENTE"></span><span id="_CPPv2N9WebSocket20CLOSE_NOT_CONSISTENTE"></span><span id="WebSocket::CLOSE_NOT_CONSISTENT__uint16_tC"></span><span class="target" id="classWebSocket_1ae8c18fd831b95781e1cffafd4b2ea32d"></span><em class="property">const</em> uint16_t <code class="sig-name descname">CLOSE_NOT_CONSISTENT</code> = 1007<a class="headerlink" href="#_CPPv4N9WebSocket20CLOSE_NOT_CONSISTENTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N9WebSocket21CLOSE_VIOLATED_POLICYE">
+<span id="_CPPv3N9WebSocket21CLOSE_VIOLATED_POLICYE"></span><span id="_CPPv2N9WebSocket21CLOSE_VIOLATED_POLICYE"></span><span id="WebSocket::CLOSE_VIOLATED_POLICY__uint16_tC"></span><span class="target" id="classWebSocket_1a5e98321969f0a317651cbcf6c77dc0b4"></span><em class="property">const</em> uint16_t <code class="sig-name descname">CLOSE_VIOLATED_POLICY</code> = 1008<a class="headerlink" href="#_CPPv4N9WebSocket21CLOSE_VIOLATED_POLICYE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N9WebSocket13CLOSE_TOO_BIGE">
+<span id="_CPPv3N9WebSocket13CLOSE_TOO_BIGE"></span><span id="_CPPv2N9WebSocket13CLOSE_TOO_BIGE"></span><span id="WebSocket::CLOSE_TOO_BIG__uint16_tC"></span><span class="target" id="classWebSocket_1ae55a45a9c680f6f1151a57666004458c"></span><em class="property">const</em> uint16_t <code class="sig-name descname">CLOSE_TOO_BIG</code> = 1009<a class="headerlink" href="#_CPPv4N9WebSocket13CLOSE_TOO_BIGE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N9WebSocket18CLOSE_NO_EXTENSIONE">
+<span id="_CPPv3N9WebSocket18CLOSE_NO_EXTENSIONE"></span><span id="_CPPv2N9WebSocket18CLOSE_NO_EXTENSIONE"></span><span id="WebSocket::CLOSE_NO_EXTENSION__uint16_tC"></span><span class="target" id="classWebSocket_1ab8ff2dac88429df2ca2d433a96b289e5"></span><em class="property">const</em> uint16_t <code class="sig-name descname">CLOSE_NO_EXTENSION</code> = 1010<a class="headerlink" href="#_CPPv4N9WebSocket18CLOSE_NO_EXTENSIONE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N9WebSocket26CLOSE_UNEXPECTED_CONDITIONE">
+<span id="_CPPv3N9WebSocket26CLOSE_UNEXPECTED_CONDITIONE"></span><span id="_CPPv2N9WebSocket26CLOSE_UNEXPECTED_CONDITIONE"></span><span id="WebSocket::CLOSE_UNEXPECTED_CONDITION__uint16_tC"></span><span class="target" id="classWebSocket_1a0d6d831ccd4839cc70cf2dbeac92ccaf"></span><em class="property">const</em> uint16_t <code class="sig-name descname">CLOSE_UNEXPECTED_CONDITION</code> = 1011<a class="headerlink" href="#_CPPv4N9WebSocket26CLOSE_UNEXPECTED_CONDITIONE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N9WebSocket21CLOSE_SERVICE_RESTARTE">
+<span id="_CPPv3N9WebSocket21CLOSE_SERVICE_RESTARTE"></span><span id="_CPPv2N9WebSocket21CLOSE_SERVICE_RESTARTE"></span><span id="WebSocket::CLOSE_SERVICE_RESTART__uint16_tC"></span><span class="target" id="classWebSocket_1a9a2a84283d6499b5b6843e83db2f531d"></span><em class="property">const</em> uint16_t <code class="sig-name descname">CLOSE_SERVICE_RESTART</code> = 1012<a class="headerlink" href="#_CPPv4N9WebSocket21CLOSE_SERVICE_RESTARTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N9WebSocket21CLOSE_TRY_AGAIN_LATERE">
+<span id="_CPPv3N9WebSocket21CLOSE_TRY_AGAIN_LATERE"></span><span id="_CPPv2N9WebSocket21CLOSE_TRY_AGAIN_LATERE"></span><span id="WebSocket::CLOSE_TRY_AGAIN_LATER__uint16_tC"></span><span class="target" id="classWebSocket_1a9d2b1b41de48c2b48a77aa2d98f8b894"></span><em class="property">const</em> uint16_t <code class="sig-name descname">CLOSE_TRY_AGAIN_LATER</code> = 1013<a class="headerlink" href="#_CPPv4N9WebSocket21CLOSE_TRY_AGAIN_LATERE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N9WebSocket27CLOSE_TLS_HANDSHAKE_FAILUREE">
+<span id="_CPPv3N9WebSocket27CLOSE_TLS_HANDSHAKE_FAILUREE"></span><span id="_CPPv2N9WebSocket27CLOSE_TLS_HANDSHAKE_FAILUREE"></span><span id="WebSocket::CLOSE_TLS_HANDSHAKE_FAILURE__uint16_tC"></span><span class="target" id="classWebSocket_1a1f3d32b1901b61664f976af18b569f09"></span><em class="property">const</em> uint16_t <code class="sig-name descname">CLOSE_TLS_HANDSHAKE_FAILURE</code> = 1015<a class="headerlink" href="#_CPPv4N9WebSocket27CLOSE_TLS_HANDSHAKE_FAILUREE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N9WebSocket16SEND_TYPE_BINARYE">
+<span id="_CPPv3N9WebSocket16SEND_TYPE_BINARYE"></span><span id="_CPPv2N9WebSocket16SEND_TYPE_BINARYE"></span><span id="WebSocket::SEND_TYPE_BINARY__uint8_tC"></span><span class="target" id="classWebSocket_1a6ebca020e7553a49127d2b0f402064cf"></span><em class="property">const</em> uint8_t <code class="sig-name descname">SEND_TYPE_BINARY</code> = 0x01<a class="headerlink" href="#_CPPv4N9WebSocket16SEND_TYPE_BINARYE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv4N9WebSocket14SEND_TYPE_TEXTE">
+<span id="_CPPv3N9WebSocket14SEND_TYPE_TEXTE"></span><span id="_CPPv2N9WebSocket14SEND_TYPE_TEXTE"></span><span id="WebSocket::SEND_TYPE_TEXT__uint8_tC"></span><span class="target" id="classWebSocket_1aa0c2054d8b9ec168598b9c7f52b125e7"></span><em class="property">const</em> uint8_t <code class="sig-name descname">SEND_TYPE_TEXT</code> = 0x02<a class="headerlink" href="#_CPPv4N9WebSocket14SEND_TYPE_TEXTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="classWebSocketHandler.html" class="btn btn-neutral float-right" title="Class WebSocketHandler" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="classutil_1_1Semaphore.html" class="btn btn-neutral float-left" title="Class Semaphore" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Locha Mesh developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+.. _exhale_variable_WiFi_8cpp_1a12acbf98837147112ae9f7a459b81bcb:
+
+Variable network::VALID_CHARACTERS
+==================================
+
+- Defined in :ref:`file_components_Network_src_WiFi.cpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: network::VALID_CHARACTERS

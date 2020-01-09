@@ -1,0 +1,13 @@
+.. _exhale_define_defaults_8h_1a0889a7ece93eca4ff0d23356acb57bd9:
+
+Define ESC_CRITICAL_BAT_THRESHOLD
+=================================
+
+- Defined in :ref:`file_main_defaults.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: ESC_CRITICAL_BAT_THRESHOLD

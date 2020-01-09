@@ -1,0 +1,13 @@
+.. _exhale_define_defaults_8h_1a852ada17276267d1560086589181498a:
+
+Define ESC_MAX_BATTERY_CAPACITY
+===============================
+
+- Defined in :ref:`file_main_defaults.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: ESC_MAX_BATTERY_CAPACITY

@@ -1,0 +1,29 @@
+
+.. _program_listing_file_components_BLEPreferences_src_BLEPreferences.h:
+
+Program Listing for File BLEPreferences.h
+=========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_components_BLEPreferences_src_BLEPreferences.h>` (``components/BLEPreferences/src/BLEPreferences.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef BLE_PREFERENCES_H
+   #define BLE_PREFERENCES_H
+   
+   #include "esp_err.h"
+   
+   #include "Server.h"
+   
+   namespace ble_preferences {
+   
+   void start(ble::ServerParams server_params);
+   
+   void stop();
+   
+   } // namespace ble_preferences
+   
+   #endif // BLE_PREFERENCES_H

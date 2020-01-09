@@ -1,0 +1,63 @@
+
+.. _file_components_WS_src_WsHandlerEvents.h:
+
+File WsHandlerEvents.h
+======================
+
+|exhale_lsh| :ref:`Parent directory <dir_components_WS_src>` (``components/WS/src``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``components/WS/src/WsHandlerEvents.h``)
+----------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_components_WS_src_WsHandlerEvents.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``WebSocket.h`` (:ref:`file_components_WS_src_WebSocket.h`)
+
+- ``esp_log.h``
+
+- ``iostream``
+
+- ``sstream``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_main_main.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classWsHandlerEvents`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_WsHandlerEvents_8h_1a0da8e9a8288b51e73dc6b9e10d02f159`
+

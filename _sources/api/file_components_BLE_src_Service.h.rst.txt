@@ -1,0 +1,79 @@
+
+.. _file_components_BLE_src_Service.h:
+
+File Service.h
+==============
+
+|exhale_lsh| :ref:`Parent directory <dir_components_BLE_src>` (``components/BLE/src``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``components/BLE/src/Service.h``)
+---------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_components_BLE_src_Service.h.rst
+
+
+
+Detailed Description
+--------------------
+
+Locha Mesh Developers (contact@locha.io) 
+0.1 
+2019-11-21
+Copyright (c) 2019 Locha Mesh project developers 
+Apache 2.0, see LICENSE file for details 
+
+
+
+
+Includes
+--------
+
+
+- ``Characteristic.h`` (:ref:`file_components_BLE_src_Characteristic.h`)
+
+- ``Sema.h`` (:ref:`file_components_Util_src_Sema.h`)
+
+- ``Uuid.h`` (:ref:`file_components_BLE_src_Uuid.h`)
+
+- ``cstdint``
+
+- ``esp_gatts_api.h``
+
+- ``vector``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_components_BLE_src_Server.h`
+
+- :ref:`file_components_BLE_src_Service.cpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_ble`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classble_1_1Service`
+

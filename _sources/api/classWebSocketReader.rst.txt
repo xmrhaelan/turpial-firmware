@@ -1,0 +1,25 @@
+.. _exhale_class_classWebSocketReader:
+
+Class WebSocketReader
+=====================
+
+- Defined in :ref:`file_components_WS_src_WebSocket.cpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public Task`` (:ref:`exhale_class_classTask`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: WebSocketReader
+   :members:
+   :protected-members:
+   :undoc-members:

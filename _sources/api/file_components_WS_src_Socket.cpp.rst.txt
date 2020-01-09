@@ -1,0 +1,72 @@
+
+.. _file_components_WS_src_Socket.cpp:
+
+File Socket.cpp
+===============
+
+|exhale_lsh| :ref:`Parent directory <dir_components_WS_src>` (``components/WS/src``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``components/WS/src/Socket.cpp``)
+---------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_components_WS_src_Socket.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Socket.h`` (:ref:`file_components_WS_src_Socket.h`)
+
+- ``cctype``
+
+- ``cstdio``
+
+- ``cstring``
+
+- ``errno.h``
+
+- ``esp_log.h``
+
+- ``iostream``
+
+- ``lwip/sockets.h``
+
+- ``sdkconfig.h``
+
+- ``sstream``
+
+- ``stdio.h``
+
+- ``streambuf``
+
+- ``string``
+
+- ``string.h``
+
+- ``unistd.h``
+
+
+
+
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_Socket_8cpp_1a328e9da88a07f3a0bf81b40d25469ff9`
+

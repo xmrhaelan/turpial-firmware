@@ -1,0 +1,573 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Program Listing for File BLEPreferences.cpp &mdash; turpial-firmware  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> turpial-firmware
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">turpial-firmware</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Program Listing for File BLEPreferences.cpp</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/program_listing_file_components_BLEPreferences_src_BLEPreferences.cpp.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-blepreferences-cpp">
+<span id="program-listing-file-components-blepreferences-src-blepreferences-cpp"></span><h1>Program Listing for File BLEPreferences.cpp<a class="headerlink" href="#program-listing-for-file-blepreferences-cpp" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_components_BLEPreferences_src_BLEPreferences.cpp.html#file-components-blepreferences-src-blepreferences-cpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">components/BLEPreferences/src/BLEPreferences.cpp</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;BLEPreferences.h&quot;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&quot;esp_log.h&quot;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&quot;WiFi.h&quot;</span><span class="cp"></span>
+
+<span class="k">namespace</span> <span class="n">ble_preferences</span> <span class="p">{</span>
+
+<span class="k">static</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">TAG</span> <span class="o">=</span> <span class="s">&quot;BLE_Preferences&quot;</span><span class="p">;</span>
+
+<span class="c1">// BLE Preferences organization:</span>
+<span class="c1">//</span>
+<span class="c1">// Service: WIFI_PREFERENCES_UUID</span>
+<span class="c1">//   - Characteristic:</span>
+<span class="c1">//      - Uuid: WIFI_MODE_UUID</span>
+<span class="c1">//      - Value: one of WIFI_MODE_STA, WIFI_MODE_AP, or WIFI_MODE_STA</span>
+<span class="c1">//   - Characteristic:</span>
+<span class="c1">//      - Uuid: AP_SSID_UUID</span>
+<span class="c1">//      - Value: a maximum of 32 chars</span>
+<span class="c1">//   - Characteristic:</span>
+<span class="c1">//      - Uuid: AP_PASSWORD_UUID</span>
+<span class="c1">//      - Value: a maximum of 63 chars</span>
+<span class="c1">//   - Characteristic:</span>
+<span class="c1">//      - Uuid: STA_SSID_UUID</span>
+<span class="c1">//      - Value: a maximum of 31 chars</span>
+<span class="c1">//   - Characteristic:</span>
+<span class="c1">//      - Uuid: STA_PASSWORD_UUID</span>
+<span class="c1">//      - Value: a maximum of 63 chars</span>
+
+<span class="c1">// This the equivalent to: 1 (Service handle) + (2 * num characteristic)</span>
+<span class="k">static</span> <span class="n">std</span><span class="o">::</span><span class="kt">uint16_t</span> <span class="n">WIFI_PREFERENCES_NUM_HANDLES</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="mi">5</span><span class="p">);</span>
+
+<span class="k">static</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">WIFI_PREFERENCES_UUID</span> <span class="o">=</span> <span class="s">&quot;4a2ccc6f55f847da8b918aa04dc1251c&quot;</span><span class="p">;</span>
+
+<span class="k">static</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">WIFI_MODE_UUID</span> <span class="o">=</span> <span class="s">&quot;3ab002a921d94e909e880346f37cb3f0&quot;</span><span class="p">;</span>
+
+<span class="k">static</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">AP_SSID_UUID</span> <span class="o">=</span> <span class="s">&quot;35ac95c13d524d64a427943240c71a85&quot;</span><span class="p">;</span>
+
+<span class="k">static</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">AP_PASSWORD_UUID</span> <span class="o">=</span> <span class="s">&quot;7bb1a7812d1249bbab344a548d3a9e8c&quot;</span><span class="p">;</span>
+
+<span class="k">static</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">STA_SSID_UUID</span> <span class="o">=</span> <span class="s">&quot;03118c93de744b09b26b5953924ba715&quot;</span><span class="p">;</span>
+
+<span class="k">static</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">STA_PASSWORD_UUID</span> <span class="o">=</span> <span class="s">&quot;90a96e194f0a453a9c1e8737b1e3d809&quot;</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">WiFiModeCallback</span> <span class="o">:</span> <span class="k">public</span> <span class="n">ble</span><span class="o">::</span><span class="n">CharacteristicCallback</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">WiFiModeCallback</span><span class="p">()</span>
+    <span class="p">{</span>
+    <span class="p">}</span>
+
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">onWrite</span><span class="p">(</span><span class="n">ble</span><span class="o">::</span><span class="n">Characteristic</span><span class="o">&amp;</span> <span class="n">characteristic</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;onWrite AP SSID&quot;</span><span class="p">);</span>
+
+        <span class="n">network</span><span class="o">::</span><span class="n">WiFi</span><span class="o">&amp;</span> <span class="n">wifi</span> <span class="o">=</span> <span class="n">network</span><span class="o">::</span><span class="n">WiFi</span><span class="o">::</span><span class="n">getInstance</span><span class="p">();</span>
+
+        <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span><span class="o">&gt;&amp;</span> <span class="n">value</span> <span class="o">=</span> <span class="n">characteristic</span><span class="p">.</span><span class="n">value</span><span class="p">().</span><span class="n">get</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">value</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">ESP_LOGW</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span>
+                <span class="s">&quot;client sent invalid Wi-Fi mode, length = %d&quot;</span><span class="p">,</span>
+                <span class="n">value</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+        <span class="p">}</span>
+
+        <span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span> <span class="n">mode</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+        <span class="k">switch</span> <span class="p">(</span><span class="n">mode</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="nl">WIFI_MODE_STA</span><span class="p">:</span>
+        <span class="k">case</span> <span class="nl">WIFI_MODE_AP</span><span class="p">:</span>
+        <span class="k">case</span> <span class="nl">WIFI_MODE_APSTA</span><span class="p">:</span> <span class="p">{</span>
+            <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;setting Wi-Fi mode = %d&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="p">);</span>
+            <span class="n">wifi</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span>
+            <span class="n">wifi</span><span class="p">.</span><span class="n">setMode</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">wifi_mode_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">mode</span><span class="p">));</span>
+            <span class="n">wifi</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">default</span><span class="o">:</span> <span class="p">{</span>
+            <span class="n">ESP_LOGW</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span>
+                <span class="s">&quot;client sent invalid Wi-Fi mode, mode = %d&quot;</span><span class="p">,</span>
+                <span class="n">mode</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">onRead</span><span class="p">(</span><span class="n">ble</span><span class="o">::</span><span class="n">Characteristic</span><span class="o">&amp;</span> <span class="n">characteristic</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">network</span><span class="o">::</span><span class="n">WiFi</span><span class="o">&amp;</span> <span class="n">wifi</span> <span class="o">=</span> <span class="n">network</span><span class="o">::</span><span class="n">WiFi</span><span class="o">::</span><span class="n">getInstance</span><span class="p">();</span>
+
+        <span class="n">wifi_mode_t</span> <span class="n">mode</span><span class="p">;</span>
+        <span class="n">wifi</span><span class="p">.</span><span class="n">getMode</span><span class="p">(</span><span class="n">mode</span><span class="p">);</span>
+
+        <span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span> <span class="n">v</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">switch</span> <span class="p">(</span><span class="n">mode</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="nl">WIFI_MODE_STA</span><span class="p">:</span>
+        <span class="k">case</span> <span class="nl">WIFI_MODE_AP</span><span class="p">:</span>
+        <span class="k">case</span> <span class="nl">WIFI_MODE_APSTA</span><span class="p">:</span> <span class="p">{</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">mode</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">default</span><span class="o">:</span> <span class="p">{</span>
+            <span class="n">ESP_LOGW</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;no Wi-Fi mode is set, changing to AP mode...&quot;</span><span class="p">);</span>
+            <span class="n">wifi</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span>
+            <span class="n">wifi</span><span class="p">.</span><span class="n">setMode</span><span class="p">(</span><span class="n">WIFI_MODE_AP</span><span class="p">);</span>
+            <span class="n">wifi</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">WIFI_MODE_AP</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="n">characteristic</span><span class="p">.</span><span class="n">value</span><span class="p">().</span><span class="n">set</span><span class="p">(</span><span class="o">&amp;</span><span class="n">v</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">APSSIDCallback</span> <span class="o">:</span> <span class="k">public</span> <span class="n">ble</span><span class="o">::</span><span class="n">CharacteristicCallback</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">APSSIDCallback</span><span class="p">()</span>
+    <span class="p">{</span>
+    <span class="p">}</span>
+
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">onWrite</span><span class="p">(</span><span class="n">ble</span><span class="o">::</span><span class="n">Characteristic</span><span class="o">&amp;</span> <span class="n">characteristic</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">network</span><span class="o">::</span><span class="n">WiFi</span><span class="o">&amp;</span> <span class="n">wifi</span> <span class="o">=</span> <span class="n">network</span><span class="o">::</span><span class="n">WiFi</span><span class="o">::</span><span class="n">getInstance</span><span class="p">();</span>
+
+        <span class="n">wifi_config_t</span> <span class="n">config</span><span class="p">;</span>
+        <span class="n">wifi</span><span class="p">.</span><span class="n">getApConfig</span><span class="p">(</span><span class="n">config</span><span class="p">);</span>
+
+        <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span><span class="o">&gt;&amp;</span> <span class="n">value</span> <span class="o">=</span> <span class="n">characteristic</span><span class="p">.</span><span class="n">value</span><span class="p">().</span><span class="n">get</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">value</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="mi">32</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">ESP_LOGW</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span>
+                <span class="s">&quot;AP SSID value is higher than 32 characters, trimming&quot;</span><span class="p">);</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">memcpy</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">ap</span><span class="p">.</span><span class="n">ssid</span><span class="p">,</span> <span class="n">value</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span> <span class="mi">32</span><span class="p">);</span>
+            <span class="n">config</span><span class="p">.</span><span class="n">ap</span><span class="p">.</span><span class="n">ssid_len</span> <span class="o">=</span> <span class="mi">32</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">value</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">ESP_LOGW</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span>
+                <span class="s">&quot;AP SSID value is empty, not changing&quot;</span><span class="p">);</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">memcpy</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">ap</span><span class="p">.</span><span class="n">ssid</span><span class="p">,</span> <span class="n">value</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span> <span class="n">value</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+            <span class="n">config</span><span class="p">.</span><span class="n">ap</span><span class="p">.</span><span class="n">ssid_len</span> <span class="o">=</span> <span class="n">value</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="n">network</span><span class="o">::</span><span class="n">sanitizeSsid</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">ap</span><span class="p">.</span><span class="n">ssid</span><span class="p">,</span> <span class="n">config</span><span class="p">.</span><span class="n">ap</span><span class="p">.</span><span class="n">ssid_len</span><span class="p">);</span>
+
+        <span class="n">wifi</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span>
+        <span class="n">wifi</span><span class="p">.</span><span class="n">setApConfig</span><span class="p">(</span><span class="n">config</span><span class="p">);</span>
+        <span class="n">wifi</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">onRead</span><span class="p">(</span><span class="n">ble</span><span class="o">::</span><span class="n">Characteristic</span><span class="o">&amp;</span> <span class="n">characteristic</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">network</span><span class="o">::</span><span class="n">WiFi</span><span class="o">&amp;</span> <span class="n">wifi</span> <span class="o">=</span> <span class="n">network</span><span class="o">::</span><span class="n">WiFi</span><span class="o">::</span><span class="n">getInstance</span><span class="p">();</span>
+
+        <span class="n">wifi_config_t</span> <span class="n">config</span><span class="p">;</span>
+        <span class="n">wifi</span><span class="p">.</span><span class="n">getApConfig</span><span class="p">(</span><span class="n">config</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">ap</span><span class="p">.</span><span class="n">ssid_len</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">char</span><span class="o">*</span> <span class="n">ssid_str</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">ap</span><span class="p">.</span><span class="n">ssid</span><span class="p">);</span>
+            <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">len</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">strlen</span><span class="p">(</span><span class="n">ssid_str</span><span class="p">);</span>
+            <span class="n">characteristic</span><span class="p">.</span><span class="n">value</span><span class="p">().</span><span class="n">set</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">ap</span><span class="p">.</span><span class="n">ssid</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">characteristic</span><span class="p">.</span><span class="n">value</span><span class="p">().</span><span class="n">set</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">ap</span><span class="p">.</span><span class="n">ssid</span><span class="p">,</span> <span class="n">config</span><span class="p">.</span><span class="n">ap</span><span class="p">.</span><span class="n">ssid_len</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">APPasswordCallback</span> <span class="o">:</span> <span class="k">public</span> <span class="n">ble</span><span class="o">::</span><span class="n">CharacteristicCallback</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">APPasswordCallback</span><span class="p">()</span>
+    <span class="p">{</span>
+    <span class="p">}</span>
+
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">onWrite</span><span class="p">(</span><span class="n">ble</span><span class="o">::</span><span class="n">Characteristic</span><span class="o">&amp;</span> <span class="n">characteristic</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">network</span><span class="o">::</span><span class="n">WiFi</span><span class="o">&amp;</span> <span class="n">wifi</span> <span class="o">=</span> <span class="n">network</span><span class="o">::</span><span class="n">WiFi</span><span class="o">::</span><span class="n">getInstance</span><span class="p">();</span>
+
+        <span class="n">wifi_config_t</span> <span class="n">config</span><span class="p">;</span>
+        <span class="n">wifi</span><span class="p">.</span><span class="n">getApConfig</span><span class="p">(</span><span class="n">config</span><span class="p">);</span>
+
+        <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span><span class="o">&gt;&amp;</span> <span class="n">value</span> <span class="o">=</span> <span class="n">characteristic</span><span class="p">.</span><span class="n">value</span><span class="p">().</span><span class="n">get</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">value</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">63</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">ESP_LOGW</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span>
+                <span class="s">&quot;AP Password value is higher than 63 characters, trimming&quot;</span><span class="p">);</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">memcpy</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">ap</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">value</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span> <span class="mi">63</span><span class="p">);</span>
+            <span class="n">config</span><span class="p">.</span><span class="n">ap</span><span class="p">.</span><span class="n">password</span><span class="p">[</span><span class="mi">63</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">value</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">ESP_LOGW</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;AP Password is empty, not changing&quot;</span><span class="p">);</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">memcpy</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">ap</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">value</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span> <span class="n">value</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+            <span class="n">config</span><span class="p">.</span><span class="n">ap</span><span class="p">.</span><span class="n">password</span><span class="p">[</span><span class="n">value</span><span class="p">.</span><span class="n">size</span><span class="p">()]</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="n">wifi</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span>
+        <span class="n">wifi</span><span class="p">.</span><span class="n">setApConfig</span><span class="p">(</span><span class="n">config</span><span class="p">);</span>
+        <span class="n">wifi</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">onRead</span><span class="p">(</span><span class="n">ble</span><span class="o">::</span><span class="n">Characteristic</span><span class="o">&amp;</span> <span class="n">characteristic</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">network</span><span class="o">::</span><span class="n">WiFi</span><span class="o">&amp;</span> <span class="n">wifi</span> <span class="o">=</span> <span class="n">network</span><span class="o">::</span><span class="n">WiFi</span><span class="o">::</span><span class="n">getInstance</span><span class="p">();</span>
+
+        <span class="n">wifi_config_t</span> <span class="n">config</span><span class="p">;</span>
+        <span class="n">wifi</span><span class="p">.</span><span class="n">getApConfig</span><span class="p">(</span><span class="n">config</span><span class="p">);</span>
+
+        <span class="kt">char</span><span class="o">*</span> <span class="n">password_str</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">ap</span><span class="p">.</span><span class="n">password</span><span class="p">);</span>
+        <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">len</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">strlen</span><span class="p">(</span><span class="n">password_str</span><span class="p">);</span>
+        <span class="n">characteristic</span><span class="p">.</span><span class="n">value</span><span class="p">().</span><span class="n">set</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">ap</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">STASSIDCallback</span> <span class="o">:</span> <span class="k">public</span> <span class="n">ble</span><span class="o">::</span><span class="n">CharacteristicCallback</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">STASSIDCallback</span><span class="p">()</span>
+    <span class="p">{</span>
+    <span class="p">}</span>
+
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">onWrite</span><span class="p">(</span><span class="n">ble</span><span class="o">::</span><span class="n">Characteristic</span><span class="o">&amp;</span> <span class="n">characteristic</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">network</span><span class="o">::</span><span class="n">WiFi</span><span class="o">&amp;</span> <span class="n">wifi</span> <span class="o">=</span> <span class="n">network</span><span class="o">::</span><span class="n">WiFi</span><span class="o">::</span><span class="n">getInstance</span><span class="p">();</span>
+
+        <span class="n">wifi_config_t</span> <span class="n">config</span><span class="p">;</span>
+        <span class="n">wifi</span><span class="p">.</span><span class="n">getStaConfig</span><span class="p">(</span><span class="n">config</span><span class="p">);</span>
+
+        <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span><span class="o">&gt;&amp;</span> <span class="n">value</span> <span class="o">=</span> <span class="n">characteristic</span><span class="p">.</span><span class="n">value</span><span class="p">().</span><span class="n">get</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">value</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">31</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">ESP_LOGW</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span>
+                <span class="s">&quot;STA SSID value is higher than 31 characters, trimming&quot;</span><span class="p">);</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">memcpy</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">sta</span><span class="p">.</span><span class="n">ssid</span><span class="p">,</span> <span class="n">value</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span> <span class="mi">31</span><span class="p">);</span>
+            <span class="n">config</span><span class="p">.</span><span class="n">sta</span><span class="p">.</span><span class="n">ssid</span><span class="p">[</span><span class="mi">31</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">value</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">ESP_LOGW</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;STA SSID value is empty, not changing&quot;</span><span class="p">);</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">memcpy</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">sta</span><span class="p">.</span><span class="n">ssid</span><span class="p">,</span> <span class="n">value</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span> <span class="n">value</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+            <span class="n">config</span><span class="p">.</span><span class="n">sta</span><span class="p">.</span><span class="n">ssid</span><span class="p">[</span><span class="n">value</span><span class="p">.</span><span class="n">size</span><span class="p">()]</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="n">wifi</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span>
+        <span class="n">wifi</span><span class="p">.</span><span class="n">setStaConfig</span><span class="p">(</span><span class="n">config</span><span class="p">);</span>
+        <span class="n">wifi</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">onRead</span><span class="p">(</span><span class="n">ble</span><span class="o">::</span><span class="n">Characteristic</span><span class="o">&amp;</span> <span class="n">characteristic</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">network</span><span class="o">::</span><span class="n">WiFi</span><span class="o">&amp;</span> <span class="n">wifi</span> <span class="o">=</span> <span class="n">network</span><span class="o">::</span><span class="n">WiFi</span><span class="o">::</span><span class="n">getInstance</span><span class="p">();</span>
+
+        <span class="n">wifi_config_t</span> <span class="n">config</span><span class="p">;</span>
+        <span class="n">wifi</span><span class="p">.</span><span class="n">getStaConfig</span><span class="p">(</span><span class="n">config</span><span class="p">);</span>
+
+        <span class="kt">char</span><span class="o">*</span> <span class="n">ssid_str</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">sta</span><span class="p">.</span><span class="n">ssid</span><span class="p">);</span>
+        <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">len</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">strlen</span><span class="p">(</span><span class="n">ssid_str</span><span class="p">);</span>
+        <span class="n">characteristic</span><span class="p">.</span><span class="n">value</span><span class="p">().</span><span class="n">set</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">sta</span><span class="p">.</span><span class="n">ssid</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">STAPasswordCallback</span> <span class="o">:</span> <span class="k">public</span> <span class="n">ble</span><span class="o">::</span><span class="n">CharacteristicCallback</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">STAPasswordCallback</span><span class="p">()</span>
+    <span class="p">{</span>
+    <span class="p">}</span>
+
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">onWrite</span><span class="p">(</span><span class="n">ble</span><span class="o">::</span><span class="n">Characteristic</span><span class="o">&amp;</span> <span class="n">characteristic</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">network</span><span class="o">::</span><span class="n">WiFi</span><span class="o">&amp;</span> <span class="n">wifi</span> <span class="o">=</span> <span class="n">network</span><span class="o">::</span><span class="n">WiFi</span><span class="o">::</span><span class="n">getInstance</span><span class="p">();</span>
+
+        <span class="n">wifi_config_t</span> <span class="n">config</span><span class="p">;</span>
+        <span class="n">wifi</span><span class="p">.</span><span class="n">getStaConfig</span><span class="p">(</span><span class="n">config</span><span class="p">);</span>
+
+        <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span><span class="o">&gt;&amp;</span> <span class="n">value</span> <span class="o">=</span> <span class="n">characteristic</span><span class="p">.</span><span class="n">value</span><span class="p">().</span><span class="n">get</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">value</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">63</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">ESP_LOGW</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span>
+                <span class="s">&quot;AP Password value is higher than 63 characters, trimming&quot;</span><span class="p">);</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">memcpy</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">sta</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">value</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span> <span class="mi">63</span><span class="p">);</span>
+            <span class="n">config</span><span class="p">.</span><span class="n">sta</span><span class="p">.</span><span class="n">password</span><span class="p">[</span><span class="mi">63</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">value</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">config</span><span class="p">.</span><span class="n">sta</span><span class="p">.</span><span class="n">password</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">memcpy</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">ap</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">value</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span> <span class="n">value</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+            <span class="n">config</span><span class="p">.</span><span class="n">sta</span><span class="p">.</span><span class="n">password</span><span class="p">[</span><span class="n">value</span><span class="p">.</span><span class="n">size</span><span class="p">()]</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="n">wifi</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span>
+        <span class="n">wifi</span><span class="p">.</span><span class="n">setStaConfig</span><span class="p">(</span><span class="n">config</span><span class="p">);</span>
+        <span class="n">wifi</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">onRead</span><span class="p">(</span><span class="n">ble</span><span class="o">::</span><span class="n">Characteristic</span><span class="o">&amp;</span> <span class="n">characteristic</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">network</span><span class="o">::</span><span class="n">WiFi</span><span class="o">&amp;</span> <span class="n">wifi</span> <span class="o">=</span> <span class="n">network</span><span class="o">::</span><span class="n">WiFi</span><span class="o">::</span><span class="n">getInstance</span><span class="p">();</span>
+
+        <span class="n">wifi_config_t</span> <span class="n">config</span><span class="p">;</span>
+        <span class="n">wifi</span><span class="p">.</span><span class="n">getStaConfig</span><span class="p">(</span><span class="n">config</span><span class="p">);</span>
+
+        <span class="kt">char</span><span class="o">*</span> <span class="n">password_str</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">ap</span><span class="p">.</span><span class="n">password</span><span class="p">);</span>
+        <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">len</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">strlen</span><span class="p">(</span><span class="n">password_str</span><span class="p">);</span>
+        <span class="n">characteristic</span><span class="p">.</span><span class="n">value</span><span class="p">().</span><span class="n">set</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">ap</span><span class="p">.</span><span class="n">password</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">void</span> <span class="nf">start</span><span class="p">(</span><span class="n">ble</span><span class="o">::</span><span class="n">ServerParams</span> <span class="n">server_params</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">ble</span><span class="o">::</span><span class="n">Server</span><span class="o">&amp;</span> <span class="n">server</span> <span class="o">=</span> <span class="n">ble</span><span class="o">::</span><span class="n">Server</span><span class="o">::</span><span class="n">getInstance</span><span class="p">();</span>
+
+    <span class="n">server</span><span class="p">.</span><span class="n">init</span><span class="p">(</span><span class="n">server_params</span><span class="p">);</span>
+
+    <span class="n">server</span><span class="p">.</span><span class="n">registerApp</span><span class="p">();</span>
+
+    <span class="n">ble</span><span class="o">::</span><span class="n">Uuid</span> <span class="n">wifi_preferences_uuid</span><span class="p">;</span>
+    <span class="n">ble</span><span class="o">::</span><span class="n">Uuid</span><span class="o">::</span><span class="n">fromHex</span><span class="p">(</span><span class="n">WIFI_PREFERENCES_UUID</span><span class="p">,</span> <span class="n">wifi_preferences_uuid</span><span class="p">);</span>
+    <span class="n">ble</span><span class="o">::</span><span class="n">Service</span> <span class="n">wifi_preferences</span><span class="p">(</span><span class="n">wifi_preferences_uuid</span><span class="p">,</span>
+        <span class="n">WIFI_PREFERENCES_NUM_HANDLES</span><span class="p">,</span>
+        <span class="mi">0</span><span class="p">);</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">WiFiModeCallback</span><span class="o">&gt;</span> <span class="n">wifi_mode_cb</span><span class="p">(</span><span class="k">new</span> <span class="n">WiFiModeCallback</span><span class="p">());</span>
+    <span class="n">ble</span><span class="o">::</span><span class="n">Uuid</span> <span class="n">wifi_mode_uuid</span><span class="p">;</span>
+    <span class="n">ble</span><span class="o">::</span><span class="n">Uuid</span><span class="o">::</span><span class="n">fromHex</span><span class="p">(</span><span class="n">WIFI_MODE_UUID</span><span class="p">,</span> <span class="n">wifi_mode_uuid</span><span class="p">);</span>
+    <span class="n">ble</span><span class="o">::</span><span class="n">Characteristic</span> <span class="n">wifi_mode_char</span><span class="p">(</span><span class="n">wifi_mode_uuid</span><span class="p">,</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">wifi_mode_cb</span><span class="p">),</span>
+        <span class="n">ESP_GATT_PERM_READ_ENCRYPTED</span> <span class="o">|</span> <span class="n">ESP_GATT_PERM_WRITE_ENCRYPTED</span><span class="p">,</span>
+        <span class="n">ESP_GATT_CHAR_PROP_BIT_READ</span> <span class="o">|</span> <span class="n">ESP_GATT_CHAR_PROP_BIT_WRITE</span><span class="p">);</span>
+    <span class="n">wifi_preferences</span><span class="p">.</span><span class="n">addCharacteristic</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">wifi_mode_char</span><span class="p">));</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">APSSIDCallback</span><span class="o">&gt;</span> <span class="n">ap_ssid_cb</span><span class="p">(</span><span class="k">new</span> <span class="n">APSSIDCallback</span><span class="p">());</span>
+    <span class="n">ble</span><span class="o">::</span><span class="n">Uuid</span> <span class="n">ap_ssid_uuid</span><span class="p">;</span>
+    <span class="n">ble</span><span class="o">::</span><span class="n">Uuid</span><span class="o">::</span><span class="n">fromHex</span><span class="p">(</span><span class="n">AP_SSID_UUID</span><span class="p">,</span> <span class="n">ap_ssid_uuid</span><span class="p">);</span>
+    <span class="n">ble</span><span class="o">::</span><span class="n">Characteristic</span> <span class="n">ap_ssid_char</span><span class="p">(</span><span class="n">ap_ssid_uuid</span><span class="p">,</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">ap_ssid_cb</span><span class="p">),</span>
+        <span class="n">ESP_GATT_PERM_READ_ENCRYPTED</span> <span class="o">|</span> <span class="n">ESP_GATT_PERM_WRITE_ENCRYPTED</span><span class="p">,</span>
+        <span class="n">ESP_GATT_CHAR_PROP_BIT_READ</span> <span class="o">|</span> <span class="n">ESP_GATT_CHAR_PROP_BIT_WRITE</span><span class="p">);</span>
+    <span class="n">wifi_preferences</span><span class="p">.</span><span class="n">addCharacteristic</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">ap_ssid_char</span><span class="p">));</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">APPasswordCallback</span><span class="o">&gt;</span> <span class="n">ap_password_cb</span><span class="p">(</span><span class="k">new</span> <span class="n">APPasswordCallback</span><span class="p">());</span>
+    <span class="n">ble</span><span class="o">::</span><span class="n">Uuid</span> <span class="n">ap_password_uuid</span><span class="p">;</span>
+    <span class="n">ble</span><span class="o">::</span><span class="n">Uuid</span><span class="o">::</span><span class="n">fromHex</span><span class="p">(</span><span class="n">AP_PASSWORD_UUID</span><span class="p">,</span> <span class="n">ap_password_uuid</span><span class="p">);</span>
+    <span class="n">ble</span><span class="o">::</span><span class="n">Characteristic</span> <span class="n">ap_password_char</span><span class="p">(</span><span class="n">ap_password_uuid</span><span class="p">,</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">ap_password_cb</span><span class="p">),</span>
+        <span class="n">ESP_GATT_PERM_READ_ENCRYPTED</span> <span class="o">|</span> <span class="n">ESP_GATT_PERM_WRITE_ENCRYPTED</span><span class="p">,</span>
+        <span class="n">ESP_GATT_CHAR_PROP_BIT_READ</span> <span class="o">|</span> <span class="n">ESP_GATT_CHAR_PROP_BIT_WRITE</span><span class="p">);</span>
+    <span class="n">wifi_preferences</span><span class="p">.</span><span class="n">addCharacteristic</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">ap_password_char</span><span class="p">));</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">STASSIDCallback</span><span class="o">&gt;</span> <span class="n">sta_ssid_cb</span><span class="p">(</span><span class="k">new</span> <span class="n">STASSIDCallback</span><span class="p">());</span>
+    <span class="n">ble</span><span class="o">::</span><span class="n">Uuid</span> <span class="n">sta_ssid_uuid</span><span class="p">;</span>
+    <span class="n">ble</span><span class="o">::</span><span class="n">Uuid</span><span class="o">::</span><span class="n">fromHex</span><span class="p">(</span><span class="n">STA_SSID_UUID</span><span class="p">,</span> <span class="n">sta_ssid_uuid</span><span class="p">);</span>
+    <span class="n">ble</span><span class="o">::</span><span class="n">Characteristic</span> <span class="n">sta_ssid_char</span><span class="p">(</span><span class="n">sta_ssid_uuid</span><span class="p">,</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">sta_ssid_cb</span><span class="p">),</span>
+        <span class="n">ESP_GATT_PERM_READ_ENCRYPTED</span> <span class="o">|</span> <span class="n">ESP_GATT_PERM_WRITE_ENCRYPTED</span><span class="p">,</span>
+        <span class="n">ESP_GATT_CHAR_PROP_BIT_READ</span> <span class="o">|</span> <span class="n">ESP_GATT_CHAR_PROP_BIT_WRITE</span><span class="p">);</span>
+    <span class="n">wifi_preferences</span><span class="p">.</span><span class="n">addCharacteristic</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">sta_ssid_char</span><span class="p">));</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">STAPasswordCallback</span><span class="o">&gt;</span> <span class="n">sta_password_cb</span><span class="p">(</span><span class="k">new</span> <span class="n">STAPasswordCallback</span><span class="p">());</span>
+    <span class="n">ble</span><span class="o">::</span><span class="n">Uuid</span> <span class="n">sta_password_uuid</span><span class="p">;</span>
+    <span class="n">ble</span><span class="o">::</span><span class="n">Uuid</span><span class="o">::</span><span class="n">fromHex</span><span class="p">(</span><span class="n">STA_PASSWORD_UUID</span><span class="p">,</span> <span class="n">sta_password_uuid</span><span class="p">);</span>
+    <span class="n">ble</span><span class="o">::</span><span class="n">Characteristic</span> <span class="n">sta_password_char</span><span class="p">(</span><span class="n">sta_password_uuid</span><span class="p">,</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">sta_password_cb</span><span class="p">),</span>
+        <span class="n">ESP_GATT_PERM_READ_ENCRYPTED</span> <span class="o">|</span> <span class="n">ESP_GATT_PERM_WRITE_ENCRYPTED</span><span class="p">,</span>
+        <span class="n">ESP_GATT_CHAR_PROP_BIT_READ</span> <span class="o">|</span> <span class="n">ESP_GATT_CHAR_PROP_BIT_WRITE</span><span class="p">);</span>
+    <span class="n">wifi_preferences</span><span class="p">.</span><span class="n">addCharacteristic</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">sta_password_char</span><span class="p">));</span>
+
+    <span class="n">server</span><span class="p">.</span><span class="n">createService</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">wifi_preferences</span><span class="p">));</span>
+
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;BLE Server start finished&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">stop</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">ble</span><span class="o">::</span><span class="n">Server</span><span class="o">&amp;</span> <span class="n">server</span> <span class="o">=</span> <span class="n">ble</span><span class="o">::</span><span class="n">Server</span><span class="o">::</span><span class="n">getInstance</span><span class="p">();</span>
+    <span class="n">server</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="p">}</span> <span class="c1">// namespace ble_preferences</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Locha Mesh developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

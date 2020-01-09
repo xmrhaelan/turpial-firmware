@@ -1,0 +1,13 @@
+.. _exhale_define_HttpRequest_8cpp_1a0d7815723706a488b5bb65f7e3acf584:
+
+Define STATE_NAME
+=================
+
+- Defined in :ref:`file_components_WS_src_HttpRequest.cpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: STATE_NAME

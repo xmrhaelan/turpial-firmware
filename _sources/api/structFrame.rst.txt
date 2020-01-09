@@ -1,0 +1,16 @@
+.. _exhale_struct_structFrame:
+
+Struct Frame
+============
+
+- Defined in :ref:`file_components_WS_src_WebSocket.cpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: Frame
+   :members:
+   :protected-members:
+   :undoc-members:

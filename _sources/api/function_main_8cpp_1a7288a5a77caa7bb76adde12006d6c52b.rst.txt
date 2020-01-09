@@ -1,0 +1,13 @@
+.. _exhale_function_main_8cpp_1a7288a5a77caa7bb76adde12006d6c52b:
+
+Function webSocketHandler
+=========================
+
+- Defined in :ref:`file_main_main.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: webSocketHandler(HttpRequest *, HttpResponse *)

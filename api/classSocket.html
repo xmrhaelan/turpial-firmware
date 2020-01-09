@@ -1,0 +1,521 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Class Socket &mdash; turpial-firmware  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class SocketException" href="classSocketException.html" />
+    <link rel="prev" title="Class Radio" href="classradio_1_1Radio.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> turpial-firmware
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">turpial-firmware</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="library_root.html">Library API</a> &raquo;</li>
+        
+      <li>Class Socket</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/classSocket.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="class-socket">
+<span id="exhale-class-classsocket"></span><h1>Class Socket<a class="headerlink" href="#class-socket" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_components_WS_src_Socket.h.html#file-components-ws-src-socket-h"><span class="std std-ref">File Socket.h</span></a></p></li>
+</ul>
+<div class="section" id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="_CPPv46Socket">
+<span id="_CPPv36Socket"></span><span id="_CPPv26Socket"></span><span id="Socket"></span><span class="target" id="classSocket"></span><em class="property">class </em><code class="sig-name descname">Socket</code><a class="headerlink" href="#_CPPv46Socket" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Encapsulate a socket. </p>
+<p>Using this class we can connect to a partner TCP server. Once connected, we can perform send and receive requests to send and receive data. We should not attempt to send or receive until after a successful connect nor should we send or receive after closing the socket. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="function">
+<dt id="_CPPv4N6Socket6SocketEv">
+<span id="_CPPv3N6Socket6SocketEv"></span><span id="_CPPv2N6Socket6SocketEv"></span><span id="Socket::Socket"></span><span class="target" id="classSocket_1a7c3256c4fc6e2c603df73201049fae5a"></span><code class="sig-name descname">Socket</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Socket6SocketEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N6SocketD0Ev">
+<span id="_CPPv3N6SocketD0Ev"></span><span id="_CPPv2N6SocketD0Ev"></span><span id="Socket::~Socket"></span><span class="target" id="classSocket_1aeac4eb6379a543d38ed88977d3b6630a"></span><code class="sig-name descname">~Socket</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6SocketD0Ev" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N6Socket6acceptEv">
+<span id="_CPPv3N6Socket6acceptEv"></span><span id="_CPPv2N6Socket6acceptEv"></span><span id="Socket::accept"></span><span class="target" id="classSocket_1a3f749d9a206e48a875e8c24f29500a93"></span><a class="reference internal" href="#_CPPv46Socket" title="Socket">Socket</a> <code class="sig-name descname">accept</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Socket6acceptEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Accept a new socket. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N6Socket4bindE8uint16_t8uint32_t">
+<span id="_CPPv3N6Socket4bindE8uint16_t8uint32_t"></span><span id="_CPPv2N6Socket4bindE8uint16_t8uint32_t"></span><span id="Socket::bind__uint16_t.uint32_t"></span><span class="target" id="classSocket_1adc1e8efb9384ac637d42e93008debb6a"></span>int <code class="sig-name descname">bind</code><span class="sig-paren">(</span>uint16_t <em>port</em>, uint32_t <em>address</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Socket4bindE8uint16_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Bind an address/port to a socket. Specify a port of 0 to have a local port allocated. Specify an address of INADDR_ANY to use the local server IP. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns 0 on success. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">port</span></code>: Port number to bind. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">address</span></code>: Address to bind. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N6Socket5closeEv">
+<span id="_CPPv3N6Socket5closeEv"></span><span id="_CPPv2N6Socket5closeEv"></span><span id="Socket::close"></span><span class="target" id="classSocket_1aef06605c6725958004116983f1a2051f"></span>int <code class="sig-name descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Socket5closeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Close the socket. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns 0 on success. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N6Socket7connectE7in_addr8uint16_t">
+<span id="_CPPv3N6Socket7connectE7in_addr8uint16_t"></span><span id="_CPPv2N6Socket7connectE7in_addr8uint16_t"></span><span id="Socket::connect__in_addr.uint16_t"></span><span class="target" id="classSocket_1ae537e61bb9f64b0322c6e9c39bb24fde"></span>int <code class="sig-name descname">connect</code><span class="sig-paren">(</span><em class="property">struct</em> in_addr <em>address</em>, uint16_t <em>port</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Socket7connectE7in_addr8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Connect to a partner. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Success or failure of the connection. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">address</span></code>: The IP address of the partner. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">port</span></code>: The port number of the partner. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N6Socket7connectEPc8uint16_t">
+<span id="_CPPv3N6Socket7connectEPc8uint16_t"></span><span id="_CPPv2N6Socket7connectEPc8uint16_t"></span><span id="Socket::connect__cP.uint16_t"></span><span class="target" id="classSocket_1a426b128c26cee34ed153c1402cf4a5fc"></span>int <code class="sig-name descname">connect</code><span class="sig-paren">(</span>char *<em>address</em>, uint16_t <em>port</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Socket7connectEPc8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Connect to a partner. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Success or failure of the connection. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">strAddress</span></code>: The string representation of the IP address of the partner. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">port</span></code>: The port number of the partner. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N6Socket12createSocketEb">
+<span id="_CPPv3N6Socket12createSocketEb"></span><span id="_CPPv2N6Socket12createSocketEb"></span><span id="Socket::createSocket__b"></span><span class="target" id="classSocket_1a788b0d2a4070a64fb38d2c6e6289f96e"></span>int <code class="sig-name descname">createSocket</code><span class="sig-paren">(</span>bool <em>isDatagram</em> = false<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Socket12createSocketEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create the socket. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The socket descriptor. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">isDatagram</span></code>: Set to true to create a datagram socket. Default is false. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N6Socket15setReuseAddressEb">
+<span id="_CPPv3N6Socket15setReuseAddressEb"></span><span id="_CPPv2N6Socket15setReuseAddressEb"></span><span id="Socket::setReuseAddress__b"></span><span class="target" id="classSocket_1ad435a8a36e2759203db8b4b2c67e4e85"></span>void <code class="sig-name descname">setReuseAddress</code><span class="sig-paren">(</span>bool <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Socket15setReuseAddressEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Flag the socket address as re-usable. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">value</span></code>: True to mark the address as re-usable, false otherwise. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N6Socket15setSocketOptionEiPv6size_t">
+<span id="_CPPv3N6Socket15setSocketOptionEiPv6size_t"></span><span id="_CPPv2N6Socket15setSocketOptionEiPv6size_t"></span><span id="Socket::setSocketOption__i.voidP.s"></span><span class="target" id="classSocket_1a0bee77d0779e5d3a0f62ef7d37e5033d"></span>int <code class="sig-name descname">setSocketOption</code><span class="sig-paren">(</span>int <em>option</em>, void *<em>value</em>, size_t <em>len</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Socket15setSocketOptionEiPv6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set the socket option. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N6Socket10setTimeoutE8uint32_t">
+<span id="_CPPv3N6Socket10setTimeoutE8uint32_t"></span><span id="_CPPv2N6Socket10setTimeoutE8uint32_t"></span><span id="Socket::setTimeout__uint32_t"></span><span class="target" id="classSocket_1aef6249eaa9b2be5a386f85cb828c2b4a"></span>int <code class="sig-name descname">setTimeout</code><span class="sig-paren">(</span>uint32_t <em>seconds</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Socket10setTimeoutE8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="#classSocket"><span class="std std-ref">Socket</span></a> timeout. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">seconds</span></code>: to wait. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N6Socket7getBindEP8sockaddr">
+<span id="_CPPv3N6Socket7getBindEP8sockaddr"></span><span id="_CPPv2N6Socket7getBindEP8sockaddr"></span><span id="Socket::getBind__sockaddrP"></span><span class="target" id="classSocket_1a6b59f7b6e3be56f4d4a27558bde48e85"></span>void <code class="sig-name descname">getBind</code><span class="sig-paren">(</span><em class="property">struct</em> sockaddr *<em>pAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Socket7getBindEP8sockaddr" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the bound address. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>N/A. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">pAddr</span></code>: The storage to hold the address. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4NK6Socket5getFDEv">
+<span id="_CPPv3NK6Socket5getFDEv"></span><span id="_CPPv2NK6Socket5getFDEv"></span><span id="Socket::getFDC"></span><span class="target" id="classSocket_1a0fe87caf7dc351297cbc98ff636e5a65"></span>int <code class="sig-name descname">getFD</code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK6Socket5getFDEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the underlying socket file descriptor. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The underlying socket file descriptor. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N6Socket7isValidEv">
+<span id="_CPPv3N6Socket7isValidEv"></span><span id="_CPPv2N6Socket7isValidEv"></span><span id="Socket::isValid"></span><span class="target" id="classSocket_1a5ccaf81da2b6f25dded056e6dbf7f410"></span>bool <code class="sig-name descname">isValid</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Socket7isValidEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N6Socket6listenE8uint16_tbb">
+<span id="_CPPv3N6Socket6listenE8uint16_tbb"></span><span id="_CPPv2N6Socket6listenE8uint16_tbb"></span><span id="Socket::listen__uint16_t.b.b"></span><span class="target" id="classSocket_1a893bb9a6107d2139cfb088f0c82ac5ae"></span>int <code class="sig-name descname">listen</code><span class="sig-paren">(</span>uint16_t <em>port</em>, bool <em>isDatagram</em> = false, bool <em>reuseAddress</em> = false<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Socket6listenE8uint16_tbb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create a listening socket. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns 0 on success. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">port</span></code>: The port number to listen upon. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">isDatagram</span></code>: True if we are listening on a datagram. The default is false. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4NK6SocketltERK6Socket">
+<span id="_CPPv3NK6SocketltERK6Socket"></span><span id="_CPPv2NK6SocketltERK6Socket"></span><span id="Socket::lt-operator__SocketCRC"></span><span class="target" id="classSocket_1a6aaca8f2dfc1395e0cb6a741efdb11e7"></span>bool <code class="sig-name descname">operator&lt;</code><span class="sig-paren">(</span><em class="property">const</em> <a class="reference internal" href="#_CPPv46Socket" title="Socket">Socket</a> &amp;<em>other</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK6SocketltERK6Socket" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N6Socket11readToDelimENSt6stringE">
+<span id="_CPPv3N6Socket11readToDelimENSt6stringE"></span><span id="_CPPv2N6Socket11readToDelimENSt6stringE"></span><span id="Socket::readToDelim__ss"></span><span class="target" id="classSocket_1a893006a5a02363d31017ad4f1275e23a"></span>std::string <code class="sig-name descname">readToDelim</code><span class="sig-paren">(</span>std::string <em>delim</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Socket11readToDelimENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N6Socket7receiveEP7uint8_t6size_tb">
+<span id="_CPPv3N6Socket7receiveEP7uint8_t6size_tb"></span><span id="_CPPv2N6Socket7receiveEP7uint8_t6size_tb"></span><span id="Socket::receive__uint8_tP.s.b"></span><span class="target" id="classSocket_1abeb5751e47f3fa96755aba55d29c300a"></span>size_t <code class="sig-name descname">receive</code><span class="sig-paren">(</span>uint8_t *<em>data</em>, size_t <em>length</em>, bool <em>exact</em> = false<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Socket7receiveEP7uint8_t6size_tb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive data from the partner. Receive data from the socket partner. If exact = false, we read as much data as is available without blocking up to length. If exact = true, we will block until we have received exactly length bytes or there are no more bytes to read. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The length of the data received or -1 on an error. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">data</span></code>: The buffer into which the received data will be stored. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">length</span></code>: The size of the buffer. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">exact</span></code>: Read exactly this amount. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N6Socket11receiveFromEP7uint8_t6size_tP8sockaddr">
+<span id="_CPPv3N6Socket11receiveFromEP7uint8_t6size_tP8sockaddr"></span><span id="_CPPv2N6Socket11receiveFromEP7uint8_t6size_tP8sockaddr"></span><span id="Socket::receiveFrom__uint8_tP.s.sockaddrP"></span><span class="target" id="classSocket_1afc27706410db610051b84cb3c969daa3"></span>int <code class="sig-name descname">receiveFrom</code><span class="sig-paren">(</span>uint8_t *<em>data</em>, size_t <em>length</em>, <em class="property">struct</em> sockaddr *<em>pAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Socket11receiveFromEP7uint8_t6size_tP8sockaddr" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive data with the address. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The length of the data received. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">data</span></code>: The location where to store the data. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">length</span></code>: The size of the data buffer into which we can receive data. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pAddr</span></code>: An area into which we can store the address of the partner. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4NK6Socket4sendENSt6stringE">
+<span id="_CPPv3NK6Socket4sendENSt6stringE"></span><span id="_CPPv2NK6Socket4sendENSt6stringE"></span><span id="Socket::send__ssC"></span><span class="target" id="classSocket_1a86fc6cb94e80d13aceed56dd7cb2472c"></span>int <code class="sig-name descname">send</code><span class="sig-paren">(</span>std::string <em>value</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK6Socket4sendENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Send a string to the partner. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>N/A. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">value</span></code>: The string to send to the partner. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4NK6Socket4sendEPK7uint8_t6size_t">
+<span id="_CPPv3NK6Socket4sendEPK7uint8_t6size_t"></span><span id="_CPPv2NK6Socket4sendEPK7uint8_t6size_t"></span><span id="Socket::send__uint8_tCP.sC"></span><span class="target" id="classSocket_1a955f94c0e4eff7643f087b086643e3ac"></span>int <code class="sig-name descname">send</code><span class="sig-paren">(</span><em class="property">const</em> uint8_t *<em>data</em>, size_t <em>length</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv4NK6Socket4sendEPK7uint8_t6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Send data to the partner. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>N/A. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">data</span></code>: The buffer containing the data to send. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">length</span></code>: The length of data to be sent. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N6Socket4sendE8uint16_t">
+<span id="_CPPv3N6Socket4sendE8uint16_t"></span><span id="_CPPv2N6Socket4sendE8uint16_t"></span><span id="Socket::send__uint16_t"></span><span class="target" id="classSocket_1a04f60fe51e2db3db27b2f7731e66e772"></span>int <code class="sig-name descname">send</code><span class="sig-paren">(</span>uint16_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Socket4sendE8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N6Socket4sendE8uint32_t">
+<span id="_CPPv3N6Socket4sendE8uint32_t"></span><span id="_CPPv2N6Socket4sendE8uint32_t"></span><span id="Socket::send__uint32_t"></span><span class="target" id="classSocket_1a76de86d175282e3273f932f6f66aa8fe"></span>int <code class="sig-name descname">send</code><span class="sig-paren">(</span>uint32_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Socket4sendE8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N6Socket6sendToEPK7uint8_t6size_tP8sockaddr">
+<span id="_CPPv3N6Socket6sendToEPK7uint8_t6size_tP8sockaddr"></span><span id="_CPPv2N6Socket6sendToEPK7uint8_t6size_tP8sockaddr"></span><span id="Socket::sendTo__uint8_tCP.s.sockaddrP"></span><span class="target" id="classSocket_1a44a41324fbee63de97bdadc7de03bda3"></span>void <code class="sig-name descname">sendTo</code><span class="sig-paren">(</span><em class="property">const</em> uint8_t *<em>data</em>, size_t <em>length</em>, <em class="property">struct</em> sockaddr *<em>pAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Socket6sendToEPK7uint8_t6size_tP8sockaddr" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Send data to a specific address. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">data</span></code>: The data to send. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">length</span></code>: The length of the data to send/ </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">pAddr</span></code>: The address to send the data. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N6Socket8toStringEv">
+<span id="_CPPv3N6Socket8toStringEv"></span><span id="_CPPv2N6Socket8toStringEv"></span><span id="Socket::toString"></span><span class="target" id="classSocket_1a377ac3bcbf52e36dc08bca6ad0c8a97f"></span>std::string <code class="sig-name descname">toString</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Socket8toStringEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the string representation of this socket. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>the string representation of the socket. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Static Functions</p>
+<dl class="function">
+<dt id="_CPPv4N6Socket15addressToStringEP8sockaddr">
+<span id="_CPPv3N6Socket15addressToStringEP8sockaddr"></span><span id="_CPPv2N6Socket15addressToStringEP8sockaddr"></span><span id="Socket::addressToString__sockaddrP"></span><span class="target" id="classSocket_1aa0aa0b437ca534447e335b58e8a30254"></span>std::string <code class="sig-name descname">addressToString</code><span class="sig-paren">(</span><em class="property">struct</em> sockaddr *<em>addr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6Socket15addressToStringEP8sockaddr" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Convert a socket address to a string representation. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>A string representation of the address. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">addr</span></code>: The address to parse. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="classSocketException.html" class="btn btn-neutral float-right" title="Class SocketException" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="classradio_1_1Radio.html" class="btn btn-neutral float-left" title="Class Radio" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Locha Mesh developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

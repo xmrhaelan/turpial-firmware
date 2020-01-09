@@ -1,0 +1,16 @@
+.. _exhale_class_classble_1_1Characteristic:
+
+Class Characteristic
+====================
+
+- Defined in :ref:`file_components_BLE_src_Characteristic.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: ble::Characteristic
+   :members:
+   :protected-members:
+   :undoc-members:

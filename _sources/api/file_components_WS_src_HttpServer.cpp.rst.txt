@@ -1,0 +1,63 @@
+
+.. _file_components_WS_src_HttpServer.cpp:
+
+File HttpServer.cpp
+===================
+
+|exhale_lsh| :ref:`Parent directory <dir_components_WS_src>` (``components/WS/src``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``components/WS/src/HttpServer.cpp``)
+-------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_components_WS_src_HttpServer.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``HttpRequest.h`` (:ref:`file_components_WS_src_HttpRequest.h`)
+
+- ``HttpResponse.h`` (:ref:`file_components_WS_src_HttpResponse.h`)
+
+- ``HttpServer.h`` (:ref:`file_components_WS_src_HttpServer.h`)
+
+- ``Task.h`` (:ref:`file_components_Task_src_Task.h`)
+
+- ``WebSocket.h`` (:ref:`file_components_WS_src_WebSocket.h`)
+
+- ``esp_log.h``
+
+- ``fstream``
+
+
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classHttpServerTask`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_HttpServer_8cpp_1a328e9da88a07f3a0bf81b40d25469ff9`
+

@@ -1,0 +1,24 @@
+
+.. _program_listing_file_main_CMakeLists.txt:
+
+Program Listing for File CMakeLists.txt
+=======================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_main_CMakeLists.txt>` (``main/CMakeLists.txt``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   idf_component_register(SRCS "main.cpp"
+                          INCLUDE_DIRS .
+                          REQUIRES
+                              BLE
+                              BLEPreferences
+                              ESC
+                              Network
+                              NVS
+                              Radio
+                              Task
+                              Util
+                              WS)

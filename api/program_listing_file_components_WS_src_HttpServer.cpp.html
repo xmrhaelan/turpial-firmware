@@ -1,0 +1,404 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Program Listing for File HttpServer.cpp &mdash; turpial-firmware  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> turpial-firmware
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">turpial-firmware</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Program Listing for File HttpServer.cpp</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/program_listing_file_components_WS_src_HttpServer.cpp.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-httpserver-cpp">
+<span id="program-listing-file-components-ws-src-httpserver-cpp"></span><h1>Program Listing for File HttpServer.cpp<a class="headerlink" href="#program-listing-for-file-httpserver-cpp" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_components_WS_src_HttpServer.cpp.html#file-components-ws-src-httpserver-cpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">components/WS/src/HttpServer.cpp</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * HttpServer.cpp</span>
+<span class="cm"> * Design:</span>
+<span class="cm"> * This class represents an HTTP server.  We create an instance of the class and then it is configured.</span>
+<span class="cm"> * When the user has completed the configuration, they execute the start() method which starts it running.</span>
+<span class="cm"> * A subsequent call to stop() will stop it.  When start() is called, a new task is created which listens</span>
+<span class="cm"> * for incoming messages.</span>
+<span class="cm"> *</span>
+<span class="cm"> *  Created on: Aug 30, 2017</span>
+<span class="cm"> *      Author: kolban</span>
+<span class="cm"> */</span>
+
+<span class="cp">#include</span> <span class="cpf">&quot;HttpServer.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;HttpRequest.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;HttpResponse.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;Task.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;WebSocket.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;esp_log.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;fstream&gt;</span><span class="cp"></span>
+<span class="k">static</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">LOG_TAG</span> <span class="o">=</span> <span class="s">&quot;HttpServer&quot;</span><span class="p">;</span>
+
+<span class="cp">#undef close</span>
+
+
+<span class="n">HttpServer</span><span class="o">::</span><span class="n">HttpServer</span><span class="p">()</span>
+    <span class="o">:</span> <span class="n">m_semaphoreServerStarted</span><span class="p">(</span><span class="s">&quot;ServerStarted&quot;</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">m_portNumber</span> <span class="o">=</span> <span class="mi">80</span><span class="p">;</span>   <span class="c1">// The default port number.</span>
+    <span class="n">m_clientTimeout</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="c1">// The default timeout 5 seconds.</span>
+<span class="p">}</span> <span class="c1">// HttpServer</span>
+
+
+<span class="n">HttpServer</span><span class="o">::~</span><span class="n">HttpServer</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;~HttpServer&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="k">class</span> <span class="nc">HttpServerTask</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Task</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">HttpServerTask</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">)</span> <span class="o">:</span> <span class="n">Task</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="mi">16</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">m_pHttpServer</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+    <span class="p">};</span>
+
+<span class="k">private</span><span class="o">:</span>
+    <span class="n">HttpServer</span><span class="o">*</span> <span class="n">m_pHttpServer</span><span class="p">;</span> <span class="c1">// Reference to the HTTP Server</span>
+
+    <span class="kt">void</span> <span class="nf">processRequest</span><span class="p">(</span><span class="n">HttpRequest</span><span class="o">&amp;</span> <span class="n">request</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">ESP_LOGD</span><span class="p">(</span><span class="s">&quot;HttpServerTask&quot;</span><span class="p">,</span> <span class="s">&quot;&gt;&gt; processRequest: Method: %s, Path: %s&quot;</span><span class="p">,</span>
+            <span class="n">request</span><span class="p">.</span><span class="n">getMethod</span><span class="p">().</span><span class="n">c_str</span><span class="p">(),</span> <span class="n">request</span><span class="p">.</span><span class="n">getPath</span><span class="p">().</span><span class="n">c_str</span><span class="p">());</span>
+
+        <span class="c1">// Loop over all the path handlers we have looking for the first one that matches.  Note that none of them</span>
+        <span class="c1">// need to match.  If we find one that does, then invoke the handler and that is the end of processing.</span>
+        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">pathHandlerIterartor</span> <span class="o">=</span> <span class="n">m_pHttpServer</span><span class="o">-&gt;</span><span class="n">m_pathHandlers</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+             <span class="n">pathHandlerIterartor</span> <span class="o">!=</span> <span class="n">m_pHttpServer</span><span class="o">-&gt;</span><span class="n">m_pathHandlers</span><span class="p">.</span><span class="n">end</span><span class="p">();</span>
+             <span class="o">++</span><span class="n">pathHandlerIterartor</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">pathHandlerIterartor</span><span class="o">-&gt;</span><span class="n">match</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="n">getMethod</span><span class="p">(),</span> <span class="n">request</span><span class="p">.</span><span class="n">getPath</span><span class="p">()))</span> <span class="p">{</span> <span class="c1">// Did we match the handler?</span>
+                <span class="n">ESP_LOGD</span><span class="p">(</span><span class="s">&quot;HttpServerTask&quot;</span><span class="p">,</span> <span class="s">&quot;Found a path handler match!!&quot;</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="n">isWebsocket</span><span class="p">())</span> <span class="p">{</span>
+                    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="s">&quot;HTTPSERVER-PROCCESS REQUEST&quot;</span><span class="p">,</span> <span class="s">&quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;this is a websocket&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;!!&quot;</span><span class="p">);</span>
+                    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="s">&quot;HTTPSERVER PROCCESS REQUEST&quot;</span><span class="p">,</span> <span class="s">&quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;start reader&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;!!&quot;</span><span class="p">);</span> <span class="c1">// Is this handler to be invoked for a web socket?</span>
+                    <span class="n">request</span><span class="p">.</span><span class="n">getWebSocket</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">addClientToQueue</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="n">getSocket</span><span class="p">().</span><span class="n">getFD</span><span class="p">(),</span> <span class="n">request</span><span class="p">.</span><span class="n">getWebSocket</span><span class="p">());</span>
+                    <span class="n">pathHandlerIterartor</span><span class="o">-&gt;</span><span class="n">invokePathHandler</span><span class="p">(</span><span class="o">&amp;</span><span class="n">request</span><span class="p">,</span> <span class="k">nullptr</span><span class="p">);</span> <span class="c1">// Invoke the handler.</span>
+                    <span class="n">request</span><span class="p">.</span><span class="n">getWebSocket</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">startReader</span><span class="p">();</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="n">HttpResponse</span> <span class="n">response</span><span class="p">(</span><span class="o">&amp;</span><span class="n">request</span><span class="p">);</span>
+                    <span class="n">pathHandlerIterartor</span><span class="o">-&gt;</span><span class="n">invokePathHandler</span><span class="p">(</span><span class="o">&amp;</span><span class="n">request</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">response</span><span class="p">);</span> <span class="c1">// Invoke the handler.</span>
+                <span class="p">}</span>
+                <span class="k">return</span><span class="p">;</span> <span class="c1">// End of processing the request</span>
+            <span class="p">}</span>           <span class="c1">// Path handler match</span>
+        <span class="p">}</span>               <span class="c1">// For each path handler</span>
+
+        <span class="n">ESP_LOGD</span><span class="p">(</span><span class="s">&quot;HttpServerTask&quot;</span><span class="p">,</span> <span class="s">&quot;No Path handler found&quot;</span><span class="p">);</span>
+        <span class="c1">// If we reach here, then we did not find a handler for the request.</span>
+
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="n">isWebsocket</span><span class="p">())</span> <span class="p">{</span>         <span class="c1">// Check to see if we have an un-handled WebSocket</span>
+            <span class="n">request</span><span class="p">.</span><span class="n">getWebSocket</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">close</span><span class="p">();</span> <span class="c1">// If we do, close the socket as there is nothing further to do.</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+
+
+        <span class="n">HttpResponse</span> <span class="n">response</span><span class="p">(</span><span class="o">&amp;</span><span class="n">request</span><span class="p">);</span>
+
+    <span class="p">}</span> <span class="c1">// processRequest</span>
+
+    <span class="kt">void</span> <span class="nf">run</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">data</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">m_pHttpServer</span> <span class="o">=</span> <span class="p">(</span><span class="n">HttpServer</span><span class="o">*</span><span class="p">)</span><span class="n">data</span><span class="p">;</span> <span class="c1">// The passed in data is an instance of an HttpServer.</span>
+        <span class="n">m_pHttpServer</span><span class="o">-&gt;</span><span class="n">m_socket</span><span class="p">.</span><span class="n">listen</span><span class="p">(</span><span class="n">m_pHttpServer</span><span class="o">-&gt;</span><span class="n">m_portNumber</span><span class="p">,</span> <span class="nb">false</span> <span class="cm">/* is datagram */</span><span class="p">,</span> <span class="nb">true</span> <span class="cm">/* Allow address reuse */</span><span class="p">);</span>
+        <span class="n">ESP_LOGD</span><span class="p">(</span><span class="s">&quot;HttpServerTask&quot;</span><span class="p">,</span> <span class="s">&quot;Listening on port %d&quot;</span><span class="p">,</span> <span class="n">m_pHttpServer</span><span class="o">-&gt;</span><span class="n">getPort</span><span class="p">());</span>
+        <span class="n">Socket</span> <span class="n">clientSocket</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Loop forever.</span>
+            <span class="n">ESP_LOGD</span><span class="p">(</span><span class="s">&quot;HttpServerTask&quot;</span><span class="p">,</span> <span class="s">&quot;Waiting for new peer client&quot;</span><span class="p">);</span>
+
+            <span class="k">try</span> <span class="p">{</span>
+                <span class="n">clientSocket</span> <span class="o">=</span> <span class="n">m_pHttpServer</span><span class="o">-&gt;</span><span class="n">m_socket</span><span class="p">.</span><span class="n">accept</span><span class="p">();</span> <span class="c1">// Block waiting for a new external client connection.</span>
+                <span class="n">clientSocket</span><span class="p">.</span><span class="n">setTimeout</span><span class="p">(</span><span class="n">m_pHttpServer</span><span class="o">-&gt;</span><span class="n">getClientTimeout</span><span class="p">());</span>
+            <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">exception</span><span class="o">&amp;</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">ESP_LOGE</span><span class="p">(</span><span class="s">&quot;HttpServerTask&quot;</span><span class="p">,</span> <span class="s">&quot;Caught an exception waiting for new client!&quot;</span><span class="p">);</span>
+                <span class="n">m_pHttpServer</span><span class="o">-&gt;</span><span class="n">m_semaphoreServerStarted</span><span class="p">.</span><span class="n">give</span><span class="p">();</span> <span class="c1">// Release the semaphore .. we are now no longer running.</span>
+                <span class="k">return</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="n">ESP_LOGD</span><span class="p">(</span><span class="s">&quot;HttpServerTask&quot;</span><span class="p">,</span> <span class="s">&quot;HttpServer that was listening on port %d has received a new client connection; sockFd=%d&quot;</span><span class="p">,</span> <span class="n">m_pHttpServer</span><span class="o">-&gt;</span><span class="n">getPort</span><span class="p">(),</span> <span class="n">clientSocket</span><span class="p">.</span><span class="n">getFD</span><span class="p">());</span>
+
+            <span class="n">HttpRequest</span> <span class="n">request</span><span class="p">(</span><span class="n">clientSocket</span><span class="p">);</span> <span class="c1">// Build the HTTP Request from the socket.</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="n">isWebsocket</span><span class="p">())</span> <span class="p">{</span>       <span class="c1">// If this is a WebSocket</span>
+                <span class="n">clientSocket</span><span class="p">.</span><span class="n">setTimeout</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>    <span class="c1">//   Clear the timeout.</span>
+                <span class="c1">//m_pHttpServer-&gt;addClientToQueue(clientSocket.getFD(), request.getWebSocket());</span>
+            <span class="p">}</span>
+            <span class="n">request</span><span class="p">.</span><span class="n">dump</span><span class="p">();</span>               <span class="c1">// debug.</span>
+            <span class="n">processRequest</span><span class="p">(</span><span class="n">request</span><span class="p">);</span>      <span class="c1">// Process the request.</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">request</span><span class="p">.</span><span class="n">isWebsocket</span><span class="p">())</span> <span class="p">{</span> <span class="c1">// If this is NOT a WebSocket, then close it as the request</span>
+                <span class="n">request</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>          <span class="c1">//   has been completed.</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="c1">// while</span>
+    <span class="p">}</span>     <span class="c1">// run</span>
+<span class="p">};</span>        <span class="c1">// HttpServerTask</span>
+
+
+<span class="kt">void</span> <span class="n">HttpServer</span><span class="o">::</span><span class="n">addPathHandler</span><span class="p">(</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">method</span><span class="p">,</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">path</span><span class="p">,</span>
+    <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">handler</span><span class="p">)(</span><span class="n">HttpRequest</span><span class="o">*</span> <span class="n">pHttpRequest</span><span class="p">,</span> <span class="n">HttpResponse</span><span class="o">*</span> <span class="n">pHttpResponse</span><span class="p">))</span>
+<span class="p">{</span>
+    <span class="c1">// We are maintaining a C++ vector of PathHandler objects.  We add a new entry into that vector.</span>
+    <span class="n">m_pathHandlers</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">PathHandler</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">handler</span><span class="p">));</span>
+<span class="p">}</span> <span class="c1">// addPathHandler</span>
+
+
+<span class="kt">uint16_t</span> <span class="n">HttpServer</span><span class="o">::</span><span class="n">getPort</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">m_portNumber</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">// getPort</span>
+
+
+<span class="kt">void</span> <span class="n">HttpServer</span><span class="o">::</span><span class="n">setClientTimeout</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">timeout</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">m_clientTimeout</span> <span class="o">=</span> <span class="n">timeout</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="kt">uint32_t</span> <span class="n">HttpServer</span><span class="o">::</span><span class="n">getClientTimeout</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">m_clientTimeout</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="kt">void</span> <span class="n">HttpServer</span><span class="o">::</span><span class="n">start</span><span class="p">(</span><span class="kt">uint16_t</span> <span class="n">portNumber</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Design:</span>
+    <span class="c1">// The start of the HTTP server should be as fast as possible.</span>
+    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;&gt;&gt; start: port: %d&quot;</span><span class="p">,</span> <span class="n">portNumber</span><span class="p">);</span>
+
+    <span class="c1">// Take the semaphore that says that we are now running.  If we are already running, then end here as</span>
+    <span class="c1">// there is nothing further to do.</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">m_semaphoreServerStarted</span><span class="p">.</span><span class="n">take</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;&lt;&lt; start: Already running&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">m_portNumber</span> <span class="o">=</span> <span class="n">portNumber</span><span class="p">;</span>
+
+    <span class="n">HttpServerTask</span><span class="o">*</span> <span class="n">pHttpServerTask</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HttpServerTask</span><span class="p">(</span><span class="s">&quot;HttpServerTask&quot;</span><span class="p">);</span>
+    <span class="n">pHttpServerTask</span><span class="o">-&gt;</span><span class="n">start</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;&lt;&lt; start&quot;</span><span class="p">);</span>
+<span class="p">}</span> <span class="c1">// start</span>
+
+
+<span class="kt">void</span> <span class="n">HttpServer</span><span class="o">::</span><span class="n">stop</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// Shutdown the HTTP Server.  The high level is that we will stop the server socket</span>
+    <span class="c1">// that is listening for incoming connections.  That will then shutdown all the other</span>
+    <span class="c1">// activities.</span>
+    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;&gt;&gt; stop&quot;</span><span class="p">);</span>
+    <span class="n">m_socket</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>                      <span class="c1">// Close the socket that is being used to watch for incoming requests.</span>
+    <span class="n">m_semaphoreServerStarted</span><span class="p">.</span><span class="n">wait</span><span class="p">();</span> <span class="c1">// Wait for the server to stop.</span>
+    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;&lt;&lt; stop&quot;</span><span class="p">);</span>
+<span class="p">}</span> <span class="c1">// stop</span>
+
+
+<span class="n">PathHandler</span><span class="o">::</span><span class="n">PathHandler</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">method</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">matchPath</span><span class="p">,</span> <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">pWebServerRequestHandler</span><span class="p">)(</span><span class="n">HttpRequest</span><span class="o">*</span> <span class="n">pHttpRequest</span><span class="p">,</span> <span class="n">HttpResponse</span><span class="o">*</span> <span class="n">pHttpResponse</span><span class="p">))</span>
+<span class="p">{</span>
+    <span class="n">m_method</span> <span class="o">=</span> <span class="n">method</span><span class="p">;</span> <span class="c1">// Save the method we are looking for.</span>
+    <span class="n">m_textPattern</span> <span class="o">=</span> <span class="n">matchPath</span><span class="p">;</span>
+    <span class="n">m_isRegex</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="n">m_pRequestHandler</span> <span class="o">=</span> <span class="n">pWebServerRequestHandler</span><span class="p">;</span> <span class="c1">// The handler to be invoked if the pattern matches.</span>
+<span class="p">}</span> <span class="c1">// PathHandler</span>
+
+
+<span class="kt">bool</span> <span class="n">PathHandler</span><span class="o">::</span><span class="n">match</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">method</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">path</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">method</span> <span class="o">!=</span> <span class="n">m_method</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="s">&quot;PathHandler&quot;</span><span class="p">,</span> <span class="s">&quot;plain matching: %s with %s&quot;</span><span class="p">,</span> <span class="n">m_textPattern</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="n">path</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+    <span class="k">return</span> <span class="n">m_textPattern</span><span class="p">.</span><span class="n">compare</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">m_textPattern</span><span class="p">.</span><span class="n">length</span><span class="p">(),</span> <span class="n">path</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">// match</span>
+
+
+<span class="kt">void</span> <span class="n">PathHandler</span><span class="o">::</span><span class="n">invokePathHandler</span><span class="p">(</span><span class="n">HttpRequest</span><span class="o">*</span> <span class="n">request</span><span class="p">,</span> <span class="n">HttpResponse</span><span class="o">*</span> <span class="n">response</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="s">&quot;++++++++++++++++++++++++++++++++++++&quot;</span><span class="p">,</span> <span class="s">&quot;INVOCANDO PATH HANDLER-------------------------&quot;</span><span class="p">);</span>
+    <span class="n">m_pRequestHandler</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">);</span>
+<span class="p">}</span> <span class="c1">// invokePathHandler</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Locha Mesh developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

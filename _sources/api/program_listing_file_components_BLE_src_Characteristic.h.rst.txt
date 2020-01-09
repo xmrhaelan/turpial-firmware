@@ -1,0 +1,117 @@
+
+.. _program_listing_file_components_BLE_src_Characteristic.h:
+
+Program Listing for File Characteristic.h
+=========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_components_BLE_src_Characteristic.h>` (``components/BLE/src/Characteristic.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef BLE_CHARACTERISTIC_H
+   #define BLE_CHARACTERISTIC_H
+   
+   #include <cstdint>
+   #include <memory>
+   #include <vector>
+   
+   #include <esp_gatts_api.h>
+   
+   #include "Sema.h"
+   #include "Uuid.h"
+   
+   namespace ble {
+   
+   class Value
+   {
+   public:
+       Value();
+   
+       Value(Value const&) = delete;
+       Value& operator=(Value const&) = delete;
+       Value& operator=(Value&&) = delete;
+   
+       Value(Value&& other);
+   
+       std::vector<std::uint8_t>& get() { return m_value; }
+   
+       void set(std::uint8_t* value, std::size_t len);
+   
+       void addPart(std::uint8_t* value, std::size_t len);
+   
+       void commit();
+   
+       void cancel();
+   
+       std::size_t getReadOffset() { return m_read_offset; }
+   
+       void setReadOffset(std::size_t offset) { m_read_offset = offset; }
+   
+   private:
+       // The value contained in a Characteristic
+       std::vector<std::uint8_t> m_value;
+       // Write buffer for partial writes
+       std::vector<std::uint8_t> m_part_value;
+       // Current read offset for partial reads
+       std::size_t m_read_offset;
+   };
+   
+   class Characteristic;
+   
+   class CharacteristicCallback
+   {
+   public:
+       virtual void onRead(Characteristic& characteristic) = 0;
+   
+       virtual void onWrite(Characteristic& characteristic) = 0;
+   };
+   
+   class Characteristic
+   {
+   public:
+       Characteristic(
+           Uuid uuid,
+           std::unique_ptr<CharacteristicCallback>&& char_cb,
+           esp_gatt_perm_t perm,
+           esp_gatt_char_prop_t property);
+   
+       Characteristic(Characteristic const&) = delete;
+       Characteristic& operator=(Characteristic const&) = delete;
+   
+       Characteristic(Characteristic&& other);
+   
+       void create(std::uint16_t service_handle);
+   
+       Value& value() { return m_value; }
+   
+       void setHandle(std::uint16_t handle) { m_handle = handle; }
+   
+       void handleEvent(
+           esp_gatts_cb_event_t event,
+           esp_gatt_if_t gatts_if,
+           esp_ble_gatts_cb_param_t* param);
+   
+   private:
+       // Characteristic value
+       Uuid m_uuid;
+       // Callback handler
+       std::unique_ptr<CharacteristicCallback> m_char_cb;
+       // Permissions
+       esp_gatt_perm_t m_perm;
+       // Properties
+       esp_gatt_char_prop_t m_property;
+   
+       // Characteristic handle
+       std::uint16_t m_handle;
+       // The value of the characteristic
+       Value m_value;
+       // Whether we are in a characteristic event.
+       bool m_write_evt;
+   }; // namespace ble
+   
+   } // namespace ble
+   
+   #endif // BLE_CHARACTERISTIC_H

@@ -1,0 +1,71 @@
+
+.. _file_components_Radio_src_Radio.h:
+
+File Radio.h
+============
+
+|exhale_lsh| :ref:`Parent directory <dir_components_Radio_src>` (``components/Radio/src``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``components/Radio/src/Radio.h``)
+---------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_components_Radio_src_Radio.h.rst
+
+
+
+Detailed Description
+--------------------
+
+Locha Mesh project developers (locha.io) 
+0.1 
+2019-12-08
+Copyright (c) 2019 Locha Mesh project developers 
+Apache 2.0, see LICENSE file for details 
+
+
+
+
+Includes
+--------
+
+
+- ``Task.h`` (:ref:`file_components_Task_src_Task.h`)
+
+- ``defaults.h`` (:ref:`file_main_defaults.h`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_main_main.cpp`
+
+- :ref:`file_components_Radio_src_Radio.cpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_radio`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classradio_1_1Radio`
+

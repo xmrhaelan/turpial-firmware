@@ -1,0 +1,13 @@
+.. _exhale_define_defaults_8h_1a5acd63da6573a25ecef02c259de4236c:
+
+Define ESC_LOW_BATTTERY_THRESHOLD
+=================================
+
+- Defined in :ref:`file_main_defaults.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: ESC_LOW_BATTTERY_THRESHOLD

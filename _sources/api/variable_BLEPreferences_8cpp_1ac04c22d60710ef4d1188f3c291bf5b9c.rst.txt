@@ -1,0 +1,13 @@
+.. _exhale_variable_BLEPreferences_8cpp_1ac04c22d60710ef4d1188f3c291bf5b9c:
+
+Variable ble_preferences::WIFI_PREFERENCES_NUM_HANDLES
+======================================================
+
+- Defined in :ref:`file_components_BLEPreferences_src_BLEPreferences.cpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: ble_preferences::WIFI_PREFERENCES_NUM_HANDLES

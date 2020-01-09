@@ -1,0 +1,13 @@
+.. _exhale_variable_BLEPreferences_8cpp_1a4e9d37dfd8d82a4e02e6001e5f66334c:
+
+Variable ble_preferences::WIFI_PREFERENCES_UUID
+===============================================
+
+- Defined in :ref:`file_components_BLEPreferences_src_BLEPreferences.cpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: ble_preferences::WIFI_PREFERENCES_UUID

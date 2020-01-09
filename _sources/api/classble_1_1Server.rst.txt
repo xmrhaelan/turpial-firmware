@@ -1,0 +1,16 @@
+.. _exhale_class_classble_1_1Server:
+
+Class Server
+============
+
+- Defined in :ref:`file_components_BLE_src_Server.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: ble::Server
+   :members:
+   :protected-members:
+   :undoc-members:

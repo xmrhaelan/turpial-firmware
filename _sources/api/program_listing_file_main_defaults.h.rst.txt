@@ -1,0 +1,37 @@
+
+.. _program_listing_file_main_defaults.h:
+
+Program Listing for File defaults.h
+===================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_main_defaults.h>` (``main/defaults.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef DEFAULTS_H
+   #define DEFAULTS_H
+   
+   #define NVS_APP_NAMESPACE "turpial"           
+   #define NVS_IS_CONFIGURED_KEY "is_configured" 
+   #define ESC_ENABLED true              
+   #define ESC_MAX_BATTERY_CAPACITY 2000 
+   #define ESC_LOW_BATTTERY_THRESHOLD 20 
+   #define ESC_CRITICAL_BAT_THRESHOLD 7  
+   #define ESC_GPOUT_PIN GPIO_NUM_18     
+   #define ESC_SOC_DELTA 1               
+   #define BLE_ENABLED false 
+   #define RAD_ENABLED false 
+   #define RAD_TX_PIN 5      
+   #define RAD_RX_PIN 4      
+   #define WIFI_MODE WIFI_MODE_AP              
+   #define WST_SSID ""                         
+   #define WST_PASS ""                         
+   #define WAP_SSID "io.locha.ap"              
+   #define WAP_PASS "default_password"         
+   #define WAP_CHANNEL 6                       
+   #define WAP_MAXCONN 4                       
+   #define WAP_AUTHMODE WIFI_AUTH_WPA_WPA2_PSK 
+   #endif // DEFAULTS_H

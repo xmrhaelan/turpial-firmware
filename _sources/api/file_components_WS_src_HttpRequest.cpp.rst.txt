@@ -1,0 +1,76 @@
+
+.. _file_components_WS_src_HttpRequest.cpp:
+
+File HttpRequest.cpp
+====================
+
+|exhale_lsh| :ref:`Parent directory <dir_components_WS_src>` (``components/WS/src``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``components/WS/src/HttpRequest.cpp``)
+--------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_components_WS_src_HttpRequest.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Base64.h`` (:ref:`file_components_Util_src_Base64.h`)
+
+- ``HttpRequest.h`` (:ref:`file_components_WS_src_HttpRequest.h`)
+
+- ``HttpResponse.h`` (:ref:`file_components_WS_src_HttpResponse.h`)
+
+- ``StringUtil.h`` (:ref:`file_components_Util_src_StringUtil.h`)
+
+- ``algorithm``
+
+- ``esp_log.h``
+
+- ``mbedtls/sha1.h``
+
+- ``sstream``
+
+- ``vector``
+
+
+
+
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_HttpRequest_8cpp_1af3e3c665edf193d583918b87eacebdec`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_HttpRequest_8cpp_1a0d7815723706a488b5bb65f7e3acf584`
+
+- :ref:`exhale_define_HttpRequest_8cpp_1afa847074574f6dcfae4ac9ab675868e4`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_HttpRequest_8cpp_1a328e9da88a07f3a0bf81b40d25469ff9`
+

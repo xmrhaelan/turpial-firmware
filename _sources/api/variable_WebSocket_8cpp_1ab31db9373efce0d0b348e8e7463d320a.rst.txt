@@ -1,0 +1,13 @@
+.. _exhale_variable_WebSocket_8cpp_1ab31db9373efce0d0b348e8e7463d320a:
+
+Variable OPCODE_PING
+====================
+
+- Defined in :ref:`file_components_WS_src_WebSocket.cpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: OPCODE_PING

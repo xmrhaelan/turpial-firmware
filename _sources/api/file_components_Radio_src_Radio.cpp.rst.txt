@@ -1,0 +1,65 @@
+
+.. _file_components_Radio_src_Radio.cpp:
+
+File Radio.cpp
+==============
+
+|exhale_lsh| :ref:`Parent directory <dir_components_Radio_src>` (``components/Radio/src``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``components/Radio/src/Radio.cpp``)
+-----------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_components_Radio_src_Radio.cpp.rst
+
+
+
+Detailed Description
+--------------------
+
+Locha Mesh project developers (locha.io) 
+0.1 
+2019-12-08
+Copyright (c) 2019 Locha Mesh project developers 
+Apache 2.0, see LICENSE file for details 
+
+
+
+
+Includes
+--------
+
+
+- ``Radio.h`` (:ref:`file_components_Radio_src_Radio.h`)
+
+- ``driver/uart.h``
+
+- ``esp_log.h``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_radio`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_Radio_8cpp_1a88a3c55bdd37e02241c129756542b0d2`
+

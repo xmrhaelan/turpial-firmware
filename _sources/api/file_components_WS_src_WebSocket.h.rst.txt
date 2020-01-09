@@ -1,0 +1,87 @@
+
+.. _file_components_WS_src_WebSocket.h:
+
+File WebSocket.h
+================
+
+|exhale_lsh| :ref:`Parent directory <dir_components_WS_src>` (``components/WS/src``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``components/WS/src/WebSocket.h``)
+----------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_components_WS_src_WebSocket.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Socket.h`` (:ref:`file_components_WS_src_Socket.h`)
+
+- ``map``
+
+- ``string``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_main_main.cpp`
+
+- :ref:`file_components_WS_src_HttpRequest.h`
+
+- :ref:`file_components_WS_src_HttpServer.cpp`
+
+- :ref:`file_components_WS_src_WebSocket.cpp`
+
+- :ref:`file_components_WS_src_WsHandlerEvents.h`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classWebSocket`
+
+- :ref:`exhale_class_classWebSocketHandler`
+
+- :ref:`exhale_class_classWebSocketInputStreambuf`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_WebSocket_8h_1abc08fbf09b2aa0e0a64267ce258e8431`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_WebSocket_8h_1a26bf375e4651931ff2428c5989f7db0f`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_WebSocket_8h_1a0da8e9a8288b51e73dc6b9e10d02f159`
+

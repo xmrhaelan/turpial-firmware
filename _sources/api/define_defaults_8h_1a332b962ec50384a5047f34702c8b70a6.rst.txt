@@ -1,0 +1,13 @@
+.. _exhale_define_defaults_8h_1a332b962ec50384a5047f34702c8b70a6:
+
+Define BLE_ENABLED
+==================
+
+- Defined in :ref:`file_main_defaults.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: BLE_ENABLED

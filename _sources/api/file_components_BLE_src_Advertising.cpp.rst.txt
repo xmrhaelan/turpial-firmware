@@ -1,0 +1,65 @@
+
+.. _file_components_BLE_src_Advertising.cpp:
+
+File Advertising.cpp
+====================
+
+|exhale_lsh| :ref:`Parent directory <dir_components_BLE_src>` (``components/BLE/src``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``components/BLE/src/Advertising.cpp``)
+---------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_components_BLE_src_Advertising.cpp.rst
+
+
+
+Detailed Description
+--------------------
+
+Locha Mesh Developers (contact@locha.io) 
+0.1 
+2019-11-21
+Copyright (c) 2019 Locha Mesh project developers 
+Apache 2.0, see LICENSE file for details 
+
+
+
+
+Includes
+--------
+
+
+- ``Advertising.h`` (:ref:`file_components_BLE_src_Advertising.h`)
+
+- ``cstring``
+
+- ``esp_log.h``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_ble`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_Advertising_8cpp_1a1fab38cd3268a33c6e87ff966ffd6be4`
+

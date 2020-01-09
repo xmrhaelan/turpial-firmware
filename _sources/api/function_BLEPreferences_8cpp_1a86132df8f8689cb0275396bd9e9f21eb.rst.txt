@@ -1,0 +1,13 @@
+.. _exhale_function_BLEPreferences_8cpp_1a86132df8f8689cb0275396bd9e9f21eb:
+
+Function ble_preferences::start
+===============================
+
+- Defined in :ref:`file_components_BLEPreferences_src_BLEPreferences.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: ble_preferences::start(ble::ServerParams)

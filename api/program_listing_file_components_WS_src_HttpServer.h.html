@@ -1,0 +1,274 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Program Listing for File HttpServer.h &mdash; turpial-firmware  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> turpial-firmware
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">turpial-firmware</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Program Listing for File HttpServer.h</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/program_listing_file_components_WS_src_HttpServer.h.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-httpserver-h">
+<span id="program-listing-file-components-ws-src-httpserver-h"></span><h1>Program Listing for File HttpServer.h<a class="headerlink" href="#program-listing-for-file-httpserver-h" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_components_WS_src_HttpServer.h.html#file-components-ws-src-httpserver-h"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">components/WS/src/HttpServer.h</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * HttpServer.h</span>
+<span class="cm"> *</span>
+<span class="cm"> *  Created on: Aug 30, 2017</span>
+<span class="cm"> *      Author: kolban</span>
+<span class="cm"> *</span>
+<span class="cm"> * Implementation of an HTTP server for the ESP32.</span>
+<span class="cm"> *</span>
+<span class="cm"> */</span>
+
+<span class="cp">#ifndef COMPONENTS_CPP_UTILS_HTTPSERVER_H_</span>
+<span class="cp">#define COMPONENTS_CPP_UTILS_HTTPSERVER_H_</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;stdint.h&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&quot;Sema.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;HttpRequest.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;HttpResponse.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;regex&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+
+<span class="k">class</span> <span class="nc">HttpServerTask</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">PathHandler</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">PathHandler</span><span class="p">(</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">method</span><span class="p">,</span>             <span class="c1">// The method in the request to be matched.</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">pathPattern</span><span class="p">,</span>        <span class="c1">// The pattern in the request to be matched</span>
+        <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="n">pWebServerRequestHandler</span><span class="p">)</span> <span class="c1">// The handler function to be invoked upon a match.</span>
+        <span class="p">(</span>
+            <span class="n">HttpRequest</span><span class="o">*</span> <span class="n">pHttpRequest</span><span class="p">,</span>
+            <span class="n">HttpResponse</span><span class="o">*</span> <span class="n">pHttpResponse</span><span class="p">));</span>
+
+    <span class="kt">bool</span> <span class="nf">match</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">method</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">path</span><span class="p">);</span> <span class="c1">// Does the request method and pattern match?</span>
+    <span class="kt">void</span> <span class="nf">invokePathHandler</span><span class="p">(</span><span class="n">HttpRequest</span><span class="o">*</span> <span class="n">request</span><span class="p">,</span> <span class="n">HttpResponse</span><span class="o">*</span> <span class="n">response</span><span class="p">);</span>
+
+<span class="k">private</span><span class="o">:</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_method</span><span class="p">;</span>
+    <span class="kt">bool</span> <span class="n">m_isRegex</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">m_textPattern</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">m_pRequestHandler</span><span class="p">)(</span><span class="n">HttpRequest</span><span class="o">*</span> <span class="n">pHttpRequest</span><span class="p">,</span> <span class="n">HttpResponse</span><span class="o">*</span> <span class="n">pHttpResponse</span><span class="p">);</span>
+<span class="p">};</span> <span class="c1">// PathHandler</span>
+
+
+<span class="k">class</span> <span class="nc">HttpServer</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="cm">/* typedef std::map&lt;int, WebSocket*&gt; ws_list_t; */</span>
+    <span class="n">HttpServer</span><span class="p">();</span>
+    <span class="k">virtual</span> <span class="o">~</span><span class="n">HttpServer</span><span class="p">();</span>
+
+    <span class="kt">void</span> <span class="nf">addPathHandler</span><span class="p">(</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">method</span><span class="p">,</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">pathExpr</span><span class="p">,</span>
+        <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">webServerRequestHandler</span><span class="p">)(</span>
+            <span class="n">HttpRequest</span><span class="o">*</span> <span class="n">pHttpRequest</span><span class="p">,</span>
+            <span class="n">HttpResponse</span><span class="o">*</span> <span class="n">pHttpResponse</span><span class="p">));</span>
+
+    <span class="kt">uint32_t</span> <span class="nf">getClientTimeout</span><span class="p">();</span>             <span class="c1">// Get client&#39;s socket timeout</span>
+    <span class="kt">uint16_t</span> <span class="nf">getPort</span><span class="p">();</span>                      <span class="c1">// Get the port on which the Http server is listening.</span>
+    <span class="kt">void</span> <span class="nf">setClientTimeout</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">timeout</span><span class="p">);</span> <span class="c1">// Set client&#39;s socket timeout</span>
+    <span class="kt">void</span> <span class="nf">start</span><span class="p">(</span><span class="kt">uint16_t</span> <span class="n">portNumber</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="nf">stop</span><span class="p">();</span> <span class="c1">// Stop a previously started server.</span>
+
+
+<span class="k">private</span><span class="o">:</span>
+    <span class="k">friend</span> <span class="k">class</span> <span class="nc">HttpServerTask</span><span class="p">;</span>
+    <span class="k">friend</span> <span class="k">class</span> <span class="nc">WebSocket</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">PathHandler</span><span class="o">&gt;</span> <span class="n">m_pathHandlers</span><span class="p">;</span> <span class="c1">// Vector of path handlers.</span>
+    <span class="kt">uint16_t</span> <span class="n">m_portNumber</span><span class="p">;</span>                   <span class="c1">// Port number on which server is listening.</span>
+    <span class="n">Socket</span> <span class="n">m_socket</span><span class="p">;</span>
+    <span class="kt">uint32_t</span> <span class="n">m_clientTimeout</span><span class="p">;</span> <span class="c1">// Default Timeout</span>
+    <span class="n">util</span><span class="o">::</span><span class="n">Semaphore</span> <span class="n">m_semaphoreServerStarted</span><span class="p">;</span>
+<span class="p">};</span> <span class="c1">// HttpServer</span>
+
+<span class="cp">#endif </span><span class="cm">/* COMPONENTS_CPP_UTILS_HTTPSERVER_H_ */</span><span class="cp"></span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Locha Mesh developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

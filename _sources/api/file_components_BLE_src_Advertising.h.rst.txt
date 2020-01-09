@@ -1,0 +1,90 @@
+
+.. _file_components_BLE_src_Advertising.h:
+
+File Advertising.h
+==================
+
+|exhale_lsh| :ref:`Parent directory <dir_components_BLE_src>` (``components/BLE/src``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``components/BLE/src/Advertising.h``)
+-------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_components_BLE_src_Advertising.h.rst
+
+
+
+Detailed Description
+--------------------
+
+Locha Mesh Developers (contact@locha.io) 
+0.1 
+2019-11-21
+Copyright (c) 2019 Locha Mesh project developers 
+Apache 2.0, see LICENSE file for details 
+
+
+
+
+Includes
+--------
+
+
+- ``array``
+
+- ``cstdint``
+
+- ``esp_bt_defs.h``
+
+- ``esp_gap_ble_api.h``
+
+- ``esp_log.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_components_BLE_src_Advertising.cpp`
+
+- :ref:`file_components_BLE_src_Server.h`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_ble`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classble_1_1AdvertisementData`
+
+- :ref:`exhale_class_classble_1_1AdvertisementState`
+
+- :ref:`exhale_class_classble_1_1Advertising`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_Advertising_8h_1a4e47c2c9124a5cb37457e9849cbb20b4`
+
+- :ref:`exhale_variable_Advertising_8h_1abd94c16dc510c96d1fc50e7cee440eb1`
+

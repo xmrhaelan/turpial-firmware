@@ -1,0 +1,521 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Program Listing for File Server.cpp &mdash; turpial-firmware  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> turpial-firmware
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">turpial-firmware</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Program Listing for File Server.cpp</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/program_listing_file_components_BLE_src_Server.cpp.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-server-cpp">
+<span id="program-listing-file-components-ble-src-server-cpp"></span><h1>Program Listing for File Server.cpp<a class="headerlink" href="#program-listing-for-file-server-cpp" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_components_BLE_src_Server.cpp.html#file-components-ble-src-server-cpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">components/BLE/src/Server.cpp</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;Server.h&quot;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;cstdlib&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;esp_bt.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;esp_bt_defs.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;esp_bt_main.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;esp_gap_ble_api.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;esp_gatt_common_api.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;esp_gatts_api.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;esp_log.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;esp_system.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;freertos/FreeRTOS.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;freertos/event_groups.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;freertos/task.h&gt;</span><span class="cp"></span>
+
+<span class="k">namespace</span> <span class="n">ble</span> <span class="p">{</span>
+
+<span class="k">static</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">TAG</span> <span class="o">=</span> <span class="s">&quot;BLE_Server&quot;</span><span class="p">;</span>
+
+<span class="n">esp_err_t</span> <span class="n">Server</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">ServerParams</span> <span class="n">server_params</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">m_initialized</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;BLE Server is already initialized&quot;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">ESP_FAIL</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">m_server_params</span> <span class="o">=</span> <span class="n">server_params</span><span class="p">;</span>
+
+    <span class="n">esp_err_t</span> <span class="n">err</span><span class="p">;</span>
+
+    <span class="n">esp_bt_controller_mem_release</span><span class="p">(</span><span class="n">ESP_BT_MODE_CLASSIC_BT</span><span class="p">);</span>
+
+    <span class="n">esp_bt_controller_config_t</span> <span class="n">bt_cfg</span> <span class="o">=</span> <span class="n">BT_CONTROLLER_INIT_CONFIG_DEFAULT</span><span class="p">();</span>
+    <span class="n">err</span> <span class="o">=</span> <span class="n">esp_bt_controller_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">bt_cfg</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">err</span> <span class="o">!=</span> <span class="n">ESP_OK</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;%s initialize controller failed: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">__func__</span><span class="p">,</span> <span class="n">esp_err_to_name</span><span class="p">(</span><span class="n">err</span><span class="p">));</span>
+        <span class="k">return</span> <span class="n">err</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">err</span> <span class="o">=</span> <span class="n">esp_bt_controller_enable</span><span class="p">(</span><span class="n">ESP_BT_MODE_BLE</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">err</span> <span class="o">!=</span> <span class="n">ESP_OK</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;%s enable controller failed: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">__func__</span><span class="p">,</span> <span class="n">esp_err_to_name</span><span class="p">(</span><span class="n">err</span><span class="p">));</span>
+        <span class="k">return</span> <span class="n">err</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">err</span> <span class="o">=</span> <span class="n">esp_bluedroid_init</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">err</span> <span class="o">!=</span> <span class="n">ESP_OK</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;%s init bluetooth failed: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">__func__</span><span class="p">,</span> <span class="n">esp_err_to_name</span><span class="p">(</span><span class="n">err</span><span class="p">));</span>
+        <span class="k">return</span> <span class="n">err</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">err</span> <span class="o">=</span> <span class="n">esp_bluedroid_enable</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">err</span> <span class="o">!=</span> <span class="n">ESP_OK</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;%s enable bluetooth failed: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">__func__</span><span class="p">,</span> <span class="n">esp_err_to_name</span><span class="p">(</span><span class="n">err</span><span class="p">));</span>
+        <span class="k">return</span> <span class="n">err</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Bluetooth controller has been initialized</span>
+    <span class="n">m_initialized</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+
+    <span class="n">err</span> <span class="o">=</span> <span class="n">esp_ble_gatts_register_callback</span><span class="p">(</span><span class="n">Server</span><span class="o">::</span><span class="n">handleGattsEvent</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">err</span> <span class="o">!=</span> <span class="n">ESP_OK</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;gatts register error, error code = %x&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">err</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">err</span> <span class="o">=</span> <span class="n">esp_ble_gap_register_callback</span><span class="p">(</span><span class="n">Server</span><span class="o">::</span><span class="n">handleGapEvent</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">err</span> <span class="o">!=</span> <span class="n">ESP_OK</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;gap register error, error code = %x&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">err</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">esp_err_t</span> <span class="n">local_mtu_err</span> <span class="o">=</span> <span class="n">esp_ble_gatt_set_local_mtu</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">local_mtu_err</span> <span class="o">!=</span> <span class="n">ESP_OK</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;set local  MTU failed, error code = %x&quot;</span><span class="p">,</span> <span class="n">local_mtu_err</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Bonding with peer device after authentication</span>
+    <span class="n">esp_ble_auth_req_t</span> <span class="n">auth_req</span> <span class="o">=</span> <span class="n">ESP_LE_AUTH_REQ_SC_MITM_BOND</span><span class="p">;</span>
+
+    <span class="c1">// Set the IO capability to only output (to force client use Passkey auth)</span>
+    <span class="n">esp_ble_io_cap_t</span> <span class="n">iocap</span> <span class="o">=</span> <span class="n">ESP_IO_CAP_OUT</span><span class="p">;</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span> <span class="n">key_size</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span> <span class="n">init_key</span> <span class="o">=</span> <span class="n">ESP_BLE_ENC_KEY_MASK</span> <span class="o">|</span> <span class="n">ESP_BLE_ID_KEY_MASK</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span> <span class="n">rsp_key</span> <span class="o">=</span> <span class="n">ESP_BLE_ENC_KEY_MASK</span> <span class="o">|</span> <span class="n">ESP_BLE_ID_KEY_MASK</span><span class="p">;</span>
+
+    <span class="c1">// Set static Passkey</span>
+    <span class="n">std</span><span class="o">::</span><span class="kt">uint32_t</span> <span class="n">passkey</span> <span class="o">=</span> <span class="n">m_server_params</span><span class="p">.</span><span class="n">static_passkey</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span> <span class="n">auth_option</span> <span class="o">=</span> <span class="n">ESP_BLE_ONLY_ACCEPT_SPECIFIED_AUTH_DISABLE</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span> <span class="n">oob_support</span> <span class="o">=</span> <span class="n">ESP_BLE_OOB_DISABLE</span><span class="p">;</span>
+
+    <span class="n">esp_ble_gap_set_security_param</span><span class="p">(</span><span class="n">ESP_BLE_SM_SET_STATIC_PASSKEY</span><span class="p">,</span>
+        <span class="o">&amp;</span><span class="n">passkey</span><span class="p">,</span>
+        <span class="k">sizeof</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">uint32_t</span><span class="p">));</span>
+    <span class="n">esp_ble_gap_set_security_param</span><span class="p">(</span><span class="n">ESP_BLE_SM_AUTHEN_REQ_MODE</span><span class="p">,</span>
+        <span class="o">&amp;</span><span class="n">auth_req</span><span class="p">,</span>
+        <span class="k">sizeof</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span><span class="p">));</span>
+    <span class="n">esp_ble_gap_set_security_param</span><span class="p">(</span><span class="n">ESP_BLE_SM_IOCAP_MODE</span><span class="p">,</span>
+        <span class="o">&amp;</span><span class="n">iocap</span><span class="p">,</span>
+        <span class="k">sizeof</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span><span class="p">));</span>
+    <span class="n">esp_ble_gap_set_security_param</span><span class="p">(</span><span class="n">ESP_BLE_SM_MAX_KEY_SIZE</span><span class="p">,</span>
+        <span class="o">&amp;</span><span class="n">key_size</span><span class="p">,</span>
+        <span class="k">sizeof</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span><span class="p">));</span>
+    <span class="n">esp_ble_gap_set_security_param</span><span class="p">(</span><span class="n">ESP_BLE_SM_ONLY_ACCEPT_SPECIFIED_SEC_AUTH</span><span class="p">,</span>
+        <span class="o">&amp;</span><span class="n">auth_option</span><span class="p">,</span>
+        <span class="k">sizeof</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span><span class="p">));</span>
+    <span class="n">esp_ble_gap_set_security_param</span><span class="p">(</span><span class="n">ESP_BLE_SM_OOB_SUPPORT</span><span class="p">,</span>
+        <span class="o">&amp;</span><span class="n">oob_support</span><span class="p">,</span>
+        <span class="k">sizeof</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span><span class="p">));</span>
+    <span class="n">esp_ble_gap_set_security_param</span><span class="p">(</span><span class="n">ESP_BLE_SM_SET_INIT_KEY</span><span class="p">,</span>
+        <span class="o">&amp;</span><span class="n">init_key</span><span class="p">,</span>
+        <span class="k">sizeof</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span><span class="p">));</span>
+    <span class="n">esp_ble_gap_set_security_param</span><span class="p">(</span><span class="n">ESP_BLE_SM_SET_RSP_KEY</span><span class="p">,</span>
+        <span class="o">&amp;</span><span class="n">rsp_key</span><span class="p">,</span>
+        <span class="k">sizeof</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span><span class="p">));</span>
+
+    <span class="k">return</span> <span class="n">ESP_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">Server</span><span class="o">::</span><span class="n">stop</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">m_initialized</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+    <span class="n">m_advertising</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span>
+    <span class="n">esp_bluedroid_disable</span><span class="p">();</span>
+    <span class="n">esp_bluedroid_deinit</span><span class="p">();</span>
+    <span class="n">esp_bt_controller_disable</span><span class="p">();</span>
+    <span class="n">esp_bt_controller_deinit</span><span class="p">();</span>
+
+    <span class="n">m_services</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+    <span class="n">m_services</span><span class="p">.</span><span class="n">shrink_to_fit</span><span class="p">();</span>
+
+    <span class="n">m_initialized</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">Server</span><span class="o">::</span><span class="n">registerApp</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">m_register_sema</span><span class="p">.</span><span class="n">take</span><span class="p">();</span>
+    <span class="n">esp_err_t</span> <span class="n">err</span> <span class="o">=</span> <span class="n">esp_ble_gatts_app_register</span><span class="p">(</span><span class="n">m_server_params</span><span class="p">.</span><span class="n">app_id</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">err</span> <span class="o">!=</span> <span class="n">ESP_OK</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;gatts app register error, error code = %x&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">m_register_sema</span><span class="p">.</span><span class="n">wait</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">Server</span><span class="o">::</span><span class="n">createService</span><span class="p">(</span><span class="n">Service</span><span class="o">&amp;&amp;</span> <span class="n">service</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">m_services</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">service</span><span class="p">));</span>
+
+    <span class="n">m_srvc_create_sema</span><span class="p">.</span><span class="n">take</span><span class="p">();</span>
+    <span class="n">m_services</span><span class="p">.</span><span class="n">back</span><span class="p">().</span><span class="n">create</span><span class="p">();</span>
+    <span class="n">m_srvc_create_sema</span><span class="p">.</span><span class="n">wait</span><span class="p">();</span>
+
+    <span class="n">m_srvc_start_sema</span><span class="p">.</span><span class="n">take</span><span class="p">();</span>
+    <span class="n">m_services</span><span class="p">.</span><span class="n">back</span><span class="p">().</span><span class="n">start</span><span class="p">();</span>
+    <span class="n">m_srvc_start_sema</span><span class="p">.</span><span class="n">wait</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">Server</span><span class="o">::</span><span class="n">handleGapEvent</span><span class="p">(</span><span class="n">esp_gap_ble_cb_event_t</span> <span class="n">event</span><span class="p">,</span>
+    <span class="n">esp_ble_gap_cb_param_t</span><span class="o">*</span> <span class="n">param</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">ble</span><span class="o">::</span><span class="n">Server</span><span class="o">&amp;</span> <span class="n">server</span> <span class="o">=</span> <span class="n">ble</span><span class="o">::</span><span class="n">Server</span><span class="o">::</span><span class="n">getInstance</span><span class="p">();</span>
+    <span class="k">switch</span> <span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="nl">ESP_GAP_BLE_ADV_DATA_RAW_SET_COMPLETE_EVT</span><span class="p">:</span>
+        <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;ADV_DATA_RAW_SET_COMPLETE_EVT&quot;</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">server</span><span class="p">.</span><span class="n">m_advertising</span><span class="p">.</span><span class="n">state</span><span class="p">().</span><span class="n">is_config_state</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">server</span><span class="p">.</span><span class="n">m_advertising</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">ESP_GAP_BLE_SCAN_RSP_DATA_RAW_SET_COMPLETE_EVT</span><span class="p">:</span>
+        <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;SCAN_RSP_DATA_RAW_SET_COMPLETE_EVT&quot;</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">server</span><span class="p">.</span><span class="n">m_advertising</span><span class="p">.</span><span class="n">state</span><span class="p">().</span><span class="n">is_scan_rsp_config_state</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">server</span><span class="p">.</span><span class="n">m_advertising</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">ESP_GAP_BLE_ADV_START_COMPLETE_EVT</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">param</span><span class="o">-&gt;</span><span class="n">adv_start_cmpl</span><span class="p">.</span><span class="n">status</span> <span class="o">!=</span> <span class="n">ESP_BT_STATUS_SUCCESS</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;Advertising start failed</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">ESP_GAP_BLE_ADV_STOP_COMPLETE_EVT</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">param</span><span class="o">-&gt;</span><span class="n">adv_stop_cmpl</span><span class="p">.</span><span class="n">status</span> <span class="o">!=</span> <span class="n">ESP_BT_STATUS_SUCCESS</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;Advertising stop failed</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;Stop adv successfully</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">ESP_GAP_BLE_UPDATE_CONN_PARAMS_EVT</span><span class="p">:</span>
+        <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;update connection params status = %d, min_int = %d, max_int = %d,conn_int = %d,latency = %d, timeout = %d&quot;</span><span class="p">,</span>
+            <span class="n">param</span><span class="o">-&gt;</span><span class="n">update_conn_params</span><span class="p">.</span><span class="n">status</span><span class="p">,</span>
+            <span class="n">param</span><span class="o">-&gt;</span><span class="n">update_conn_params</span><span class="p">.</span><span class="n">min_int</span><span class="p">,</span>
+            <span class="n">param</span><span class="o">-&gt;</span><span class="n">update_conn_params</span><span class="p">.</span><span class="n">max_int</span><span class="p">,</span>
+            <span class="n">param</span><span class="o">-&gt;</span><span class="n">update_conn_params</span><span class="p">.</span><span class="n">conn_int</span><span class="p">,</span>
+            <span class="n">param</span><span class="o">-&gt;</span><span class="n">update_conn_params</span><span class="p">.</span><span class="n">latency</span><span class="p">,</span>
+            <span class="n">param</span><span class="o">-&gt;</span><span class="n">update_conn_params</span><span class="p">.</span><span class="n">timeout</span><span class="p">);</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="k">default</span><span class="o">:</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">Server</span><span class="o">::</span><span class="n">handleGattsEvent</span><span class="p">(</span><span class="n">esp_gatts_cb_event_t</span> <span class="n">event</span><span class="p">,</span>
+    <span class="n">esp_gatt_if_t</span> <span class="n">gatts_if</span><span class="p">,</span>
+    <span class="n">esp_ble_gatts_cb_param_t</span><span class="o">*</span> <span class="n">param</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">ble</span><span class="o">::</span><span class="n">Server</span><span class="o">&amp;</span> <span class="n">server</span> <span class="o">=</span> <span class="n">ble</span><span class="o">::</span><span class="n">Server</span><span class="o">::</span><span class="n">getInstance</span><span class="p">();</span>
+
+    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;handleGattsEvent, event = %d&quot;</span><span class="p">,</span> <span class="n">event</span><span class="p">);</span>
+
+    <span class="k">switch</span> <span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="nl">ESP_GATTS_REG_EVT</span><span class="p">:</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">event</span> <span class="o">==</span> <span class="n">ESP_GATTS_REG_EVT</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span>
+                <span class="s">&quot;ESP_GATTS_REG_EVT app_id %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span>
+                <span class="n">param</span><span class="o">-&gt;</span><span class="n">reg</span><span class="p">.</span><span class="n">app_id</span><span class="p">);</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">param</span><span class="o">-&gt;</span><span class="n">reg</span><span class="p">.</span><span class="n">status</span> <span class="o">==</span> <span class="n">ESP_GATT_OK</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">server</span><span class="p">.</span><span class="n">setGattsIf</span><span class="p">(</span><span class="n">gatts_if</span><span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;Reg app failed, status %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span>
+                    <span class="n">param</span><span class="o">-&gt;</span><span class="n">reg</span><span class="p">.</span><span class="n">status</span><span class="p">);</span>
+                <span class="k">return</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="c1">// Release the app register semaphore so the program execution</span>
+            <span class="c1">// continues where registerApp was called</span>
+            <span class="n">server</span><span class="p">.</span><span class="n">m_register_sema</span><span class="p">.</span><span class="n">give</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="n">esp_err_t</span> <span class="n">err</span> <span class="o">=</span>
+            <span class="n">esp_ble_gap_set_device_name</span><span class="p">(</span><span class="n">server</span><span class="p">.</span><span class="n">m_server_params</span><span class="p">.</span><span class="n">device_name</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">err</span> <span class="o">!=</span> <span class="n">ESP_OK</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">ESP_LOGW</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;Couldn&#39;t set the local device name&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Start GAP advertising and let the world know the device is out there</span>
+        <span class="n">ble</span><span class="o">::</span><span class="n">AdvertisementData</span> <span class="n">adv_data</span><span class="p">;</span>
+        <span class="n">adv_data</span><span class="p">.</span><span class="n">setFlags</span><span class="p">(</span><span class="n">ESP_BLE_ADV_FLAG_GEN_DISC</span> <span class="o">|</span> <span class="n">ESP_BLE_ADV_FLAG_BREDR_NOT_SPT</span><span class="p">);</span>
+        <span class="n">server</span><span class="p">.</span><span class="n">m_advertising</span><span class="p">.</span><span class="n">setData</span><span class="p">(</span><span class="n">adv_data</span><span class="p">);</span>
+
+        <span class="n">ble</span><span class="o">::</span><span class="n">AdvertisementData</span> <span class="n">scan_rsp_data</span><span class="p">;</span>
+        <span class="n">scan_rsp_data</span><span class="p">.</span><span class="n">setName</span><span class="p">(</span><span class="n">server</span><span class="p">.</span><span class="n">m_server_params</span><span class="p">.</span><span class="n">device_name</span><span class="p">);</span>
+        <span class="n">server</span><span class="p">.</span><span class="n">m_advertising</span><span class="p">.</span><span class="n">setScanResponseData</span><span class="p">(</span><span class="n">scan_rsp_data</span><span class="p">);</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">case</span> <span class="nl">ESP_GATTS_MTU_EVT</span><span class="p">:</span> <span class="p">{</span>
+        <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;ESP_GATTS_MTU_EVT, MTU %d&quot;</span><span class="p">,</span> <span class="n">param</span><span class="o">-&gt;</span><span class="n">mtu</span><span class="p">.</span><span class="n">mtu</span><span class="p">);</span>
+        <span class="n">server</span><span class="p">.</span><span class="n">m_mtu</span> <span class="o">=</span> <span class="n">param</span><span class="o">-&gt;</span><span class="n">mtu</span><span class="p">.</span><span class="n">mtu</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">case</span> <span class="nl">ESP_GATTS_CONNECT_EVT</span><span class="p">:</span> <span class="p">{</span>
+        <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;ESP_GATTS_CONNECT_EVT, conn_id %d, remote %02x:%02x:%02x:%02x:%02x:%02x:&quot;</span><span class="p">,</span>
+            <span class="n">param</span><span class="o">-&gt;</span><span class="n">connect</span><span class="p">.</span><span class="n">conn_id</span><span class="p">,</span>
+            <span class="n">param</span><span class="o">-&gt;</span><span class="n">connect</span><span class="p">.</span><span class="n">remote_bda</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">param</span><span class="o">-&gt;</span><span class="n">connect</span><span class="p">.</span><span class="n">remote_bda</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">param</span><span class="o">-&gt;</span><span class="n">connect</span><span class="p">.</span><span class="n">remote_bda</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+            <span class="n">param</span><span class="o">-&gt;</span><span class="n">connect</span><span class="p">.</span><span class="n">remote_bda</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">param</span><span class="o">-&gt;</span><span class="n">connect</span><span class="p">.</span><span class="n">remote_bda</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">param</span><span class="o">-&gt;</span><span class="n">connect</span><span class="p">.</span><span class="n">remote_bda</span><span class="p">[</span><span class="mi">5</span><span class="p">]);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">server</span><span class="p">.</span><span class="n">m_conn_id</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;Another device tried to connect&quot;</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Encrypt the connection, requires the client to enter the Passkey</span>
+        <span class="n">esp_ble_set_encryption</span><span class="p">(</span><span class="n">param</span><span class="o">-&gt;</span><span class="n">connect</span><span class="p">.</span><span class="n">remote_bda</span><span class="p">,</span>
+            <span class="n">ESP_BLE_SEC_ENCRYPT_MITM</span><span class="p">);</span>
+
+        <span class="c1">// Save the connection ID</span>
+        <span class="n">server</span><span class="p">.</span><span class="n">m_conn_id</span> <span class="o">=</span> <span class="n">param</span><span class="o">-&gt;</span><span class="n">connect</span><span class="p">.</span><span class="n">conn_id</span><span class="p">;</span>
+
+        <span class="c1">// Stop advertising</span>
+        <span class="n">server</span><span class="p">.</span><span class="n">m_advertising</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span>
+
+        <span class="n">esp_ble_conn_update_params_t</span> <span class="n">conn_params</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">memcpy</span><span class="p">(</span><span class="n">conn_params</span><span class="p">.</span><span class="n">bda</span><span class="p">,</span>
+            <span class="n">param</span><span class="o">-&gt;</span><span class="n">connect</span><span class="p">.</span><span class="n">remote_bda</span><span class="p">,</span>
+            <span class="k">sizeof</span><span class="p">(</span><span class="n">esp_bd_addr_t</span><span class="p">));</span>
+
+        <span class="n">conn_params</span><span class="p">.</span><span class="n">latency</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">conn_params</span><span class="p">.</span><span class="n">max_int</span> <span class="o">=</span> <span class="mh">0x18</span><span class="p">;</span> <span class="c1">// 15 ms</span>
+        <span class="n">conn_params</span><span class="p">.</span><span class="n">min_int</span> <span class="o">=</span> <span class="mh">0x18</span><span class="p">;</span> <span class="c1">// 15 ms</span>
+        <span class="n">conn_params</span><span class="p">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="mi">400</span><span class="p">;</span>  <span class="c1">// 4000 ms</span>
+
+        <span class="c1">// Send the update connection parameters to the peer device.</span>
+        <span class="n">esp_ble_gap_update_conn_params</span><span class="p">(</span><span class="o">&amp;</span><span class="n">conn_params</span><span class="p">);</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">case</span> <span class="nl">ESP_GATTS_DISCONNECT_EVT</span><span class="p">:</span> <span class="p">{</span>
+        <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;ESP_GATTS_DISCONNECT_EVT&quot;</span><span class="p">);</span>
+
+        <span class="c1">// Start adversiting again</span>
+        <span class="n">server</span><span class="p">.</span><span class="n">m_advertising</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+
+        <span class="n">server</span><span class="p">.</span><span class="n">m_conn_id</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">case</span> <span class="nl">ESP_GATTS_CREATE_EVT</span><span class="p">:</span> <span class="p">{</span>
+        <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;Service Event, status %d, service_handle %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span>
+            <span class="n">param</span><span class="o">-&gt;</span><span class="n">create</span><span class="p">.</span><span class="n">status</span><span class="p">,</span> <span class="n">param</span><span class="o">-&gt;</span><span class="n">create</span><span class="p">.</span><span class="n">service_handle</span><span class="p">);</span>
+        <span class="n">server</span><span class="p">.</span><span class="n">m_services</span><span class="p">.</span><span class="n">back</span><span class="p">().</span><span class="n">setHandle</span><span class="p">(</span><span class="n">param</span><span class="o">-&gt;</span><span class="n">create</span><span class="p">.</span><span class="n">service_handle</span><span class="p">);</span>
+        <span class="n">server</span><span class="p">.</span><span class="n">m_srvc_create_sema</span><span class="p">.</span><span class="n">give</span><span class="p">();</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">case</span> <span class="nl">ESP_GATTS_START_EVT</span><span class="p">:</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">param</span><span class="o">-&gt;</span><span class="n">start</span><span class="p">.</span><span class="n">service_handle</span> <span class="o">==</span> <span class="n">server</span><span class="p">.</span><span class="n">m_services</span><span class="p">.</span><span class="n">back</span><span class="p">().</span><span class="n">getHandle</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;Start Service Event, status %d, service_handle %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span>
+                <span class="n">param</span><span class="o">-&gt;</span><span class="n">start</span><span class="p">.</span><span class="n">status</span><span class="p">,</span> <span class="n">param</span><span class="o">-&gt;</span><span class="n">start</span><span class="p">.</span><span class="n">service_handle</span><span class="p">);</span>
+
+            <span class="n">server</span><span class="p">.</span><span class="n">m_srvc_start_sema</span><span class="p">.</span><span class="n">give</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">default</span><span class="o">:</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="nl">service</span> <span class="p">:</span> <span class="n">server</span><span class="p">.</span><span class="n">m_services</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">service</span><span class="p">.</span><span class="n">handleEvent</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">gatts_if</span><span class="p">,</span> <span class="n">param</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="p">}</span> <span class="c1">// namespace ble</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Locha Mesh developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

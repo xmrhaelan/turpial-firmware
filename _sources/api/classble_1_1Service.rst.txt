@@ -1,0 +1,16 @@
+.. _exhale_class_classble_1_1Service:
+
+Class Service
+=============
+
+- Defined in :ref:`file_components_BLE_src_Service.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: ble::Service
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,13 @@
+.. _exhale_variable_Advertising_8cpp_1a1fab38cd3268a33c6e87ff966ffd6be4:
+
+Variable ble::TAG
+=================
+
+- Defined in :ref:`file_components_BLE_src_Advertising.cpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: ble::TAG

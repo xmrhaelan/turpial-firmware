@@ -1,0 +1,541 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Program Listing for File HttpRequest.cpp &mdash; turpial-firmware  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> turpial-firmware
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">turpial-firmware</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Program Listing for File HttpRequest.cpp</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/program_listing_file_components_WS_src_HttpRequest.cpp.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-httprequest-cpp">
+<span id="program-listing-file-components-ws-src-httprequest-cpp"></span><h1>Program Listing for File HttpRequest.cpp<a class="headerlink" href="#program-listing-for-file-httprequest-cpp" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_components_WS_src_HttpRequest.cpp.html#file-components-ws-src-httprequest-cpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">components/WS/src/HttpRequest.cpp</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * HTTPRequest.cpp</span>
+<span class="cm"> *</span>
+<span class="cm"> *  Created on: Aug 30, 2017</span>
+<span class="cm"> *      Author: kolban</span>
+<span class="cm"> */</span>
+
+<span class="cm">/*</span>
+<span class="cm"> * A Websocket hand shake request looks like:</span>
+<span class="cm"> *</span>
+<span class="cm"> * GET /chat HTTP/1.1</span>
+<span class="cm"> * Host: server.example.com</span>
+<span class="cm"> * Upgrade: websocket</span>
+<span class="cm"> * Connection: Upgrade</span>
+<span class="cm"> * Sec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==</span>
+<span class="cm"> * Origin: http://example.com</span>
+<span class="cm"> * Sec-WebSocket-Protocol: chat, superchat</span>
+<span class="cm"> * Sec-WebSocket-Version: 13</span>
+<span class="cm"> *</span>
+<span class="cm"> *</span>
+<span class="cm"> * A corresponding hand shake response looks like:</span>
+<span class="cm"> *</span>
+<span class="cm"> * HTTP/1.1 101 Switching Protocols</span>
+<span class="cm"> * Upgrade: websocket</span>
+<span class="cm"> * Connection: Upgrade</span>
+<span class="cm"> * Sec-WebSocket-Accept: s3pPLMBiTxaQ9kYGzzhZRbK+xOo=</span>
+<span class="cm"> * Sec-WebSocket-Protocol: chat</span>
+<span class="cm"> *</span>
+<span class="cm"> * The server key returned in Sec-WebSocket-Accept is the value of Sec-WebSocket-Key passed in the</span>
+<span class="cm"> * request concatenated with &quot;258EAFA5-E914-47DA-95CA-C5AB0DC85B11&quot; and then take the SHA-1 hash</span>
+<span class="cm"> * of the result to give a 20 byte value which is then base64() encoded.</span>
+<span class="cm"> */</span>
+
+<span class="cp">#include</span> <span class="cpf">&quot;HttpRequest.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;HttpResponse.h&quot;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;sstream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;esp_log.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;mbedtls/sha1.h&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&quot;Base64.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;StringUtil.h&quot;</span><span class="cp"></span>
+
+<span class="cp">#define STATE_NAME 0</span>
+<span class="cp">#define STATE_VALUE 1</span>
+
+<span class="k">static</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">LOG_TAG</span> <span class="o">=</span> <span class="s">&quot;HttpRequest&quot;</span><span class="p">;</span>
+
+<span class="c1">//static std::string lineTerminator = &quot;\r\n&quot;;</span>
+
+<span class="k">const</span> <span class="kt">char</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">HTTP_HEADER_ACCEPT</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;Accept&quot;</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">char</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">HTTP_HEADER_ALLOW</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;Allow&quot;</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">char</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">HTTP_HEADER_CONNECTION</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;Connection&quot;</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">char</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">HTTP_HEADER_CONTENT_LENGTH</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;Content-Length&quot;</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">char</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">HTTP_HEADER_CONTENT_TYPE</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;Content-Type&quot;</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">char</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">HTTP_HEADER_COOKIE</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;Cookie&quot;</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">char</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">HTTP_HEADER_HOST</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;Host&quot;</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">char</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">HTTP_HEADER_LAST_MODIFIED</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;Last-Modified&quot;</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">char</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">HTTP_HEADER_ORIGIN</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;Origin&quot;</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">char</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">HTTP_HEADER_SEC_WEBSOCKET_ACCEPT</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;Sec-WebSocket-Accept&quot;</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">char</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">HTTP_HEADER_SEC_WEBSOCKET_PROTOCOL</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;Sec-WebSocket-Protocol&quot;</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">char</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">HTTP_HEADER_SEC_WEBSOCKET_KEY</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;Sec-WebSocket-Key&quot;</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">char</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">HTTP_HEADER_SEC_WEBSOCKET_VERSION</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;Sec-WebSocket-Version&quot;</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">char</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">HTTP_HEADER_UPGRADE</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;Upgrade&quot;</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">char</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">HTTP_HEADER_USER_AGENT</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;User-Agent&quot;</span><span class="p">;</span>
+
+<span class="k">const</span> <span class="kt">char</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">HTTP_METHOD_CONNECT</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;CONNECT&quot;</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">char</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">HTTP_METHOD_DELETE</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;DELETE&quot;</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">char</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">HTTP_METHOD_GET</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;GET&quot;</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">char</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">HTTP_METHOD_HEAD</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;HEAD&quot;</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">char</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">HTTP_METHOD_OPTIONS</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;OPTIONS&quot;</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">char</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">HTTP_METHOD_PATCH</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;PATCH&quot;</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">char</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">HTTP_METHOD_POST</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;POST&quot;</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">char</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">HTTP_METHOD_PUT</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;PUT&quot;</span><span class="p">;</span>
+
+
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">buildWebsocketKeyResponseHash</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">requestKey</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">newKey</span> <span class="o">=</span> <span class="n">requestKey</span> <span class="o">+</span> <span class="s">&quot;258EAFA5-E914-47DA-95CA-C5AB0DC85B11&quot;</span><span class="p">;</span>
+    <span class="kt">uint8_t</span> <span class="n">shaData</span><span class="p">[</span><span class="mi">20</span><span class="p">];</span>
+    <span class="n">mbedtls_sha1</span><span class="p">((</span><span class="kt">unsigned</span> <span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">newKey</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span> <span class="n">newKey</span><span class="p">.</span><span class="n">length</span><span class="p">(),</span> <span class="n">shaData</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">retStr</span><span class="p">;</span>
+    <span class="n">util</span><span class="o">::</span><span class="n">base64Encode</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">((</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">shaData</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">shaData</span><span class="p">)),</span> <span class="o">&amp;</span><span class="n">retStr</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">retStr</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">// buildWebsocketKeyResponseHash</span>
+
+
+<span class="n">HttpRequest</span><span class="o">::</span><span class="n">HttpRequest</span><span class="p">(</span><span class="n">Socket</span> <span class="n">clientSocket</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">m_clientSocket</span> <span class="o">=</span> <span class="n">clientSocket</span><span class="p">;</span>
+    <span class="n">m_pWebSocket</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+    <span class="n">m_isClosed</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+
+    <span class="n">m_parser</span><span class="p">.</span><span class="n">parse</span><span class="p">(</span><span class="n">clientSocket</span><span class="p">);</span> <span class="c1">// Parse the socket stream to build the HTTP data.</span>
+
+    <span class="c1">// We have to take some special action on the Connection header.  We want</span>
+    <span class="c1">// to know if it contains &quot;Upgrade&quot; however it has come to light that the</span>
+    <span class="c1">// Connection header can contain multiple parts.  For example, it has been</span>
+    <span class="c1">// reported that it can contain &quot;keep-alive,Upgrade&quot;.  Because of this we</span>
+    <span class="c1">// can&#39;t simply examine the string to see if it equals &quot;Upgrade&quot;.  Our</span>
+    <span class="c1">// solution is to get the value of Connection string, split it by &quot;,&quot; as a</span>
+    <span class="c1">// delimiter and then examine each of the parts to see if any of those are</span>
+    <span class="c1">// &quot;Upgrade&quot;.</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">parts</span> <span class="o">=</span> <span class="n">util</span><span class="o">::</span><span class="n">split</span><span class="p">(</span><span class="n">getHeader</span><span class="p">(</span><span class="n">HTTP_HEADER_CONNECTION</span><span class="p">),</span> <span class="sc">&#39;,&#39;</span><span class="p">);</span>
+    <span class="kt">bool</span> <span class="n">upgradeFound</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">find</span><span class="p">(</span><span class="n">parts</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">parts</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="s">&quot;Upgrade&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="n">parts</span><span class="p">.</span><span class="n">end</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">upgradeFound</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Is this a Web Socket?</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">getMethod</span><span class="p">()</span> <span class="o">==</span> <span class="n">HTTP_METHOD_GET</span> <span class="o">&amp;&amp;</span>
+        <span class="o">!</span><span class="n">getHeader</span><span class="p">(</span><span class="n">HTTP_HEADER_HOST</span><span class="p">).</span><span class="n">empty</span><span class="p">()</span> <span class="o">&amp;&amp;</span>
+        <span class="n">getHeader</span><span class="p">(</span><span class="n">HTTP_HEADER_UPGRADE</span><span class="p">)</span> <span class="o">==</span> <span class="s">&quot;websocket&quot;</span> <span class="o">&amp;&amp;</span>
+        <span class="c1">//getHeader(HTTP_HEADER_CONNECTION) == &quot;Upgrade&quot; &amp;&amp;</span>
+        <span class="n">upgradeFound</span> <span class="o">&amp;&amp;</span>
+        <span class="o">!</span><span class="n">getHeader</span><span class="p">(</span><span class="n">HTTP_HEADER_SEC_WEBSOCKET_KEY</span><span class="p">).</span><span class="n">empty</span><span class="p">()</span> <span class="o">&amp;&amp;</span>
+        <span class="o">!</span><span class="n">getHeader</span><span class="p">(</span><span class="n">HTTP_HEADER_SEC_WEBSOCKET_VERSION</span><span class="p">).</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;Websocket detected!&quot;</span><span class="p">);</span>
+        <span class="c1">// do something</span>
+        <span class="c1">// Process the web socket request</span>
+
+        <span class="c1">// Build and send the response HTTP message to switch to being a Web Socket</span>
+        <span class="n">HttpResponse</span> <span class="nf">response</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+
+        <span class="n">response</span><span class="p">.</span><span class="n">setStatus</span><span class="p">(</span><span class="n">HttpResponse</span><span class="o">::</span><span class="n">HTTP_STATUS_SWITCHING_PROTOCOL</span><span class="p">,</span> <span class="s">&quot;Switching Protocols&quot;</span><span class="p">);</span>
+        <span class="n">response</span><span class="p">.</span><span class="n">addHeader</span><span class="p">(</span><span class="n">HTTP_HEADER_UPGRADE</span><span class="p">,</span> <span class="s">&quot;websocket&quot;</span><span class="p">);</span>
+        <span class="n">response</span><span class="p">.</span><span class="n">addHeader</span><span class="p">(</span><span class="n">HTTP_HEADER_CONNECTION</span><span class="p">,</span> <span class="s">&quot;Upgrade&quot;</span><span class="p">);</span>
+        <span class="n">response</span><span class="p">.</span><span class="n">addHeader</span><span class="p">(</span><span class="n">HTTP_HEADER_SEC_WEBSOCKET_ACCEPT</span><span class="p">,</span>
+            <span class="n">buildWebsocketKeyResponseHash</span><span class="p">(</span><span class="n">getHeader</span><span class="p">(</span><span class="n">HTTP_HEADER_SEC_WEBSOCKET_KEY</span><span class="p">)));</span>
+        <span class="n">response</span><span class="p">.</span><span class="n">sendData</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
+
+        <span class="c1">// Now that we have converted the request into a WebSocket, create the new WebSocket entry.</span>
+        <span class="n">m_pWebSocket</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WebSocket</span><span class="p">(</span><span class="n">clientSocket</span><span class="p">);</span>
+    <span class="p">}</span> <span class="c1">// if this is a web socket ...</span>
+<span class="p">}</span> <span class="c1">// HttpRequest</span>
+
+
+<span class="n">HttpRequest</span><span class="o">::~</span><span class="n">HttpRequest</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="p">}</span> <span class="c1">// ~HttpRequest</span>
+
+
+<span class="kt">void</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">close</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">isWebsocket</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">ESP_LOGW</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;Request to close an HTTP Request but we think it is a web socket!&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">m_clientSocket</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+    <span class="n">m_isClosed</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">// close_cpp</span>
+
+
+<span class="kt">void</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">dump</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;Method: %s, URL: </span><span class="se">\&quot;</span><span class="s">%s</span><span class="se">\&quot;</span><span class="s">, Version: %s&quot;</span><span class="p">,</span> <span class="n">getMethod</span><span class="p">().</span><span class="n">c_str</span><span class="p">(),</span> <span class="n">getPath</span><span class="p">().</span><span class="n">c_str</span><span class="p">(),</span> <span class="n">getVersion</span><span class="p">().</span><span class="n">c_str</span><span class="p">());</span>
+    <span class="k">auto</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">getHeaders</span><span class="p">();</span>
+    <span class="k">auto</span> <span class="n">it2</span> <span class="o">=</span> <span class="n">headers</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+    <span class="k">for</span> <span class="p">(;</span> <span class="n">it2</span> <span class="o">!=</span> <span class="n">headers</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="o">++</span><span class="n">it2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;name=</span><span class="se">\&quot;</span><span class="s">%s</span><span class="se">\&quot;</span><span class="s">, value=</span><span class="se">\&quot;</span><span class="s">%s</span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">it2</span><span class="o">-&gt;</span><span class="n">first</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="n">it2</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+    <span class="p">}</span>
+    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;Body: </span><span class="se">\&quot;</span><span class="s">%s</span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">getBody</span><span class="p">().</span><span class="n">c_str</span><span class="p">());</span>
+<span class="p">}</span> <span class="c1">// dump</span>
+
+
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">getBody</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">m_parser</span><span class="p">.</span><span class="n">getBody</span><span class="p">();</span>
+<span class="p">}</span> <span class="c1">// getBody</span>
+
+
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">getHeader</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">m_parser</span><span class="p">.</span><span class="n">getHeader</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+<span class="p">}</span> <span class="c1">// getHeader</span>
+
+
+<span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">getHeaders</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">m_parser</span><span class="p">.</span><span class="n">getHeaders</span><span class="p">();</span>
+<span class="p">}</span> <span class="c1">// getHeaders</span>
+
+
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">getMethod</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">m_parser</span><span class="p">.</span><span class="n">getMethod</span><span class="p">();</span>
+<span class="p">}</span> <span class="c1">// getMethod</span>
+
+
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">getPath</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">m_parser</span><span class="p">.</span><span class="n">getURL</span><span class="p">();</span>
+<span class="p">}</span> <span class="c1">// getPath</span>
+
+
+<span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">getQuery</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// Walk through all the characters in the query string maintaining a simple state machine</span>
+    <span class="c1">// that lets us know what we are parsing.</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">queryMap</span><span class="p">;</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">possibleQueryString</span> <span class="o">=</span> <span class="n">getPath</span><span class="p">();</span>
+    <span class="kt">int</span> <span class="n">qindex</span> <span class="o">=</span> <span class="n">possibleQueryString</span><span class="p">.</span><span class="n">find_first_of</span><span class="p">(</span><span class="s">&quot;?&quot;</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">qindex</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;No query string present&quot;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">queryMap</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">queryString</span> <span class="o">=</span> <span class="n">possibleQueryString</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span><span class="n">qindex</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;query string: %s&quot;</span><span class="p">,</span> <span class="n">queryString</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+
+    <span class="cm">/*</span>
+<span class="cm">     * We maintain a simple state machine with states of:</span>
+<span class="cm">     * * STATE_NAME - We are parsing a name.</span>
+<span class="cm">     * * STATE_VALUE - We are parsing a value.</span>
+<span class="cm">     */</span>
+    <span class="kt">int</span> <span class="n">state</span> <span class="o">=</span> <span class="n">STATE_NAME</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">value</span><span class="p">;</span>
+    <span class="c1">// Loop through each character in the query string.</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">queryString</span><span class="p">.</span><span class="n">length</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">char</span> <span class="n">currentChar</span> <span class="o">=</span> <span class="n">queryString</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">state</span> <span class="o">==</span> <span class="n">STATE_NAME</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">currentChar</span> <span class="o">!=</span> <span class="sc">&#39;=&#39;</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">name</span> <span class="o">+=</span> <span class="n">currentChar</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="n">state</span> <span class="o">=</span> <span class="n">STATE_VALUE</span><span class="p">;</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="c1">// End state = STATE_NAME</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">state</span> <span class="o">==</span> <span class="n">STATE_VALUE</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">currentChar</span> <span class="o">!=</span> <span class="sc">&#39;&amp;&#39;</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">value</span> <span class="o">+=</span> <span class="n">currentChar</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="c1">//ESP_LOGD(tag, &quot;name=%s, value=%s&quot;, name.c_str(), value.c_str());</span>
+                <span class="n">queryMap</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+                <span class="n">state</span> <span class="o">=</span> <span class="n">STATE_NAME</span><span class="p">;</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="c1">// End state = STATE_VALUE</span>
+    <span class="p">}</span>     <span class="c1">// End for loop</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">state</span> <span class="o">==</span> <span class="n">STATE_VALUE</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//ESP_LOGD(tag, &quot;name=%s, value=%s&quot;, name.c_str(), value.c_str());</span>
+        <span class="n">queryMap</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">queryMap</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">// getQuery</span>
+
+
+<span class="n">Socket</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">getSocket</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">m_clientSocket</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">// getSocket</span>
+
+
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">getVersion</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">m_parser</span><span class="p">.</span><span class="n">getVersion</span><span class="p">();</span>
+<span class="p">}</span> <span class="c1">// getVersion</span>
+
+
+<span class="n">WebSocket</span><span class="o">*</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">getWebSocket</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">m_pWebSocket</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">// getWebSocket</span>
+
+
+<span class="kt">bool</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">isClosed</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">m_isClosed</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">// isClosed</span>
+
+
+<span class="kt">bool</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">isWebsocket</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">m_pWebSocket</span> <span class="o">!=</span> <span class="k">nullptr</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">// isWebsocket</span>
+
+
+<span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">parseForm</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;&gt;&gt; parseForm&quot;</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">map</span><span class="p">;</span>
+    <span class="c1">// A form is composed of name=value pairs where each pair is separated with an &quot;&amp;&quot; character.</span>
+    <span class="c1">// Our algorithm is to split all the pairs by &quot;&amp;&quot; and then split all the name/value pairs by &quot;=&quot;.</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">istringstream</span> <span class="n">ss</span><span class="p">(</span><span class="n">getBody</span><span class="p">());</span> <span class="c1">// Get the body of the request.</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">currentEntry</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">getline</span><span class="p">(</span><span class="n">ss</span><span class="p">,</span> <span class="n">currentEntry</span><span class="p">,</span> <span class="sc">&#39;&amp;&#39;</span><span class="p">))</span> <span class="p">{</span>                  <span class="c1">// For each form entry.</span>
+        <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;Processing: %s&quot;</span><span class="p">,</span> <span class="n">currentEntry</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span> <span class="c1">// Debug</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">istringstream</span> <span class="n">currentPair</span><span class="p">(</span><span class="n">currentEntry</span><span class="p">);</span>              <span class="c1">// Prepare to parse the name=value string.</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">;</span>                                          <span class="c1">// Declare the name variable.</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">value</span><span class="p">;</span>                                         <span class="c1">// Declare the value variable.</span>
+
+        <span class="n">std</span><span class="o">::</span><span class="n">getline</span><span class="p">(</span><span class="n">currentPair</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="sc">&#39;=&#39;</span><span class="p">);</span>                               <span class="c1">// Parse the current form entry into name/value.</span>
+        <span class="n">currentPair</span> <span class="o">&gt;&gt;</span> <span class="n">value</span><span class="p">;</span>                                               <span class="c1">// The value is what remains.</span>
+        <span class="n">map</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">urlDecode</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>                                       <span class="c1">// Decode the field which may have been encoded.</span>
+        <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot; %s = </span><span class="se">\&quot;</span><span class="s">%s</span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="n">map</span><span class="p">[</span><span class="n">name</span><span class="p">].</span><span class="n">c_str</span><span class="p">());</span> <span class="c1">// Debug</span>
+                                                                            <span class="c1">// Add the form entry into the map.</span>
+    <span class="p">}</span>                                                                       <span class="c1">// Processed all form entries.</span>
+    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;&lt;&lt; parseForm&quot;</span><span class="p">);</span>                                      <span class="c1">// Debug</span>
+    <span class="k">return</span> <span class="n">map</span><span class="p">;</span>                                                             <span class="c1">// Return the map of form entries.</span>
+<span class="p">}</span> <span class="c1">// parseForm</span>
+
+
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">pathSplit</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">istringstream</span> <span class="n">stream</span><span class="p">(</span><span class="n">getPath</span><span class="p">());</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">ret</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">pathPart</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">getline</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="n">pathPart</span><span class="p">,</span> <span class="sc">&#39;/&#39;</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">ret</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">pathPart</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="c1">// Debug</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ret</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;part[%d]: %s&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">ret</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">c_str</span><span class="p">());</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">// pathSplit</span>
+
+
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">HttpRequest</span><span class="o">::</span><span class="n">urlDecode</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">str</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// https://stackoverflow.com/questions/154536/encode-decode-urls-in-c</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">ret</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">ch</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">ii</span><span class="p">,</span> <span class="n">len</span> <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="n">length</span><span class="p">();</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="sc">&#39;%&#39;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;+&#39;</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">ret</span> <span class="o">+=</span> <span class="sc">&#39; &#39;</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="n">ret</span> <span class="o">+=</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">sscanf</span><span class="p">(</span><span class="n">str</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">).</span><span class="n">c_str</span><span class="p">(),</span> <span class="s">&quot;%x&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ii</span><span class="p">);</span>
+            <span class="n">ch</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="p">(</span><span class="n">ii</span><span class="p">);</span>
+            <span class="n">ret</span> <span class="o">+=</span> <span class="n">ch</span><span class="p">;</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">// urlDecode</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Locha Mesh developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+.. _exhale_class_classSocketException:
+
+Class SocketException
+=====================
+
+- Defined in :ref:`file_components_WS_src_Socket.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public exception``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: SocketException
+   :members:
+   :protected-members:
+   :undoc-members:

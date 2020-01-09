@@ -1,0 +1,25 @@
+.. _exhale_class_classWsHandlerEvents:
+
+Class WsHandlerEvents
+=====================
+
+- Defined in :ref:`file_components_WS_src_WsHandlerEvents.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public WebSocketHandler`` (:ref:`exhale_class_classWebSocketHandler`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: WsHandlerEvents
+   :members:
+   :protected-members:
+   :undoc-members:

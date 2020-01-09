@@ -1,0 +1,90 @@
+
+.. _file_components_WS_src_Socket.h:
+
+File Socket.h
+=============
+
+|exhale_lsh| :ref:`Parent directory <dir_components_WS_src>` (``components/WS/src``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``components/WS/src/Socket.h``)
+-------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_components_WS_src_Socket.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``cstdio``
+
+- ``cstring``
+
+- ``exception``
+
+- ``iostream``
+
+- ``lwip/inet.h``
+
+- ``lwip/sockets.h``
+
+- ``mbedtls/ctr_drbg.h``
+
+- ``mbedtls/debug.h``
+
+- ``mbedtls/entropy.h``
+
+- ``mbedtls/error.h``
+
+- ``mbedtls/net.h``
+
+- ``mbedtls/platform.h``
+
+- ``mbedtls/ssl.h``
+
+- ``sdkconfig.h``
+
+- ``streambuf``
+
+- ``string``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_components_WS_src_HttpParser.h`
+
+- :ref:`file_components_WS_src_HttpRequest.h`
+
+- :ref:`file_components_WS_src_WebSocket.h`
+
+- :ref:`file_components_WS_src_Socket.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classSocket`
+
+- :ref:`exhale_class_classSocketException`
+
+- :ref:`exhale_class_classSocketInputRecordStreambuf`
+

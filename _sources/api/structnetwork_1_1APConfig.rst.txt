@@ -1,0 +1,16 @@
+.. _exhale_struct_structnetwork_1_1APConfig:
+
+Struct APConfig
+===============
+
+- Defined in :ref:`file_components_Network_src_WiFi.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: network::APConfig
+   :members:
+   :protected-members:
+   :undoc-members:

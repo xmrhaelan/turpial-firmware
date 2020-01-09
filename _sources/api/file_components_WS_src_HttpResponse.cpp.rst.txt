@@ -1,0 +1,54 @@
+
+.. _file_components_WS_src_HttpResponse.cpp:
+
+File HttpResponse.cpp
+=====================
+
+|exhale_lsh| :ref:`Parent directory <dir_components_WS_src>` (``components/WS/src``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``components/WS/src/HttpResponse.cpp``)
+---------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_components_WS_src_HttpResponse.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``HttpRequest.h`` (:ref:`file_components_WS_src_HttpRequest.h`)
+
+- ``HttpResponse.h`` (:ref:`file_components_WS_src_HttpResponse.h`)
+
+- ``esp_log.h``
+
+- ``fstream``
+
+- ``sstream``
+
+
+
+
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_HttpResponse_8cpp_1a0f1fb6b783576065da6d63efb6809dba`
+
+- :ref:`exhale_variable_HttpResponse_8cpp_1a328e9da88a07f3a0bf81b40d25469ff9`
+

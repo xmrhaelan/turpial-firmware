@@ -1,0 +1,16 @@
+.. _exhale_struct_structble_1_1ServerParams:
+
+Struct ServerParams
+===================
+
+- Defined in :ref:`file_components_BLE_src_Server.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: ble::ServerParams
+   :members:
+   :protected-members:
+   :undoc-members:

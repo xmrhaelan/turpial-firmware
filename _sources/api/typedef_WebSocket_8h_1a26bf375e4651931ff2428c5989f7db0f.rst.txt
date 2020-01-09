@@ -1,0 +1,13 @@
+.. _exhale_typedef_WebSocket_8h_1a26bf375e4651931ff2428c5989f7db0f:
+
+Typedef ws_list_t
+=================
+
+- Defined in :ref:`file_components_WS_src_WebSocket.h`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: ws_list_t

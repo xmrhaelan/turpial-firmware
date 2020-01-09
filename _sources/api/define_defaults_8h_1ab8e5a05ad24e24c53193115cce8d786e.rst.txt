@@ -1,0 +1,13 @@
+.. _exhale_define_defaults_8h_1ab8e5a05ad24e24c53193115cce8d786e:
+
+Define ESC_SOC_DELTA
+====================
+
+- Defined in :ref:`file_main_defaults.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: ESC_SOC_DELTA

@@ -1,0 +1,97 @@
+
+.. _file_components_WS_src_WebSocket.cpp:
+
+File WebSocket.cpp
+==================
+
+|exhale_lsh| :ref:`Parent directory <dir_components_WS_src>` (``components/WS/src``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``components/WS/src/WebSocket.cpp``)
+------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_components_WS_src_WebSocket.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Task.h`` (:ref:`file_components_Task_src_Task.h`)
+
+- ``WebSocket.h`` (:ref:`file_components_WS_src_WebSocket.h`)
+
+- ``esp_log.h``
+
+- ``iostream``
+
+- ``sstream``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_std`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structFrame`
+
+- :ref:`exhale_class_classWebSocketReader`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_WebSocket_8cpp_1abc8d76ac134b26a44c42b03f4f952f4e`
+
+- :ref:`exhale_function_WebSocket_8cpp_1a379424b6bc52498c9dca693c6aea3549`
+
+- :ref:`exhale_function_WebSocket_8cpp_1a5f9d3d3ad8fc8c55f29bfad1e862d2f8`
+
+- :ref:`exhale_function_WebSocket_8cpp_1a7e4133c98661e1e258f6c636e3c1245c`
+
+- :ref:`exhale_function_WebSocket_8cpp_1aee0c3c901bd90b3760c5e69dff6c5f58`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_WebSocket_8cpp_1a328e9da88a07f3a0bf81b40d25469ff9`
+
+- :ref:`exhale_variable_WebSocket_8cpp_1a25a98cb81496a1cc04ef6e6a14873df0`
+
+- :ref:`exhale_variable_WebSocket_8cpp_1a082a4912fcbb54c90b3e4d66ffbac61e`
+
+- :ref:`exhale_variable_WebSocket_8cpp_1a19fffc7b227594ba340b86fc64ba426d`
+
+- :ref:`exhale_variable_WebSocket_8cpp_1ab31db9373efce0d0b348e8e7463d320a`
+
+- :ref:`exhale_variable_WebSocket_8cpp_1a5ddb9067a983aed8b0128a1f2a9f3c8a`
+
+- :ref:`exhale_variable_WebSocket_8cpp_1af4bb924cc069f278ef55f5874aaf96a7`
+
+- :ref:`exhale_variable_WebSocket_8cpp_1a0da8e9a8288b51e73dc6b9e10d02f159`
+

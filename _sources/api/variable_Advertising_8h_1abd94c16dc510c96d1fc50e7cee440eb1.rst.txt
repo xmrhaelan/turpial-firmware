@@ -1,0 +1,13 @@
+.. _exhale_variable_Advertising_8h_1abd94c16dc510c96d1fc50e7cee440eb1:
+
+Variable ble::STATE_SCAN_RSP_CONFIG
+===================================
+
+- Defined in :ref:`file_components_BLE_src_Advertising.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: ble::STATE_SCAN_RSP_CONFIG

@@ -1,0 +1,36 @@
+
+.. _program_listing_file_components_Radio_src_Radio.h:
+
+Program Listing for File Radio.h
+================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_components_Radio_src_Radio.h>` (``components/Radio/src/Radio.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef RADIO_H
+   #define RADIO_H
+   
+   #include "Task.h"
+   #include "defaults.h"
+   
+   namespace radio {
+   
+   #if RAD_ENABLED == true
+   
+   class Radio : public Task
+   {
+   public:
+       Radio();
+   
+       void run(void* data) override;
+   };
+   
+   #endif
+   
+   } // namespace radio
+   
+   #endif // RADIO_H

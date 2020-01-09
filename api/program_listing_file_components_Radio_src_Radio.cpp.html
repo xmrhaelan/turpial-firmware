@@ -1,0 +1,256 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Program Listing for File Radio.cpp &mdash; turpial-firmware  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> turpial-firmware
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">turpial-firmware</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Program Listing for File Radio.cpp</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/program_listing_file_components_Radio_src_Radio.cpp.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-radio-cpp">
+<span id="program-listing-file-components-radio-src-radio-cpp"></span><h1>Program Listing for File Radio.cpp<a class="headerlink" href="#program-listing-for-file-radio-cpp" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_components_Radio_src_Radio.cpp.html#file-components-radio-src-radio-cpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">components/Radio/src/Radio.cpp</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;Radio.h&quot;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;driver/uart.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;esp_log.h&gt;</span><span class="cp"></span>
+
+<span class="k">namespace</span> <span class="n">radio</span> <span class="p">{</span>
+
+<span class="cp">#if RAD_ENABLED == true</span>
+
+<span class="k">static</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">TAG</span> <span class="o">=</span> <span class="s">&quot;UART&quot;</span><span class="p">;</span>
+
+<span class="n">Radio</span><span class="o">::</span><span class="n">Radio</span><span class="p">()</span>
+    <span class="o">:</span> <span class="n">Task</span><span class="p">(</span><span class="s">&quot;UART&quot;</span><span class="p">,</span> <span class="mi">4096</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">Radio</span><span class="o">::</span><span class="n">run</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">data</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;UART start&quot;</span><span class="p">);</span>
+
+    <span class="n">uart_config_t</span> <span class="n">uart_config</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="p">.</span><span class="n">baud_rate</span> <span class="o">=</span> <span class="mi">115200</span><span class="p">,</span>
+        <span class="p">.</span><span class="n">data_bits</span> <span class="o">=</span> <span class="n">UART_DATA_8_BITS</span><span class="p">,</span>
+        <span class="p">.</span><span class="n">parity</span> <span class="o">=</span> <span class="n">UART_PARITY_DISABLE</span><span class="p">,</span>
+        <span class="p">.</span><span class="n">stop_bits</span> <span class="o">=</span> <span class="n">UART_STOP_BITS_1</span><span class="p">,</span>
+        <span class="p">.</span><span class="n">flow_ctrl</span> <span class="o">=</span> <span class="n">UART_HW_FLOWCTRL_DISABLE</span><span class="p">,</span>
+        <span class="p">.</span><span class="n">rx_flow_ctrl_thresh</span> <span class="o">=</span> <span class="mi">122</span><span class="p">,</span>
+        <span class="p">.</span><span class="n">use_ref_tick</span> <span class="o">=</span> <span class="nb">false</span><span class="p">,</span>
+    <span class="p">};</span>
+
+    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;Configuring UART parameters&quot;</span><span class="p">);</span>
+    <span class="n">ESP_ERROR_CHECK</span><span class="p">(</span><span class="n">uart_param_config</span><span class="p">(</span><span class="n">UART_NUM_2</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">uart_config</span><span class="p">));</span>
+
+    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;Configuring UART pins&quot;</span><span class="p">);</span>
+    <span class="n">ESP_ERROR_CHECK</span><span class="p">(</span><span class="n">uart_set_pin</span><span class="p">(</span><span class="n">UART_NUM_2</span><span class="p">,</span> <span class="n">RAD_TX_PIN</span><span class="p">,</span> <span class="n">RAD_RX_PIN</span><span class="p">,</span> <span class="n">UART_PIN_NO_CHANGE</span><span class="p">,</span> <span class="n">UART_PIN_NO_CHANGE</span><span class="p">));</span>
+
+    <span class="k">const</span> <span class="kt">int</span> <span class="n">uart_buffer_size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1024</span> <span class="o">*</span> <span class="mi">2</span><span class="p">);</span>
+    <span class="n">QueueHandle_t</span> <span class="n">uart_queue</span><span class="p">;</span>
+
+    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;Installing UART driver&quot;</span><span class="p">);</span>
+    <span class="n">ESP_ERROR_CHECK</span><span class="p">(</span><span class="n">uart_driver_install</span><span class="p">(</span><span class="n">UART_NUM_2</span><span class="p">,</span> <span class="n">uart_buffer_size</span><span class="p">,</span> <span class="n">uart_buffer_size</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">uart_queue</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;Reading bytes&quot;</span><span class="p">);</span>
+
+        <span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">13</span><span class="p">];</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">uart_read_bytes</span><span class="p">(</span><span class="n">UART_NUM_2</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+        <span class="n">buffer</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">12</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;Received, buffer = %s&quot;</span><span class="p">,</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">buffer</span><span class="p">));</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;Error, n = %d&quot;</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cp">#endif</span>
+
+<span class="p">}</span> <span class="c1">// namespace radio</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Locha Mesh developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

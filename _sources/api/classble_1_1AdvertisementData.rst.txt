@@ -1,0 +1,16 @@
+.. _exhale_class_classble_1_1AdvertisementData:
+
+Class AdvertisementData
+=======================
+
+- Defined in :ref:`file_components_BLE_src_Advertising.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: ble::AdvertisementData
+   :members:
+   :protected-members:
+   :undoc-members:

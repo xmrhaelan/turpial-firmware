@@ -1,0 +1,13 @@
+.. _exhale_variable_WebSocket_8cpp_1a5ddb9067a983aed8b0128a1f2a9f3c8a:
+
+Variable OPCODE_PONG
+====================
+
+- Defined in :ref:`file_components_WS_src_WebSocket.cpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: OPCODE_PONG

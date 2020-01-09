@@ -1,0 +1,65 @@
+
+.. _file_components_BLE_src_Uuid.h:
+
+File Uuid.h
+===========
+
+|exhale_lsh| :ref:`Parent directory <dir_components_BLE_src>` (``components/BLE/src``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``components/BLE/src/Uuid.h``)
+------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_components_BLE_src_Uuid.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``cstdint``
+
+- ``esp_bt_defs.h``
+
+- ``esp_err.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_components_BLE_src_Characteristic.h`
+
+- :ref:`file_components_BLE_src_Service.h`
+
+- :ref:`file_components_BLE_src_Uuid.cpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_ble`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classble_1_1Uuid`
+

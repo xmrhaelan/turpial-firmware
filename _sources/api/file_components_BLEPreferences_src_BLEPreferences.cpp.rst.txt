@@ -1,0 +1,105 @@
+
+.. _file_components_BLEPreferences_src_BLEPreferences.cpp:
+
+File BLEPreferences.cpp
+=======================
+
+|exhale_lsh| :ref:`Parent directory <dir_components_BLEPreferences_src>` (``components/BLEPreferences/src``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``components/BLEPreferences/src/BLEPreferences.cpp``)
+-----------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_components_BLEPreferences_src_BLEPreferences.cpp.rst
+
+
+
+Detailed Description
+--------------------
+
+Locha Mesh Developers (contact@locha.io) 
+0.1 
+2019-11-25
+Copyright (c) 2019 Locha Mesh project developers 
+Apache 2.0, see LICENSE file for details 
+
+
+
+
+Includes
+--------
+
+
+- ``BLEPreferences.h`` (:ref:`file_components_BLEPreferences_src_BLEPreferences.h`)
+
+- ``WiFi.h`` (:ref:`file_components_Network_src_WiFi.h`)
+
+- ``cstring``
+
+- ``esp_log.h``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_ble_preferences`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classble__preferences_1_1APPasswordCallback`
+
+- :ref:`exhale_class_classble__preferences_1_1APSSIDCallback`
+
+- :ref:`exhale_class_classble__preferences_1_1STAPasswordCallback`
+
+- :ref:`exhale_class_classble__preferences_1_1STASSIDCallback`
+
+- :ref:`exhale_class_classble__preferences_1_1WiFiModeCallback`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_BLEPreferences_8cpp_1a86132df8f8689cb0275396bd9e9f21eb`
+
+- :ref:`exhale_function_BLEPreferences_8cpp_1aa60c07f427bfd1350c0015998cdaa59f`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_BLEPreferences_8cpp_1a5b7d7d4c5518cc5a13aff59c4211ad50`
+
+- :ref:`exhale_variable_BLEPreferences_8cpp_1a62901c96485623f0e4c200f412480723`
+
+- :ref:`exhale_variable_BLEPreferences_8cpp_1a554c30b11e2d6b909f4829cabb837ce0`
+
+- :ref:`exhale_variable_BLEPreferences_8cpp_1a69ce5913d8b4c04a38600c84dc88e0e2`
+
+- :ref:`exhale_variable_BLEPreferences_8cpp_1a90a1f5db0f2e54ecb696a97c52eb4bdf`
+
+- :ref:`exhale_variable_BLEPreferences_8cpp_1a06939186bf8eac384a2f46e8250b2280`
+
+- :ref:`exhale_variable_BLEPreferences_8cpp_1ac04c22d60710ef4d1188f3c291bf5b9c`
+
+- :ref:`exhale_variable_BLEPreferences_8cpp_1a4e9d37dfd8d82a4e02e6001e5f66334c`
+

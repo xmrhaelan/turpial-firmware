@@ -1,0 +1,13 @@
+.. _exhale_variable_Advertising_8h_1a4e47c2c9124a5cb37457e9849cbb20b4:
+
+Variable ble::STATE_CONFIG
+==========================
+
+- Defined in :ref:`file_components_BLE_src_Advertising.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: ble::STATE_CONFIG

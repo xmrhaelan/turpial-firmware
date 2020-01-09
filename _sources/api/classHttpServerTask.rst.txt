@@ -1,0 +1,25 @@
+.. _exhale_class_classHttpServerTask:
+
+Class HttpServerTask
+====================
+
+- Defined in :ref:`file_components_WS_src_HttpServer.cpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public Task`` (:ref:`exhale_class_classTask`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: HttpServerTask
+   :members:
+   :protected-members:
+   :undoc-members:

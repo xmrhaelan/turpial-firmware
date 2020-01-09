@@ -1,0 +1,13 @@
+.. _exhale_variable_BLEPreferences_8cpp_1a90a1f5db0f2e54ecb696a97c52eb4bdf:
+
+Variable ble_preferences::TAG
+=============================
+
+- Defined in :ref:`file_components_BLEPreferences_src_BLEPreferences.cpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: ble_preferences::TAG

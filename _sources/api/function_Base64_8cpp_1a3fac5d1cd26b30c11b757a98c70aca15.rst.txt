@@ -1,0 +1,13 @@
+.. _exhale_function_Base64_8cpp_1a3fac5d1cd26b30c11b757a98c70aca15:
+
+Function util::a4_to_a3
+=======================
+
+- Defined in :ref:`file_components_Util_src_Base64.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: util::a4_to_a3(std::uint8_t *, std::uint8_t *)

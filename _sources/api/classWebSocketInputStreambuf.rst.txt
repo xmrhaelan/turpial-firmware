@@ -1,0 +1,25 @@
+.. _exhale_class_classWebSocketInputStreambuf:
+
+Class WebSocketInputStreambuf
+=============================
+
+- Defined in :ref:`file_components_WS_src_WebSocket.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public streambuf``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: WebSocketInputStreambuf
+   :members:
+   :protected-members:
+   :undoc-members:

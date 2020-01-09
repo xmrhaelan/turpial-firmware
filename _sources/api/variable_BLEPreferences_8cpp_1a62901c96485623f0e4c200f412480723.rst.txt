@@ -1,0 +1,13 @@
+.. _exhale_variable_BLEPreferences_8cpp_1a62901c96485623f0e4c200f412480723:
+
+Variable ble_preferences::AP_SSID_UUID
+======================================
+
+- Defined in :ref:`file_components_BLEPreferences_src_BLEPreferences.cpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: ble_preferences::AP_SSID_UUID

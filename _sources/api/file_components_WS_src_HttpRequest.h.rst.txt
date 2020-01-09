@@ -1,0 +1,70 @@
+
+.. _file_components_WS_src_HttpRequest.h:
+
+File HttpRequest.h
+==================
+
+|exhale_lsh| :ref:`Parent directory <dir_components_WS_src>` (``components/WS/src``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``components/WS/src/HttpRequest.h``)
+------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_components_WS_src_HttpRequest.h.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``HttpParser.h`` (:ref:`file_components_WS_src_HttpParser.h`)
+
+- ``Socket.h`` (:ref:`file_components_WS_src_Socket.h`)
+
+- ``WebSocket.h`` (:ref:`file_components_WS_src_WebSocket.h`)
+
+- ``map``
+
+- ``string``
+
+- ``vector``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_components_WS_src_HttpParser.cpp`
+
+- :ref:`file_components_WS_src_HttpRequest.cpp`
+
+- :ref:`file_components_WS_src_HttpResponse.h`
+
+- :ref:`file_components_WS_src_HttpResponse.cpp`
+
+- :ref:`file_components_WS_src_HttpServer.h`
+
+- :ref:`file_components_WS_src_HttpServer.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classHttpRequest`
+

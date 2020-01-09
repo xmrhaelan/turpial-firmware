@@ -1,0 +1,21 @@
+.. _dir_components_BLEPreferences_src:
+
+
+Directory src
+=============
+
+
+|exhale_lsh| :ref:`Parent directory <dir_components_BLEPreferences>` (``components/BLEPreferences``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+*Directory path:* ``components/BLEPreferences/src``
+
+
+Files
+-----
+
+- :ref:`file_components_BLEPreferences_src_BLEPreferences.cpp`
+- :ref:`file_components_BLEPreferences_src_BLEPreferences.h`
+
+

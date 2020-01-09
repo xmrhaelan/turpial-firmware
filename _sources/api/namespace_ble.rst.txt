@@ -1,0 +1,49 @@
+
+.. _namespace_ble:
+
+Namespace ble
+=============
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structble_1_1ServerParams`
+
+- :ref:`exhale_class_classble_1_1AdvertisementData`
+
+- :ref:`exhale_class_classble_1_1AdvertisementState`
+
+- :ref:`exhale_class_classble_1_1Advertising`
+
+- :ref:`exhale_class_classble_1_1Characteristic`
+
+- :ref:`exhale_class_classble_1_1CharacteristicCallback`
+
+- :ref:`exhale_class_classble_1_1Server`
+
+- :ref:`exhale_class_classble_1_1Service`
+
+- :ref:`exhale_class_classble_1_1Uuid`
+
+- :ref:`exhale_class_classble_1_1Value`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_Advertising_8h_1a4e47c2c9124a5cb37457e9849cbb20b4`
+
+- :ref:`exhale_variable_Advertising_8h_1abd94c16dc510c96d1fc50e7cee440eb1`
+
+- :ref:`exhale_variable_Advertising_8cpp_1a1fab38cd3268a33c6e87ff966ffd6be4`

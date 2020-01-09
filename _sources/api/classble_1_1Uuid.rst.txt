@@ -1,0 +1,16 @@
+.. _exhale_class_classble_1_1Uuid:
+
+Class Uuid
+==========
+
+- Defined in :ref:`file_components_BLE_src_Uuid.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: ble::Uuid
+   :members:
+   :protected-members:
+   :undoc-members:

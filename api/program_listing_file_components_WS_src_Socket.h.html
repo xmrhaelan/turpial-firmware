@@ -1,0 +1,314 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Program Listing for File Socket.h &mdash; turpial-firmware  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> turpial-firmware
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">turpial-firmware</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Program Listing for File Socket.h</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/program_listing_file_components_WS_src_Socket.h.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-socket-h">
+<span id="program-listing-file-components-ws-src-socket-h"></span><h1>Program Listing for File Socket.h<a class="headerlink" href="#program-listing-for-file-socket-h" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_components_WS_src_Socket.h.html#file-components-ws-src-socket-h"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">components/WS/src/Socket.h</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * Socket.h</span>
+<span class="cm"> *</span>
+<span class="cm"> *  Created on: Mar 5, 2017</span>
+<span class="cm"> *      Author: kolban</span>
+<span class="cm"> */</span>
+
+<span class="cp">#ifndef COMPONENTS_CPP_UTILS_SOCKET_H_</span>
+<span class="cp">#define COMPONENTS_CPP_UTILS_SOCKET_H_</span>
+<span class="cp">#include</span> <span class="cpf">&quot;sdkconfig.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;mbedtls/platform.h&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;mbedtls/ctr_drbg.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;mbedtls/debug.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;mbedtls/entropy.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;mbedtls/error.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;mbedtls/net.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;mbedtls/ssl.h&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;lwip/inet.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;lwip/sockets.h&gt;</span><span class="cp"></span>
+
+<span class="cp">#undef accept</span>
+<span class="cp">#undef bind</span>
+<span class="cp">#undef close</span>
+<span class="cp">#undef connect</span>
+<span class="cp">#undef listen</span>
+<span class="cp">#undef read</span>
+<span class="cp">#undef recv</span>
+<span class="cp">#undef send</span>
+<span class="cp">#undef write</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;exception&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;streambuf&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+
+
+<span class="cp">#if CONFIG_CXX_EXCEPTIONS != 1</span>
+<span class="cp">#error &quot;C++ exception handling must be enabled within make menuconfig. See Compiler Options &gt; Enable C++ Exceptions.&quot;</span>
+<span class="cp">#endif</span>
+
+<span class="k">class</span> <span class="nc">SocketException</span> <span class="o">:</span> <span class="k">public</span> <span class="n">std</span><span class="o">::</span><span class="n">exception</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">SocketException</span><span class="p">(</span><span class="kt">int</span> <span class="n">myErrno</span><span class="p">);</span>
+
+<span class="k">private</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">m_errno</span><span class="p">;</span>
+<span class="p">};</span>
+
+
+<span class="k">class</span> <span class="nc">Socket</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">Socket</span><span class="p">();</span>
+    <span class="k">virtual</span> <span class="o">~</span><span class="n">Socket</span><span class="p">();</span>
+
+    <span class="n">Socket</span> <span class="nf">accept</span><span class="p">();</span>
+    <span class="k">static</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">addressToString</span><span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span><span class="o">*</span> <span class="n">addr</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="nf">bind</span><span class="p">(</span><span class="kt">uint16_t</span> <span class="n">port</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">address</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="nf">close</span><span class="p">();</span>
+    <span class="kt">int</span> <span class="nf">connect</span><span class="p">(</span><span class="k">struct</span> <span class="n">in_addr</span> <span class="n">address</span><span class="p">,</span> <span class="kt">uint16_t</span> <span class="n">port</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="nf">connect</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">address</span><span class="p">,</span> <span class="kt">uint16_t</span> <span class="n">port</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="nf">createSocket</span><span class="p">(</span><span class="kt">bool</span> <span class="n">isDatagram</span> <span class="o">=</span> <span class="nb">false</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="nf">setReuseAddress</span><span class="p">(</span><span class="kt">bool</span> <span class="n">value</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="nf">setSocketOption</span><span class="p">(</span><span class="kt">int</span> <span class="n">option</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">value</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">len</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="nf">setTimeout</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">seconds</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="nf">getBind</span><span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span><span class="o">*</span> <span class="n">pAddr</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="nf">getFD</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+    <span class="c1">//bool getSSL() const;</span>
+    <span class="kt">bool</span> <span class="nf">isValid</span><span class="p">();</span>
+    <span class="kt">int</span> <span class="nf">listen</span><span class="p">(</span><span class="kt">uint16_t</span> <span class="n">port</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">isDatagram</span> <span class="o">=</span> <span class="nb">false</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">reuseAddress</span> <span class="o">=</span> <span class="nb">false</span><span class="p">);</span>
+    <span class="kt">bool</span> <span class="k">operator</span><span class="o">&lt;</span><span class="p">(</span><span class="k">const</span> <span class="n">Socket</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">readToDelim</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">delim</span><span class="p">);</span>
+    <span class="kt">size_t</span> <span class="nf">receive</span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">length</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">exact</span> <span class="o">=</span> <span class="nb">false</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="nf">receiveFrom</span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">length</span><span class="p">,</span> <span class="k">struct</span> <span class="n">sockaddr</span><span class="o">*</span> <span class="n">pAddr</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="nf">send</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">value</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="nf">send</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">length</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="nf">send</span><span class="p">(</span><span class="kt">uint16_t</span> <span class="n">value</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="nf">send</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">value</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="nf">sendTo</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">length</span><span class="p">,</span> <span class="k">struct</span> <span class="n">sockaddr</span><span class="o">*</span> <span class="n">pAddr</span><span class="p">);</span>
+    <span class="c1">//void setSSL(bool sslValue = true);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">toString</span><span class="p">();</span>
+
+<span class="k">private</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">m_sock</span><span class="p">;</span>    <span class="c1">// The underlying TCP/IP socket</span>
+    <span class="kt">bool</span> <span class="n">m_useSSL</span><span class="p">;</span> <span class="c1">// Should we use SSL</span>
+    <span class="n">mbedtls_net_context</span> <span class="n">m_sslSock</span><span class="p">;</span>
+    <span class="n">mbedtls_entropy_context</span> <span class="n">m_entropy</span><span class="p">;</span>
+    <span class="n">mbedtls_ctr_drbg_context</span> <span class="n">m_ctr_drbg</span><span class="p">;</span>
+    <span class="n">mbedtls_ssl_context</span> <span class="n">m_sslContext</span><span class="p">;</span>
+    <span class="n">mbedtls_ssl_config</span> <span class="n">m_conf</span><span class="p">;</span>
+    <span class="n">mbedtls_x509_crt</span> <span class="n">m_srvcert</span><span class="p">;</span>
+    <span class="n">mbedtls_pk_context</span> <span class="n">m_pkey</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="nf">sslHandshake</span><span class="p">();</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">SocketInputRecordStreambuf</span> <span class="o">:</span> <span class="k">public</span> <span class="n">std</span><span class="o">::</span><span class="n">streambuf</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">SocketInputRecordStreambuf</span><span class="p">(</span><span class="n">Socket</span> <span class="n">socket</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">dataLength</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">bufferSize</span> <span class="o">=</span> <span class="mi">512</span><span class="p">);</span>
+    <span class="o">~</span><span class="n">SocketInputRecordStreambuf</span><span class="p">();</span>
+    <span class="n">int_type</span> <span class="nf">underflow</span><span class="p">();</span>
+
+<span class="k">private</span><span class="o">:</span>
+    <span class="kt">char</span><span class="o">*</span> <span class="n">m_buffer</span><span class="p">;</span>
+    <span class="n">Socket</span> <span class="n">m_socket</span><span class="p">;</span>
+    <span class="kt">size_t</span> <span class="n">m_dataLength</span><span class="p">;</span>
+    <span class="kt">size_t</span> <span class="n">m_bufferSize</span><span class="p">;</span>
+    <span class="kt">size_t</span> <span class="n">m_sizeRead</span><span class="p">;</span>
+<span class="p">};</span>
+
+
+<span class="cp">#endif </span><span class="cm">/* COMPONENTS_CPP_UTILS_SOCKET_H_ */</span><span class="cp"></span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Locha Mesh developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

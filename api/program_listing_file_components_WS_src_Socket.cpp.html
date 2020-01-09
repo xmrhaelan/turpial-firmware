@@ -1,0 +1,593 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Program Listing for File Socket.cpp &mdash; turpial-firmware  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> turpial-firmware
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">turpial-firmware</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Program Listing for File Socket.cpp</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/program_listing_file_components_WS_src_Socket.cpp.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-socket-cpp">
+<span id="program-listing-file-components-ws-src-socket-cpp"></span><h1>Program Listing for File Socket.cpp<a class="headerlink" href="#program-listing-for-file-socket-cpp" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_components_WS_src_Socket.cpp.html#file-components-ws-src-socket-cpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">components/WS/src/Socket.cpp</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cctype&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;cstring&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;streambuf&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;sstream&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;errno.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;esp_log.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;lwip/sockets.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&quot;Socket.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;sdkconfig.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
+
+<span class="k">static</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">LOG_TAG</span> <span class="o">=</span> <span class="s">&quot;Socket&quot;</span><span class="p">;</span>
+
+<span class="cp">#undef bind</span>
+
+<span class="n">Socket</span><span class="o">::</span><span class="n">Socket</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">m_sock</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">Socket</span><span class="o">::~</span><span class="n">Socket</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">//close_cpp(); // When the class instance has ended, delete the socket.</span>
+<span class="p">}</span>
+
+
+<span class="n">Socket</span> <span class="n">Socket</span><span class="o">::</span><span class="n">accept</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">struct</span> <span class="n">sockaddr</span> <span class="n">addr</span><span class="p">;</span>
+    <span class="n">getBind</span><span class="p">(</span><span class="o">&amp;</span><span class="n">addr</span><span class="p">);</span>
+    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;&gt;&gt; accept: Accepting on %s; sockFd: %d&quot;</span><span class="p">,</span> <span class="n">addressToString</span><span class="p">(</span><span class="o">&amp;</span><span class="n">addr</span><span class="p">).</span><span class="n">c_str</span><span class="p">(),</span> <span class="n">m_sock</span><span class="p">);</span>
+    <span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">client_addr</span><span class="p">;</span>
+    <span class="kt">socklen_t</span> <span class="n">sin_size</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">clientSockFD</span> <span class="o">=</span> <span class="n">lwip_accept</span><span class="p">(</span><span class="n">m_sock</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">client_addr</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">sin_size</span><span class="p">);</span>
+    <span class="c1">//printf(&quot;------&gt; new connection client %s:%d\n&quot;, inet_ntoa(client_addr.sin_addr), ntohs(client_addr.sin_port));</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">clientSockFD</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">SocketException</span> <span class="n">se</span><span class="p">(</span><span class="n">errno</span><span class="p">);</span>
+        <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;accept(): %s, m_sock=%d&quot;</span><span class="p">,</span> <span class="n">strerror</span><span class="p">(</span><span class="n">errno</span><span class="p">),</span> <span class="n">m_sock</span><span class="p">);</span>
+        <span class="k">throw</span> <span class="n">se</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot; - accept: Received new client!: sockFd: %d&quot;</span><span class="p">,</span> <span class="n">clientSockFD</span><span class="p">);</span>
+    <span class="n">Socket</span> <span class="n">newSocket</span><span class="p">;</span>
+    <span class="n">newSocket</span><span class="p">.</span><span class="n">m_sock</span> <span class="o">=</span> <span class="n">clientSockFD</span><span class="p">;</span>
+    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;&lt;&lt; accept: sockFd: %d&quot;</span><span class="p">,</span> <span class="n">clientSockFD</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">newSocket</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">// accept</span>
+
+
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">Socket</span><span class="o">::</span><span class="n">addressToString</span><span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span><span class="o">*</span> <span class="n">addr</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">struct</span> <span class="n">sockaddr_in</span><span class="o">*</span> <span class="n">pInAddr</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr_in</span><span class="o">*</span><span class="p">)</span><span class="n">addr</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">temp</span><span class="p">[</span><span class="mi">30</span><span class="p">];</span>
+    <span class="kt">char</span> <span class="n">ip</span><span class="p">[</span><span class="mi">20</span><span class="p">];</span>
+    <span class="n">inet_ntop</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">pInAddr</span><span class="o">-&gt;</span><span class="n">sin_addr</span><span class="p">,</span> <span class="n">ip</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">ip</span><span class="p">));</span>
+    <span class="n">sprintf</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span> <span class="s">&quot;%s [%d]&quot;</span><span class="p">,</span> <span class="n">ip</span><span class="p">,</span> <span class="n">ntohs</span><span class="p">(</span><span class="n">pInAddr</span><span class="o">-&gt;</span><span class="n">sin_port</span><span class="p">));</span>
+    <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="n">temp</span><span class="p">);</span>
+<span class="p">}</span> <span class="c1">// addressToString</span>
+
+
+<span class="kt">int</span> <span class="n">Socket</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="kt">uint16_t</span> <span class="n">port</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">address</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;&gt;&gt; bind: port=%d, address=0x%x&quot;</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">address</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">m_sock</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;bind: Socket is not initialized.&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">serverAddress</span><span class="p">;</span>
+    <span class="n">serverAddress</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span>
+    <span class="n">serverAddress</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span> <span class="o">=</span> <span class="n">htonl</span><span class="p">(</span><span class="n">address</span><span class="p">);</span>
+    <span class="n">serverAddress</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span><span class="p">(</span><span class="n">port</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">rc</span> <span class="o">=</span> <span class="n">lwip_bind</span><span class="p">(</span><span class="n">m_sock</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">serverAddress</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">serverAddress</span><span class="p">));</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">rc</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;&lt;&lt; bind: bind[socket=%d]: %d: %s&quot;</span><span class="p">,</span> <span class="n">m_sock</span><span class="p">,</span> <span class="n">errno</span><span class="p">,</span> <span class="n">strerror</span><span class="p">(</span><span class="n">errno</span><span class="p">));</span>
+        <span class="k">return</span> <span class="n">rc</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;&lt;&lt; bind&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">rc</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">// bind</span>
+
+
+<span class="kt">int</span> <span class="n">Socket</span><span class="o">::</span><span class="n">close</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;close: m_sock=%d&quot;</span><span class="p">,</span> <span class="n">m_sock</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">rc</span><span class="p">;</span>
+    <span class="n">rc</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">m_sock</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;Calling lwip_close on %d&quot;</span><span class="p">,</span> <span class="n">m_sock</span><span class="p">);</span>
+        <span class="n">rc</span> <span class="o">=</span> <span class="n">lwip_close</span><span class="p">(</span><span class="n">m_sock</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">rc</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;Error with lwip_close: %d&quot;</span><span class="p">,</span> <span class="n">rc</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">m_sock</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">rc</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">// close</span>
+
+
+<span class="kt">int</span> <span class="n">Socket</span><span class="o">::</span><span class="n">connect</span><span class="p">(</span><span class="k">struct</span> <span class="n">in_addr</span> <span class="n">address</span><span class="p">,</span> <span class="kt">uint16_t</span> <span class="n">port</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">serverAddress</span><span class="p">;</span>
+    <span class="n">serverAddress</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span>
+    <span class="n">serverAddress</span><span class="p">.</span><span class="n">sin_addr</span> <span class="o">=</span> <span class="n">address</span><span class="p">;</span>
+    <span class="n">serverAddress</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span><span class="p">(</span><span class="n">port</span><span class="p">);</span>
+    <span class="kt">char</span> <span class="n">msg</span><span class="p">[</span><span class="mi">50</span><span class="p">];</span>
+    <span class="n">inet_ntop</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">address</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">msg</span><span class="p">));</span>
+    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;Connecting to %s:[%d]&quot;</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">port</span><span class="p">);</span>
+    <span class="n">createSocket</span><span class="p">();</span>
+    <span class="kt">int</span> <span class="n">rc</span> <span class="o">=</span> <span class="n">lwip_connect</span><span class="p">(</span><span class="n">m_sock</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">serverAddress</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr_in</span><span class="p">));</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">rc</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;connect_cpp: Error: %s&quot;</span><span class="p">,</span> <span class="n">strerror</span><span class="p">(</span><span class="n">errno</span><span class="p">));</span>
+        <span class="n">close</span><span class="p">();</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;Connected to partner&quot;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span> <span class="c1">// connect_cpp</span>
+
+
+<span class="kt">int</span> <span class="n">Socket</span><span class="o">::</span><span class="n">connect</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">strAddress</span><span class="p">,</span> <span class="kt">uint16_t</span> <span class="n">port</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">struct</span> <span class="n">in_addr</span> <span class="n">address</span><span class="p">;</span>
+    <span class="n">inet_pton</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">strAddress</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">address</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nf">connect</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">port</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="kt">int</span> <span class="n">Socket</span><span class="o">::</span><span class="n">createSocket</span><span class="p">(</span><span class="kt">bool</span> <span class="n">isDatagram</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;&gt;&gt; createSocket: isDatagram: %d&quot;</span><span class="p">,</span> <span class="n">isDatagram</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">isDatagram</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">m_sock</span> <span class="o">=</span> <span class="o">::</span><span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_DGRAM</span><span class="p">,</span> <span class="n">IPPROTO_UDP</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">m_sock</span> <span class="o">=</span> <span class="o">::</span><span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="n">IPPROTO_TCP</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">m_sock</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;&lt;&lt; createSocket: socket: %d&quot;</span><span class="p">,</span> <span class="n">errno</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">m_sock</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;&lt;&lt; createSocket: sockFd: %d&quot;</span><span class="p">,</span> <span class="n">m_sock</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">m_sock</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">// createSocket</span>
+
+
+<span class="kt">void</span> <span class="n">Socket</span><span class="o">::</span><span class="n">getBind</span><span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span><span class="o">*</span> <span class="n">pAddr</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">m_sock</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;getBind: Socket is not initialized.&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="kt">socklen_t</span> <span class="n">nameLen</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">rc</span> <span class="o">=</span> <span class="o">::</span><span class="n">getsockname</span><span class="p">(</span><span class="n">m_sock</span><span class="p">,</span> <span class="n">pAddr</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">nameLen</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">rc</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;Error with getsockname in getBind: %s&quot;</span><span class="p">,</span> <span class="n">strerror</span><span class="p">(</span><span class="n">errno</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span> <span class="c1">// getBind</span>
+
+
+<span class="kt">int</span> <span class="n">Socket</span><span class="o">::</span><span class="n">getFD</span><span class="p">()</span> <span class="k">const</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">m_sock</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">// getFD</span>
+
+<span class="kt">bool</span> <span class="n">Socket</span><span class="o">::</span><span class="n">isValid</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">m_sock</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">// isValid</span>
+
+<span class="kt">int</span> <span class="n">Socket</span><span class="o">::</span><span class="n">listen</span><span class="p">(</span><span class="kt">uint16_t</span> <span class="n">port</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">isDatagram</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">reuseAddress</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;&gt;&gt; listen: port: %d, isDatagram: %d&quot;</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">isDatagram</span><span class="p">);</span>
+    <span class="n">createSocket</span><span class="p">(</span><span class="n">isDatagram</span><span class="p">);</span>
+    <span class="n">setReuseAddress</span><span class="p">(</span><span class="n">reuseAddress</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">rc</span> <span class="o">=</span> <span class="n">bind</span><span class="p">(</span><span class="n">port</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">rc</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;&lt;&lt; listen: Error in bind: %s&quot;</span><span class="p">,</span> <span class="n">strerror</span><span class="p">(</span><span class="n">errno</span><span class="p">));</span>
+        <span class="k">return</span> <span class="n">rc</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// For a datagram socket, we don&#39;t execute a listen call.  That is is only for connection oriented</span>
+    <span class="c1">// sockets.</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">isDatagram</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">rc</span> <span class="o">=</span> <span class="n">lwip_listen</span><span class="p">(</span><span class="n">m_sock</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">rc</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;&lt;&lt; listen: %s&quot;</span><span class="p">,</span> <span class="n">strerror</span><span class="p">(</span><span class="n">errno</span><span class="p">));</span>
+            <span class="k">return</span> <span class="n">rc</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;&lt;&lt; listen&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">// listen</span>
+
+
+<span class="kt">bool</span> <span class="n">Socket</span><span class="o">::</span><span class="k">operator</span><span class="o">&lt;</span><span class="p">(</span><span class="k">const</span> <span class="n">Socket</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span> <span class="k">const</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">m_sock</span> <span class="o">&lt;</span> <span class="n">other</span><span class="p">.</span><span class="n">m_sock</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="kt">int</span> <span class="n">Socket</span><span class="o">::</span><span class="n">setSocketOption</span><span class="p">(</span><span class="kt">int</span> <span class="n">option</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">value</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">res</span> <span class="o">=</span> <span class="o">::</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">m_sock</span><span class="p">,</span> <span class="n">SOL_SOCKET</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">res</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;%X : %d&quot;</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="n">errno</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">// setSocketOption</span>
+
+
+<span class="kt">int</span> <span class="n">Socket</span><span class="o">::</span><span class="n">setTimeout</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">seconds</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">struct</span> <span class="n">timeval</span> <span class="n">tv</span><span class="p">;</span>
+    <span class="n">tv</span><span class="p">.</span><span class="n">tv_sec</span> <span class="o">=</span> <span class="n">seconds</span><span class="p">;</span>
+    <span class="n">tv</span><span class="p">.</span><span class="n">tv_usec</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">setSocketOption</span><span class="p">(</span><span class="n">SO_RCVTIMEO</span><span class="p">,</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">tv</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">timeval</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">setSocketOption</span><span class="p">(</span><span class="n">SO_SNDTIMEO</span><span class="p">,</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">tv</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">timeval</span><span class="p">));</span>
+<span class="p">}</span>
+
+
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">Socket</span><span class="o">::</span><span class="n">readToDelim</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">delim</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">ret</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">part</span><span class="p">;</span>
+    <span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">delim</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">uint8_t</span> <span class="n">val</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">rc</span> <span class="o">=</span> <span class="n">receive</span><span class="p">(</span><span class="o">&amp;</span><span class="n">val</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">rc</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">rc</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="n">ret</span> <span class="o">+</span> <span class="n">part</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">it</span> <span class="o">==</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">part</span> <span class="o">+=</span> <span class="n">val</span><span class="p">;</span>
+            <span class="o">++</span><span class="n">it</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">it</span> <span class="o">==</span> <span class="n">delim</span><span class="p">.</span><span class="n">end</span><span class="p">())</span> <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">part</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+                <span class="n">ret</span> <span class="o">+=</span> <span class="n">part</span><span class="p">;</span>
+                <span class="n">part</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+                <span class="n">it</span> <span class="o">=</span> <span class="n">delim</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+            <span class="p">}</span>
+            <span class="n">ret</span> <span class="o">+=</span> <span class="n">val</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span> <span class="c1">// While</span>
+<span class="p">}</span> <span class="c1">// readToDelim</span>
+
+
+<span class="kt">size_t</span> <span class="n">Socket</span><span class="o">::</span><span class="n">receive</span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">length</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">exact</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">//ESP_LOGD(LOG_TAG, &quot;&gt;&gt; receive: sockFd: %d, length: %d, exact: %d&quot;, m_sock, length, exact);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">exact</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">rc</span><span class="p">;</span>
+        <span class="n">rc</span> <span class="o">=</span> <span class="n">lwip_recv</span><span class="p">(</span><span class="n">m_sock</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">rc</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;receive: %s&quot;</span><span class="p">,</span> <span class="n">strerror</span><span class="p">(</span><span class="n">errno</span><span class="p">));</span>
+        <span class="p">}</span>
+        <span class="c1">//ESP_LOGD(LOG_TAG, &quot;&lt;&lt; receive: rc: %d&quot;, rc);</span>
+        <span class="k">return</span> <span class="p">(</span><span class="kt">size_t</span><span class="p">)</span><span class="n">rc</span><span class="p">;</span>
+    <span class="p">}</span> <span class="c1">// Read what we can, doesn&#39;t need to be an exact amount.</span>
+
+    <span class="kt">size_t</span> <span class="n">amountToRead</span> <span class="o">=</span> <span class="n">length</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">rc</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">amountToRead</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">rc</span> <span class="o">=</span> <span class="n">lwip_recv</span><span class="p">(</span><span class="n">m_sock</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">amountToRead</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">rc</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;receive: %s&quot;</span><span class="p">,</span> <span class="n">strerror</span><span class="p">(</span><span class="n">errno</span><span class="p">));</span>
+            <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">rc</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+        <span class="n">amountToRead</span> <span class="o">-=</span> <span class="n">rc</span><span class="p">;</span>
+        <span class="n">data</span> <span class="o">+=</span> <span class="n">rc</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">//ESP_LOGD(LOG_TAG, &quot;&lt;&lt; receive: %d&quot;, length);</span>
+    <span class="k">return</span> <span class="n">length</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">// receive_cpp</span>
+
+
+<span class="kt">int</span> <span class="n">Socket</span><span class="o">::</span><span class="n">receiveFrom</span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">length</span><span class="p">,</span> <span class="k">struct</span> <span class="n">sockaddr</span><span class="o">*</span> <span class="n">pAddr</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">socklen_t</span> <span class="n">addrLen</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">rc</span> <span class="o">=</span> <span class="o">::</span><span class="n">recvfrom</span><span class="p">(</span><span class="n">m_sock</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">pAddr</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">addrLen</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">rc</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">// receiveFrom</span>
+
+
+<span class="kt">int</span> <span class="n">Socket</span><span class="o">::</span><span class="n">send</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">length</span><span class="p">)</span> <span class="k">const</span>
+<span class="p">{</span>
+    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;send: Raw binary of length: %d&quot;</span><span class="p">,</span> <span class="n">length</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">rc</span> <span class="o">=</span> <span class="n">ERR_OK</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">rc</span> <span class="o">=</span> <span class="n">lwip_send</span><span class="p">(</span><span class="n">m_sock</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">((</span><span class="n">rc</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">errno</span> <span class="o">!=</span> <span class="n">EAGAIN</span><span class="p">))</span> <span class="p">{</span>
+            <span class="c1">// no cure for errors other than EAGAIN - log and exit</span>
+            <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;send: socket=%d, %s&quot;</span><span class="p">,</span> <span class="n">m_sock</span><span class="p">,</span> <span class="n">strerror</span><span class="p">(</span><span class="n">errno</span><span class="p">));</span>
+            <span class="k">return</span> <span class="n">rc</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">rc</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// not all data was written, try again for the remainder</span>
+            <span class="n">length</span> <span class="o">-=</span> <span class="n">rc</span><span class="p">;</span>
+            <span class="n">data</span> <span class="o">+=</span> <span class="n">rc</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">rc</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">// send</span>
+
+
+<span class="kt">int</span> <span class="n">Socket</span><span class="o">::</span><span class="n">send</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">value</span><span class="p">)</span> <span class="k">const</span>
+<span class="p">{</span>
+    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;send: Binary of length: %d&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">.</span><span class="n">length</span><span class="p">());</span>
+    <span class="k">return</span> <span class="nf">send</span><span class="p">((</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="n">value</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span> <span class="n">value</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+<span class="p">}</span> <span class="c1">// send</span>
+
+
+<span class="kt">int</span> <span class="n">Socket</span><span class="o">::</span><span class="n">send</span><span class="p">(</span><span class="kt">uint16_t</span> <span class="n">value</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;send: 16bit value: %.2x&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nf">send</span><span class="p">((</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">value</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">value</span><span class="p">));</span>
+<span class="p">}</span> <span class="c1">// send_cpp</span>
+
+
+<span class="kt">int</span> <span class="n">Socket</span><span class="o">::</span><span class="n">send</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">value</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;send: 32bit value: %.2x&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nf">send</span><span class="p">((</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">value</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">value</span><span class="p">));</span>
+<span class="p">}</span> <span class="c1">// send</span>
+
+
+<span class="kt">void</span> <span class="n">Socket</span><span class="o">::</span><span class="n">sendTo</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">length</span><span class="p">,</span> <span class="k">struct</span> <span class="n">sockaddr</span><span class="o">*</span> <span class="n">pAddr</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">rc</span><span class="p">;</span>
+    <span class="n">rc</span> <span class="o">=</span> <span class="o">::</span><span class="n">sendto</span><span class="p">(</span><span class="n">m_sock</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">pAddr</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span><span class="p">));</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">rc</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;sendto: socket=%d %s&quot;</span><span class="p">,</span> <span class="n">m_sock</span><span class="p">,</span> <span class="n">strerror</span><span class="p">(</span><span class="n">errno</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span> <span class="c1">// sendTo</span>
+
+
+<span class="kt">void</span> <span class="n">Socket</span><span class="o">::</span><span class="n">setReuseAddress</span><span class="p">(</span><span class="kt">bool</span> <span class="n">value</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;&gt;&gt; setReuseAddress: %d&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="n">value</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">setSocketOption</span><span class="p">(</span><span class="n">SO_REUSEADDR</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">val</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">val</span><span class="p">));</span>
+    <span class="n">ESP_LOGD</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span> <span class="s">&quot;&lt;&lt; setReuseAddress&quot;</span><span class="p">);</span>
+<span class="p">}</span> <span class="c1">// setReuseAddress</span>
+
+
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">Socket</span><span class="o">::</span><span class="n">toString</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">ostringstream</span> <span class="n">oss</span><span class="p">;</span>
+    <span class="n">oss</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;fd: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">m_sock</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">oss</span><span class="p">.</span><span class="n">str</span><span class="p">();</span>
+<span class="p">}</span> <span class="c1">// toString</span>
+
+
+<span class="n">SocketInputRecordStreambuf</span><span class="o">::</span><span class="n">SocketInputRecordStreambuf</span><span class="p">(</span>
+    <span class="n">Socket</span> <span class="n">socket</span><span class="p">,</span>
+    <span class="kt">size_t</span> <span class="n">dataLength</span><span class="p">,</span>
+    <span class="kt">size_t</span> <span class="n">bufferSize</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">m_socket</span> <span class="o">=</span> <span class="n">socket</span><span class="p">;</span>               <span class="c1">// The socket we will be reading from</span>
+    <span class="n">m_dataLength</span> <span class="o">=</span> <span class="n">dataLength</span><span class="p">;</span>       <span class="c1">// The size of the record we wish to read.</span>
+    <span class="n">m_bufferSize</span> <span class="o">=</span> <span class="n">bufferSize</span><span class="p">;</span>       <span class="c1">// The size of the buffer used to hold data</span>
+    <span class="n">m_sizeRead</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>                  <span class="c1">// The size of data read from the socket</span>
+    <span class="n">m_buffer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">bufferSize</span><span class="p">];</span> <span class="c1">// Create the buffer used to hold the data read from the socket.</span>
+
+    <span class="n">setg</span><span class="p">(</span><span class="n">m_buffer</span><span class="p">,</span> <span class="n">m_buffer</span><span class="p">,</span> <span class="n">m_buffer</span><span class="p">);</span> <span class="c1">// Set the initial get buffer pointers to no data.</span>
+<span class="p">}</span> <span class="c1">// SocketInputRecordStreambuf</span>
+
+
+<span class="n">SocketInputRecordStreambuf</span><span class="o">::~</span><span class="n">SocketInputRecordStreambuf</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">delete</span><span class="p">[]</span> <span class="n">m_buffer</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">// ~SocketInputRecordStreambuf</span>
+
+
+<span class="n">SocketInputRecordStreambuf</span><span class="o">::</span><span class="n">int_type</span> <span class="n">SocketInputRecordStreambuf</span><span class="o">::</span><span class="n">underflow</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">m_sizeRead</span> <span class="o">&gt;=</span> <span class="n">m_dataLength</span><span class="p">)</span> <span class="k">return</span> <span class="n">EOF</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">bytesRead</span> <span class="o">=</span> <span class="n">m_socket</span><span class="p">.</span><span class="n">receive</span><span class="p">((</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="n">m_buffer</span><span class="p">,</span> <span class="n">m_bufferSize</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">bytesRead</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="n">EOF</span><span class="p">;</span>
+
+    <span class="n">m_sizeRead</span> <span class="o">+=</span> <span class="n">bytesRead</span><span class="p">;</span>
+    <span class="n">setg</span><span class="p">(</span><span class="n">m_buffer</span><span class="p">,</span> <span class="n">m_buffer</span><span class="p">,</span> <span class="n">m_buffer</span> <span class="o">+</span> <span class="n">bytesRead</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">traits_type</span><span class="o">::</span><span class="n">to_int_type</span><span class="p">(</span><span class="o">*</span><span class="n">gptr</span><span class="p">());</span>
+<span class="p">}</span> <span class="c1">// underflow</span>
+
+<span class="n">SocketException</span><span class="o">::</span><span class="n">SocketException</span><span class="p">(</span><span class="kt">int</span> <span class="n">myErrno</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">m_errno</span> <span class="o">=</span> <span class="n">myErrno</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Locha Mesh developers
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

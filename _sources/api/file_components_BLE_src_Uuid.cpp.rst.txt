@@ -1,0 +1,60 @@
+
+.. _file_components_BLE_src_Uuid.cpp:
+
+File Uuid.cpp
+=============
+
+|exhale_lsh| :ref:`Parent directory <dir_components_BLE_src>` (``components/BLE/src``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``components/BLE/src/Uuid.cpp``)
+--------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_components_BLE_src_Uuid.cpp.rst
+
+
+
+Detailed Description
+--------------------
+
+Locha Mesh Developers (contact@locha.io) 
+0.1 
+2019-11-21
+Copyright (c) 2019 Locha Mesh project developers 
+Apache 2.0, see LICENSE file for details 
+
+
+
+
+Includes
+--------
+
+
+- ``Hex.h`` (:ref:`file_components_Util_src_Hex.h`)
+
+- ``Uuid.h`` (:ref:`file_components_BLE_src_Uuid.h`)
+
+- ``cstring``
+
+- ``esp_log.h``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_ble`
+

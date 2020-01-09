@@ -1,0 +1,96 @@
+
+.. _file_main_defaults.h:
+
+File defaults.h
+===============
+
+|exhale_lsh| :ref:`Parent directory <dir_main>` (``main``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``main/defaults.h``)
+--------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_main_defaults.h.rst
+
+
+
+Detailed Description
+--------------------
+
+Locha Mesh project developers (locha.io) 
+0.1 
+2019-11-07
+Copyright (c) 2019 Locha Mesh project developers 
+Apache 2.0, see LICENSE file for details 
+
+
+
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_main_main.cpp`
+
+- :ref:`file_components_NVS_src_Storage.cpp`
+
+- :ref:`file_components_Radio_src_Radio.h`
+
+
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_defaults_8h_1a332b962ec50384a5047f34702c8b70a6`
+
+- :ref:`exhale_define_defaults_8h_1a0889a7ece93eca4ff0d23356acb57bd9`
+
+- :ref:`exhale_define_defaults_8h_1a34b24eefce115ce9c95bc1efbf21bfee`
+
+- :ref:`exhale_define_defaults_8h_1af6d01d725c39dfebe5d880f7da6c144f`
+
+- :ref:`exhale_define_defaults_8h_1a5acd63da6573a25ecef02c259de4236c`
+
+- :ref:`exhale_define_defaults_8h_1a852ada17276267d1560086589181498a`
+
+- :ref:`exhale_define_defaults_8h_1ab8e5a05ad24e24c53193115cce8d786e`
+
+- :ref:`exhale_define_defaults_8h_1aa4f10a69a7a0880930f90fe353033192`
+
+- :ref:`exhale_define_defaults_8h_1a3ae7fbfc9dd87ebe369ac9a491756b1b`
+
+- :ref:`exhale_define_defaults_8h_1a7a2eac2289388cff5cf5adfb24e72218`
+
+- :ref:`exhale_define_defaults_8h_1afec8d69eace1462de6c35e38bc9161fe`
+
+- :ref:`exhale_define_defaults_8h_1af0ac4e2d813cd5e07d8c862011de24a3`
+
+- :ref:`exhale_define_defaults_8h_1a33bc61022da60ac1c9ee84ac0ed192e6`
+
+- :ref:`exhale_define_defaults_8h_1a934554770def286417012ddef17cfb3f`
+
+- :ref:`exhale_define_defaults_8h_1a99ef8069fcde89e4a6bbb77231ff1500`
+
+- :ref:`exhale_define_defaults_8h_1ab5abf1549c9a73d0f9e7e24fc8c5651d`
+
+- :ref:`exhale_define_defaults_8h_1a35ea56303d1c0698086ce472ab1f5c14`
+
+- :ref:`exhale_define_defaults_8h_1a4e3075c45ada71b4a46179e6ed778c25`
+
+- :ref:`exhale_define_defaults_8h_1ab4bfcfe1b2da0cebd91c5dac0fb53ea1`
+
+- :ref:`exhale_define_defaults_8h_1a25a55e0e82db2b7ff645f49b253822a1`
+

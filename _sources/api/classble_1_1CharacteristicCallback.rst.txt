@@ -1,0 +1,29 @@
+.. _exhale_class_classble_1_1CharacteristicCallback:
+
+Class CharacteristicCallback
+============================
+
+- Defined in :ref:`file_components_BLE_src_Characteristic.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Derived Types
+*************
+
+- ``public ble_preferences::APPasswordCallback`` (:ref:`exhale_class_classble__preferences_1_1APPasswordCallback`)
+- ``public ble_preferences::APSSIDCallback`` (:ref:`exhale_class_classble__preferences_1_1APSSIDCallback`)
+- ``public ble_preferences::STAPasswordCallback`` (:ref:`exhale_class_classble__preferences_1_1STAPasswordCallback`)
+- ``public ble_preferences::STASSIDCallback`` (:ref:`exhale_class_classble__preferences_1_1STASSIDCallback`)
+- ``public ble_preferences::WiFiModeCallback`` (:ref:`exhale_class_classble__preferences_1_1WiFiModeCallback`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: ble::CharacteristicCallback
+   :members:
+   :protected-members:
+   :undoc-members:

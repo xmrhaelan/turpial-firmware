@@ -1,0 +1,96 @@
+
+.. _file_main_main.cpp:
+
+File main.cpp
+=============
+
+|exhale_lsh| :ref:`Parent directory <dir_main>` (``main``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``main/main.cpp``)
+------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_main_main.cpp.rst
+
+
+
+Detailed Description
+--------------------
+
+Locha Mesh Developers (contact@locha.io) 
+0.1 
+2019-09-11
+Copyright (c) 2019 
+
+
+
+
+Includes
+--------
+
+
+- ``BLEPreferences.h`` (:ref:`file_components_BLEPreferences_src_BLEPreferences.h`)
+
+- ``Battery.h`` (:ref:`file_components_ESC_src_Battery.h`)
+
+- ``FuelGauge.h`` (:ref:`file_components_ESC_src_FuelGauge.h`)
+
+- ``HttpServer.h`` (:ref:`file_components_WS_src_HttpServer.h`)
+
+- ``Radio.h`` (:ref:`file_components_Radio_src_Radio.h`)
+
+- ``Storage.h`` (:ref:`file_components_NVS_src_Storage.h`)
+
+- ``WebSocket.h`` (:ref:`file_components_WS_src_WebSocket.h`)
+
+- ``WiFi.h`` (:ref:`file_components_Network_src_WiFi.h`)
+
+- ``WsHandlerEvents.h`` (:ref:`file_components_WS_src_WsHandlerEvents.h`)
+
+- ``cstdio``
+
+- ``defaults.h`` (:ref:`file_main_defaults.h`)
+
+- ``esp_log.h``
+
+- ``freertos/FreeRTOS.h``
+
+- ``freertos/task.h``
+
+- ``memory``
+
+- ``sstream``
+
+
+
+
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_main_8cpp_1abce06be17fc37d675118a678a8100a36`
+
+- :ref:`exhale_function_main_8cpp_1a64204756e9c1346b23cc914a42ac1a07`
+
+- :ref:`exhale_function_main_8cpp_1a7288a5a77caa7bb76adde12006d6c52b`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_main_8cpp_1a6827cefaad7a4a4ceb58292edcaaaee9`
+
+- :ref:`exhale_variable_main_8cpp_1a5a85b9c772bbeb480b209a3e6ea92b4c`
+
